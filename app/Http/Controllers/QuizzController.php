@@ -38,8 +38,7 @@ class QuizzController extends Controller
     public function store()
     {
         $quizz = Quizz::create(['name' => Input::get('name')]);
-        return view('quizzs.index'/*, compact('added')*/);
-
+        return redirect(route('quizz.index'));
     }
 
     /**
