@@ -2,7 +2,7 @@
 <ul>
     <li>
         {!! Form::label('name', 'Name:') !!}
-        {!! Form::text('name', null) !!}
+        {!! Form::text('name') !!}
     </li>
     <li>
         {!! Form::submit() !!}

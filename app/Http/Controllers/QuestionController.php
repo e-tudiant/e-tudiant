@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
 use App\Question;
 use Illuminate\Support\Facades\Input;
 use App\Quizz;
@@ -36,9 +37,9 @@ class QuestionController extends Controller
         //dd(Input::get());
         $question = Question::create([
             'question' => Input::get('question'),
-            'quizz_id' => Input::get('quizz')
+            'quizz_id' => Input::get('quizz_id')
         ]);
-        return view('questions.index'/*, compact('added')*/)->withOk('Ajouté !');
+        return redirect(route('question.index'))->withOk('Ajouté !');
     }
 
     /**
@@ -50,7 +51,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::findOrFail($id);
-        return view('questions.show',  compact('question'));
+
+        $quizz = Quizz::findOrFail($question->quizz_id);
+        return view('questions.show',  compact('question', 'quizz'));
     }
 
     /**
@@ -62,7 +65,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::findOrFail($id);
-        return view('questions.edit',  compact('question'));
+        $quizzs = Quizz::pluck('name', 'id');
+        return view('questions.edit',  compact('question', 'quizzs'));
     }
 
     /**

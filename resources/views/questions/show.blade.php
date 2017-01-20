@@ -1,3 +1,4 @@
 <h1>Questions</h1>
 <div>Id : {!! $question->id !!}</div>
-<div>Name : {!! $question->name !!}</div>
+<div>Quizz : {!! $quizz->name !!}</div>
+<div>Question : {!! $question->question !!}</div>
