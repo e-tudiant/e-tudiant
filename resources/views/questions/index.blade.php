@@ -5,7 +5,7 @@
 {!! link_to_route('question.create', 'Ajouter un question') !!}
 @foreach ($questions as $question)
     <div>
-        Name : {!! $question->name !!}
+        Question : {!! $question->question !!}
         {!! link_to_route('question.show', 'Voir', [$question->id]) !!}
         {!! link_to_route('question.edit', 'Modifier', [$question->id]) !!}
         {!! Form::open(['method' => 'DELETE', 'route' => ['question.destroy', $question->id]]) !!}
