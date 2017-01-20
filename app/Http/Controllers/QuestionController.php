@@ -33,9 +33,10 @@ class QuestionController extends Controller
      */
     public function store()
     {
+        //dd(Input::get());
         $question = Question::create([
             'question' => Input::get('question'),
-            'quizz_id' => Input::get('quizz_id')
+            'quizz_id' => Input::get('quizz')
         ]);
         return view('questions.index'/*, compact('added')*/)->withOk('Ajouté !');
     }
