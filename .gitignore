@@ -3,6 +3,7 @@
 /public/adminer.php
 /vendor
 /.idea
+/public/adminer.php
 Homestead.json
 Homestead.yaml
 .env
