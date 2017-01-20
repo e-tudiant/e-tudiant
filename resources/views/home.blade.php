@@ -7,8 +7,12 @@
         Bienvenue à toi "nom du user connecté"
     </div>
 
-    {{--@include('blocks.menuApprenant')--}}
-
-    @include('blocks.menuFormateur')
+    @if(Auth::user()->role_id == 3)
+        @include('blocks.menuApprenant')
+    @elseif(Auth::user()->role_id == 2)
+        @include('blocks.menuFormateur')
+    @else
+        <p>admin pas encore fait, <a href="/login">retour loggin</a></p>
+    @endif
 
 @endsection
