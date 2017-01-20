@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        Schema::table('user_infos',function (Blueprint $table){
+           $table->integer('user_id')->unsigned()->index();
+        });
+
+
+
     }
 
     /**
