@@ -14,11 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*Middleware exemple*/
 Route::get('test', [
     'middleware' => ['auth', 'roles'], // A 'roles' middleware must be specified
     'uses' => 'TestController@index',
-    'roles' => ['formateur'] // Only an administrator, or a manager can access this route
+    'roles' => ['formateur',] // Only an administrator, or a manager can access this route
 ]);
 
 //Auth::routes();
@@ -35,7 +35,6 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
 Route::get('/home', 'HomeController@index');
 
 // Quizz
@@ -127,3 +126,8 @@ Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'Se
 Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');
 Route::delete('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@destroy','roles' => ['formateur', 'admin']])->name('session.destroy');
 Route::get('session/{session}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@edit','roles' => ['formateur', 'admin']])->name('session.edit');
+
+//User_info
+Route::get('userinfo', 'UserInfoController@index');
+Route::get('userinfo/{id}','UserInfoController@create');
+

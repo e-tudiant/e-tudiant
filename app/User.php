@@ -26,6 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /*RELATION TABLE USER INFO*/
+    public function User_info(){
+        return $this->hasOne('App\User_info');
+
+    }
+
     /*GESTION DES ROLES*/
     public function role()
     {

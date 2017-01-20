@@ -8,11 +8,6 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
-		Schema::table('group_user', function(Blueprint $table) {
-			$table->foreign('group_id')->references('id')->on('groups')
-						->onDelete('restrict')
-						->onUpdate('restrict');
-		});
 		Schema::table('questions', function(Blueprint $table) {
 			$table->foreign('quizz_id')->references('id')->on('quizzs')
 						->onDelete('restrict')
