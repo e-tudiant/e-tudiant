@@ -31,6 +31,7 @@ class GroupUserController extends Controller {
    */
   public function store()
   {
+
     
   }
 
