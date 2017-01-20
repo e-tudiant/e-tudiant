@@ -3,14 +3,22 @@
 <p>Bienvenue dans votre interface de formateur , venez ici gerer pas mal de truc</p>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
-    <li><a data-toggle="tab" href="#library">Librairie</a></li>
-    <li><a data-toggle="tab" href="#course">Mes cours</a></li>
-    <li><a data-toggle="tab" href="#class">Salle de classe</a></li>
+    <li class="active"><a href="#accueil">Accueil</a></li>
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#library">Librairie</a></li>
+    <li><a href="#course">Mes cours</a></li>
+    <li><a href="/quizz/#profil">Mes Quizz</a></li>
+    <li><a href="#class">Salle de classe</a></li>
 </ul>
 
 <div class="tab-content">
-    <div id="profil" class="tab-pane fade in active">
+    <div id="accueil" class="tab-pane fade in active">
+        <div id="profil" class="tab-pane fade in active">
+            <h3>Accueil</h3>
+            <p>Ceci est l'accueil quand vous arrivez sur votre dashboard</p>
+        </div>
+    </div>
+    <div id="profil" class="tab-pane fade">
         <h3>Profil</h3>
         <p>Mettre les infos du profil apprenant, avec formulaire pour modifier infos !</p>
         <ul>

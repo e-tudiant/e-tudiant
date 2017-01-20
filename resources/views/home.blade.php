@@ -7,7 +7,7 @@
         Bienvenue à toi "nom du user connecté"
     </div>
 
-    @include('blocks.menuApprenant')
+    {{--@include('blocks.menuApprenant')--}}
 
     @include('blocks.menuFormateur')
 
