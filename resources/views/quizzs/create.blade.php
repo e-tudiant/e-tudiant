@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -27,7 +26,7 @@
 			<div class="col-sm-8 col-xs-12">
 
 				<h4>Quizz</h4>
-				{!! Form::open(array('route' => 'quizz.store', 'method' => 'POST')) !!}
+				{!! Form::model($quizz, array('route' => [($quizz->id ? 'quizz.update' : 'quizz.store'), $quizz->id], 'method' => ($quizz->id ? 'PUT' : 'POST'))) !!}
 				<ul>
 					<li>
 						{!! Form::label('name', 'Name:') !!}

@@ -14,11 +14,11 @@ class QuizzTableSeeder extends Seeder
         if (App::environment() === 'production') {
             exit('I just stopped you getting fired. Love, Amo.');
         }
-        DB::table('quizz')->delete();
+        DB::table('quizzs')->delete();
 
         for($i = 0; $i < 10; ++$i)
         {
-            DB::table('quizz')->insert([
+            DB::table('quizzs')->insert([
                 'name' => 'Quizz' . $i,
             ]);
         }

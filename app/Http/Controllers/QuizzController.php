@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuizzRequest;
 use Illuminate\Support\Facades\Input;
 use App\Quizz;
+use App\Question;
 
 class QuizzController extends Controller
 {
@@ -27,7 +28,8 @@ class QuizzController extends Controller
      */
     public function create()
     {
-        return view('quizzs.create');
+        $quizz = new Quizz;
+        return view('quizzs.create', compact('quizz'));
     }
 
     /**
@@ -50,7 +52,8 @@ class QuizzController extends Controller
     public function show($id)
     {
         $quizz = Quizz::findOrFail($id);
-        return view('quizzs.show', compact('quizz'));
+        $questions = Question::all()->where('id', $quizz->id);
+        return view('quizzs.show', compact('quizz', 'questions'));
     }
 
     /**
