@@ -128,6 +128,7 @@ Route::delete('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 
 Route::get('session/{session}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@edit','roles' => ['formateur', 'admin']])->name('session.edit');
 
 //User_info
-Route::get('userinfo', 'UserInfoController@index');
-Route::get('userinfo/{id}','UserInfoController@create');
+Route::get('userinfo', 'UserInfoController@index')->name('userinfo.index');
+Route::get('userinfo/create','UserInfoController@create');
+Route::post('userinfo/store','UserInfoController@store')->name('userinfo.store');
 

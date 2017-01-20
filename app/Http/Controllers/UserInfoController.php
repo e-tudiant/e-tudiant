@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\User_info;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class UserInfoController extends Controller
 {
@@ -29,7 +31,7 @@ class UserInfoController extends Controller
      */
     public function create()
     {
-
+        return view('userinfos.create');
     }
 
     /**
@@ -39,6 +41,18 @@ class UserInfoController extends Controller
      */
     public function store()
     {
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $userInfo = User_info::create([
+                'user_id' => $user_id,
+                'social_network'=>Input::get('social_network'),
+                'github_link'=>Input::get('social_network'),
+                'phone'=>Input::get('phone'),
+                'avatar'=>Input::get('avatar'),
+                'phonebook'=>Input::get('phonebook')
+            ]);
+            return redirect(route('userinfo.index'));
+        }
 
     }
 

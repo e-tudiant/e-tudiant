@@ -20,7 +20,6 @@ class CreateUserInfosTable extends Migration
             $table->string('phone');
             $table->string('avatar');
             $table->boolean('phonebook');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
