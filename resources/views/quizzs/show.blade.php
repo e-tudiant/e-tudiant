@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -34,3 +33,5 @@
     </div>
 
 @endsection()
+
+@include('questions.index', ['questions' => $questions, 'quizz' => $quizz])

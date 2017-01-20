@@ -23,8 +23,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $quizzs = Quizz::pluck('name', 'id');
-        return view('questions.create', compact('quizzs'));
+        $quizz_id = Input::get('quizz_id');
+        $question = new Question;
+        return view('questions.create', compact('question', 'quizz_id'));
     }
 
     /**
@@ -45,7 +46,7 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($id)
@@ -53,26 +54,25 @@ class QuestionController extends Controller
         $question = Question::findOrFail($id);
 
         $quizz = Quizz::findOrFail($question->quizz_id);
-        return view('questions.show',  compact('question', 'quizz'));
+        return view('questions.show', compact('question', 'quizz'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($id, $quizz)
     {
         $question = Question::findOrFail($id);
-        $quizzs = Quizz::pluck('name', 'id');
-        return view('questions.edit',  compact('question', 'quizzs'));
+        return view('questions.edit', compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id, QuestionRequest $request)
@@ -85,7 +85,7 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)

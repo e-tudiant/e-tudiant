@@ -8,6 +8,7 @@ class Answer extends Model {
 
 	protected $table = 'answers';
 	public $timestamps = true;
+	protected $fillable = ['question_id', 'answer', 'correct'];
 
 	public function question()
 	{

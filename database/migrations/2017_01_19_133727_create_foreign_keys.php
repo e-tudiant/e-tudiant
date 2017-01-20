@@ -57,9 +57,9 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
-		Schema::table('group_user', function(Blueprint $table) {
+		/*Schema::table('group_user', function(Blueprint $table) {
 			$table->dropForeign('group_user_user_id_foreign');
-		});
+		});*/
 		Schema::table('group_user', function(Blueprint $table) {
 			$table->dropForeign('group_user_group_id_foreign');
 		});
