@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\User_info;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
@@ -31,7 +32,8 @@ class UserInfoController extends Controller
      */
     public function create()
     {
-        return view('userinfos.create');
+        $userinfo=new User_info();
+        return view('userinfos.create',compact('userinfo'));
     }
 
     /**
@@ -75,7 +77,8 @@ class UserInfoController extends Controller
      */
     public function edit($id)
     {
-
+        $userinfo = User_info::findOrFail($id);
+        return view('userinfos.create', compact('userinfo'));
     }
 
     /**
@@ -84,9 +87,12 @@ class UserInfoController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update($id,Request $request)
     {
-
+//        dd($request);
+        $userinfo = User_info::findOrFail($id);
+        $userinfo->update($request->all());
+        return redirect(route('userinfo.index'));
     }
 
     /**
