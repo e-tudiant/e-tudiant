@@ -129,6 +129,7 @@ Route::get('session/{session}/edit', ['middleware' => ['auth', 'roles'],'uses' =
 
 //User_info
 Route::get('userinfo', 'UserInfoController@index')->name('userinfo.index');
-Route::get('userinfo/create','UserInfoController@create');
+Route::get('userinfo/create','UserInfoController@create')->name('userinfo.create');
 Route::post('userinfo/store','UserInfoController@store')->name('userinfo.store');
-
+Route::put('userinfo/{user_id}','UserInfoController@update')->name('userinfo.update');
+Route::get('userinfo/{user_id}/edit','UserInfoController@edit')->name('userinfo.edit');

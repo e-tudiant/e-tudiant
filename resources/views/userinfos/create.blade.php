@@ -1,4 +1,4 @@
-{!! Form::open(array('route' => 'userinfo.store', 'method' => 'POST')) !!}
+{!! Form::model($userinfo, array('files'=>true,'route' => [($userinfo->id ? 'userinfo.update' : 'userinfo.store'), $userinfo->id], 'method' => ($userinfo->id ? 'PUT' : 'POST'))) !!}
 <ul>
     <li>
         {!! Form::label('social_network', 'Réseau social:') !!}
