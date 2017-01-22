@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "caouecs/laravel-lang": "~3.0",
         "laravelcollective/html": "5.3.*",
-        "twbs/bootstrap": "dev-master"
+        "twbs/bootstrap": "dev-master",
+        "pusher/pusher-php-server": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

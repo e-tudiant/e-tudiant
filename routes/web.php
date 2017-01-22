@@ -81,6 +81,8 @@ Route::get('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' =>
 Route::put('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@update','roles' => ['formateur', 'admin']])->name('classroom.update');
 Route::delete('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@destroy','roles' => ['formateur', 'admin']])->name('classroom.destroy');
 Route::get('classroom/{classroom}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@edit','roles' => ['formateur', 'admin']])->name('classroom.edit');
+Route::get('classroom/{classroom}/enter', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@enter', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.enter');
+Route::post('classroom/{classroom}/send', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@send', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.send');
 
 // ClassroomGroup
 Route::get('classroomgroup', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomGroupController@index','roles' => ['formateur', 'admin']])->name('classroomgroup.index');
