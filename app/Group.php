@@ -8,10 +8,11 @@ class Group extends Model {
 
 	protected $table = 'groups';
 	public $timestamps = true;
+    public $fillable=['name'];
 
-	public function user()
+	public function users()
 	{
-		return $this->belongsToMany('User');
+		return $this->belongsToMany('App\User');
 	}
 
 	public function classroom()
