@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ClassroomMessageEvent;
+use Illuminate\Http\Request;
+
 class ClassroomController extends Controller {
 
   /**
@@ -77,7 +80,29 @@ class ClassroomController extends Controller {
   {
     
   }
-  
+
+  /**
+   * Enter in the specified classroom.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function enter($id)
+  {
+    return view('enter_classroom')->withClassroomId($id);
+  }
+
+  /**
+   * Send a message to the classroom.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function send(Request $request, $classroomId)
+  {
+    broadcast(new ClassroomMessageEvent($classroomId, $request->input('message')))->toOthers();
+  }
+
 }
 
 ?>

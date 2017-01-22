@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "186212adcf49ff228917324bdec0ab59",
+    "content-hash": "0f47d75ffd0675eb8e5a0698633c5bbd",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -1005,6 +1005,50 @@
             "time": "2017-01-15T17:54:13+00:00"
         },
         {
+            "name": "pusher/pusher-php-server",
+            "version": "2.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/pusher-http-php.git",
+                "reference": "7101edc482d1b1de027abadd7a80a0d00222ef08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/7101edc482d1b1de027abadd7a80a0d00222ef08",
+                "reference": "7101edc482d1b1de027abadd7a80a0d00222ef08",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for interacting with the Pusher REST API",
+            "homepage": "https://github.com/pusher/pusher-php-server",
+            "keywords": [
+                "events",
+                "php-pusher-server",
+                "publish",
+                "pusher",
+                "realtime",
+                "rest",
+                "trigger"
+            ],
+            "time": "2016-12-22T10:46:28+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.5.2",
             "source": {
@@ -1919,6 +1963,57 @@
                 "dump"
             ],
             "time": "2017-01-02T20:31:54+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "9b7d1406b922300c5d01e99026e4fffc67445185"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/9b7d1406b922300c5d01e99026e4fffc67445185",
+                "reference": "9b7d1406b922300c5d01e99026e4fffc67445185",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ],
+            "time": "2016-09-22T10:06:30+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3665,7 +3760,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "twbs/bootstrap": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
