@@ -55,15 +55,6 @@ Route::put('group/{group}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupC
 Route::delete('group/{group}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@destroy','roles' => ['formateur', 'admin']])->name('group.destroy');
 Route::get('group/{group}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@edit','roles' => ['formateur', 'admin']])->name('group.edit');
 
-// GroupUser
-Route::get('groupuser', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@index','roles' => ['formateur', 'admin']])->name('groupuser.index');
-Route::post('groupuser', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@store','roles' => ['formateur', 'admin']])->name('groupuser.store');
-Route::get('groupuser/create', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@create','roles' => ['formateur', 'admin']])->name('groupuser.create');
-Route::get('groupuser/{groupuser}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@show','roles' => ['formateur', 'admin']])->name('groupuser.show');
-Route::put('groupuser/{groupuser}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@update','roles' => ['formateur', 'admin']])->name('groupuser.update');
-Route::delete('groupuser/{groupuser}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@destroy','roles' => ['formateur', 'admin']])->name('groupuser.destroy');
-Route::get('groupuser/{groupuser}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'GroupUserController@edit','roles' => ['formateur', 'admin']])->name('groupuser.edit');
-
 // Question
 Route::get('question', ['middleware' => ['auth', 'roles'],'uses' => 'QuestionController@index','roles' => ['formateur', 'admin']])->name('question.index');
 Route::post('question', ['middleware' => ['auth', 'roles'],'uses' => 'QuestionController@store','roles' => ['formateur', 'admin']])->name('question.store');

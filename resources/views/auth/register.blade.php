@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -50,7 +49,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-
                             <select class="col-md-4" id="role" name="role">
                                 <option value="1">Administrateur</option>
                                 <option value="2">Formateur</option>

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\App;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function groups(){
+        return $this->belongsToMany('App\Group');
+    }
+
     /*RELATION TABLE USER INFO*/
     public function User_info(){
         return $this->hasOne('App\User_info');
