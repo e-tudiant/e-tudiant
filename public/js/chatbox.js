@@ -1,7 +1,7 @@
 function pushMessage(data) {
   var message = document.createElement("div");
-  message.className += 'message';
-  message.innerHTML = data.username + "<br>" + data.message;
+  message.className += 'message-box';
+  message.innerHTML = '<p class="username">' + data.username + '</p><p class="message">' + data.message;
   $('#messageBox').append(message);
 }
 
