@@ -4,7 +4,8 @@
 
 @include('blocks.menuFormateur')
 
-<div class="tab-content">
+
+<div class="col-sm-12">
     <div id="quizz" class="tab-pane fade in active">
 
             <h3>Quizz</h3>
@@ -22,5 +23,6 @@
 
     </div>
 </div>
+
 
 @endsection()
