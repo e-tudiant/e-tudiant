@@ -25,8 +25,8 @@
 
 			<div class="col-sm-8 col-xs-12">
 
-				<h4>Quizz</h4>
-				{!! Form::model($quizz, array('route' => [($quizz->id ? 'quizz.update' : 'quizz.store'), $quizz->id], 'method' => ($quizz->id ? 'PUT' : 'POST'))) !!}
+				<h4>Groupe</h4>
+				{!! Form::model($group, array('route' => [($group->id ? 'group.update' : 'group.store'), $group->id], 'method' => ($group->id ? 'PUT' : 'POST'))) !!}
 				<ul>
 					<li>
 						{!! Form::label('name', 'Name:') !!}

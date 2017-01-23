@@ -50,10 +50,12 @@ Route::get('quizz/{quizz}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'Q
 Route::get('group', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@index','roles' => ['formateur', 'admin']])->name('group.index');
 Route::post('group', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@store','roles' => ['formateur', 'admin']])->name('group.store');
 Route::get('group/create', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@create','roles' => ['formateur', 'admin']])->name('group.create');
-Route::get('group/{group}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@show','roles' => ['formateur', 'admin']])->name('group.show');
-Route::put('group/{group}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@update','roles' => ['formateur', 'admin']])->name('group.update');
-Route::delete('group/{group}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@destroy','roles' => ['formateur', 'admin']])->name('group.destroy');
-Route::get('group/{group}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@edit','roles' => ['formateur', 'admin']])->name('group.edit');
+Route::get('group/{group_id}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@show','roles' => ['formateur', 'admin']])->name('group.show');
+Route::put('group/{group_id}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@update','roles' => ['formateur', 'admin']])->name('group.update');
+Route::delete('group/{group_id}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@destroy','roles' => ['formateur', 'admin']])->name('group.destroy');
+Route::delete('groupuser/{group_id}/{user_id}', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@deleteUserFromGroup','roles' => ['formateur', 'admin']])->name('groupuser.deleteUserFromGroup');
+Route::put('groupuser/{group_id}/', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@addUserFromGroup','roles' => ['formateur', 'admin']])->name('groupuser.addUserFromGroup');
+Route::get('group/{group_id}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'GroupController@edit','roles' => ['formateur', 'admin']])->name('group.edit');
 
 // Question
 Route::get('question', ['middleware' => ['auth', 'roles'],'uses' => 'QuestionController@index','roles' => ['formateur', 'admin']])->name('question.index');

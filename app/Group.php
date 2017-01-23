@@ -10,7 +10,7 @@ class Group extends Model {
 	public $timestamps = true;
     public $fillable=['name'];
 
-	public function users()
+	public function user()
 	{
 		return $this->belongsToMany('App\User');
 	}
