@@ -12,6 +12,7 @@
     @elseif(Auth::user()->role_id == 2)
         @include('blocks.menuFormateur')
     @else
+        @include('blocks.menuFormateur')
         <p>admin pas encore fait, <a href="/login">retour loggin</a></p>
     @endif
 

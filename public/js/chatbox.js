@@ -1,3 +1,23 @@
+/*
+$( ".btn-chatblock" ).click(function() {
+  if($( ".chatblock" ).css('display') == 'none'){
+      $( ".chatblock" ).css('display', 'block');
+      $( ".btn-chatblock" ).css('display', 'none');
+  }else{
+      $( ".chatblock" ).css('display', 'none');
+      $( ".btn-chatblock" ).css('display', 'block');
+  }
+});*/
+
+$( ".btn-chatblock" ).click(function() {
+    $( ".chatblock" ).animate({
+        opacity: 1,
+        height: "toggle"
+    }, 500, function() {
+        // Animation complete.
+    });
+});
+
 function pushMessage(data) {
   var message = document.createElement("div");
   message.className += 'message-box';
