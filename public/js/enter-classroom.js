@@ -9,6 +9,32 @@ $( ".btn-chatblock" ).click(function() {
     });
 });
 
+function initPusher(apikey, classroomId, csrfToken) {
+  if (! window.initializedPusher) {
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher(apikey, {
+      cluster: 'eu',
+      encrypted: true,
+      authEndpoint: '/broadcasting/auth',
+      auth: {
+        headers: {
+          'X-CSRF-Token': csrfToken
+        }
+      }
+    });
+
+    var classroomChannel = pusher.subscribe('private-Classroom.' + classroomId);
+    classroomChannel.bind('new.message', function(data) {
+      pushMessage(data);
+    });
+
+    var registerChannel = pusher.subscribe('presence-Classroom.' + classroomId);
+    //registerChannel.bind();
+  }
+}
+
 function pushMessage(data) {
   var message = document.createElement("div");
   message.className += 'message-box';
@@ -16,26 +42,8 @@ function pushMessage(data) {
   $('#messageBox').append(message);
 }
 
-function initChatBox(apikey, classroomId, csrfToken) {
-  // Enable pusher logging - don't include this in production
-  Pusher.logToConsole = true;
-
-  var pusher = new Pusher(apikey, {
-    cluster: 'eu',
-    encrypted: true,
-    authEndpoint: '/broadcasting/auth',
-    auth: {
-      headers: {
-        'X-CSRF-Token': csrfToken
-      }
-    }
-  });
-
-  var channel = pusher.subscribe('private-Classroom.' + classroomId);
-  channel.bind('new.message', function(data) {
-    pushMessage(data);
-  });
-
+function initChatBox(classroomId, csrfToken) {
+  initPusher(csrfToken);
   $('form#sendMessage').submit(function(e) {
     e.preventDefault();
     var dataString = 'message=' + $('#message').val() + '&_token=' + csrfToken;
