@@ -44,7 +44,7 @@ function initChatBox(apikey, classroomId, csrfToken) {
       url: '/classroom/' + classroomId + '/send',
       data: dataString,
       success: function(data) {
-        //pushMessage({message: $('#message').val()});
+        $('#message').val('');
       },
       error: function(err) {
         console.log(err);
