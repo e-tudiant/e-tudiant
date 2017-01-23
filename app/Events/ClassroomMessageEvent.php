@@ -4,12 +4,14 @@ namespace App\Events;
 
 use App\Events\AbstractEvent;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Support\Facades\Auth;
 
 class ClassroomMessageEvent extends AbstractEvent
 {
   private $classroomId;
 
   public $message;
+  public $username;
 
   /**
    * Create a new event instance.
@@ -20,8 +22,7 @@ class ClassroomMessageEvent extends AbstractEvent
    {
      $this->classroomId = $classroomId;
      $this->message = $message;
-
-     $this->dontBroadcastToCurrentUser();
+     $this->username = Auth::user()->firstname;
    }
 
   /**
