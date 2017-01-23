@@ -9,10 +9,12 @@
             <h3>Quizz</h3>
             <div>Id : {!! $quizz->id !!}</div>
             <div>Name : {!! $quizz->name !!}</div>
-        <p>test</p>
     </div>
 </div>
 
 @include('questions.index', ['questions' => $questions, 'quizz' => $quizz])
+<div class="col-sm-12">
+    {!! link_to_route('quizz.index', 'Retour à la liste') !!}
+</div>
 @endsection()
 
