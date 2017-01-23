@@ -100,7 +100,7 @@ class ClassroomController extends Controller {
    */
   public function send(Request $request, $classroomId)
   {
-    broadcast(new ClassroomMessageEvent($classroomId, $request->input('message')))->toOthers();
+    broadcast(new ClassroomMessageEvent($classroomId, $request->input('message')));
   }
 
 }
