@@ -33,6 +33,6 @@
   <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
   <script src="/js/chatbox.js"></script>
   <script>
-      initChatBox('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}');
+    initChatBox('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}', '{{ csrf_token() }}');
   </script>
 @endsection
