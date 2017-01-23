@@ -10,13 +10,13 @@ class CreateForeignKeys extends Migration {
 	{
 		Schema::table('questions', function(Blueprint $table) {
 			$table->foreign('quizz_id')->references('id')->on('quizzs')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('answers', function(Blueprint $table) {
 			$table->foreign('question_id')->references('id')->on('questions')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('classroom_group', function(Blueprint $table) {
 			$table->foreign('classroom_id')->references('id')->on('classrooms')
@@ -50,8 +50,8 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('sessions', function(Blueprint $table) {
 			$table->foreign('answer_id')->references('id')->on('answers')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 	}
 

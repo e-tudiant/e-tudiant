@@ -11,7 +11,8 @@
     <div>Réponse : {!! $answer->answer !!}</div>
     <div>Correct : {!! $answer->correct ? 'Vrai' : 'Faux' !!}</div>
 </div>
-
-
+<div class="col-sm-12">
+    {!! link_to_route('question.show', 'Voir', [$answer->question_id]) !!}
+</div>
 @endsection()
 
