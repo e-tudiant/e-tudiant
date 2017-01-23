@@ -1,4 +1,4 @@
-/*Style for div chatbox*/
+/*************** Style for div chatbox ****************/
 
 .btn-chatblock{
     width: 30px;
@@ -28,19 +28,19 @@
     max-height: 425px;
 }
 
-form{
+.chatblock form{
     margin-left: -14px;
     bottom: 5px;
     position: absolute;
     text-align: center;
 }
 
-form #message{
+.chatblock form #message{
     width: 239px;
     height: 35px;
 }
 
-#chatbox{
+.chatblock #chatbox{
     background-color: white;
     margin: 5px;
     padding: 10px;
@@ -48,12 +48,12 @@ form #message{
     overflow-y: auto;
 }
 
-input[type=submit]{
+.chatblock input[type=submit]{
     margin-top: 12px ;
     margin-bottom: 7px;
 }
 
-.message-box{
+.chatblock .message-box{
     background-color: #ece9e9;
     border: 1px solid #a2a8ad;
     border-radius: 5px;
@@ -61,11 +61,14 @@ input[type=submit]{
     margin-bottom: 8px;
 }
 
-.username{
+.chatblock .username{
     margin: 0;
     font-style: italic;
     text-decoration: underline;
 }
-.username:after{
+
+.chatblock.username:after{
     content: ' :';
 }
+
+/*************** Style for quizz page *************

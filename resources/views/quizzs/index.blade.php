@@ -5,9 +5,9 @@
 @include('blocks.menuFormateur')
 
 <div class="tab-content">
-    <div id="profil" class="tab-pane fade in active">
+    <div id="quizz" class="tab-pane fade in active">
 
-            <h4>Quizz</h4>
+            <h3>Quizz</h3>
             {!! link_to_route('quizz.create', 'Ajouter un quizz') !!}
             @foreach ($quizzs as $quizz)
                 <div>
