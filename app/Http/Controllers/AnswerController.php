@@ -38,8 +38,12 @@ class AnswerController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(AnswerRequest $request)
     {
+        if ($request->get('correct') == 1 && Input::get('correct') == 1) {
+            return back()->withErrors(['correct' => 'Une réponse correct existe déjà.'])->withInput();
+        }
+
         $answer = Answer::create([
             'answer' => Input::get('answer'),
             'question_id' => Input::get('question_id'),
@@ -85,6 +89,11 @@ class AnswerController extends Controller
         $request->merge([
             'correct' => $request->get('correct', 0),
         ]);
+
+        if ($request->get('correct') == 1 && $answer->hasCorrect()) {
+            return back()->withErrors(['correct' => 'Une réponse correct existe déjà.'])->withInput();
+        }
+
         $answer->update($request->all());
         return redirect(route('question.show', $answer->question_id));
     }
@@ -101,7 +110,6 @@ class AnswerController extends Controller
         Answer::destroy($id);
         return redirect(route('question.show', $answer->question_id));
     }
-
 }
 
 ?>
