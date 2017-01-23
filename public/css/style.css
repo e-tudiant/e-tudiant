@@ -1,4 +1,181 @@
-/*************** Style for div chatbox ****************/
+/********** GENERAL STYLE FOR TABLE **********/
+
+.tab{
+    background-color: white;
+    border: 4px solid black;
+    padding: 0px !important;
+}
+.title{
+    background-color: black;
+    text-align: center;
+    height: 50px;
+    display: flex;
+}
+
+.title h3{
+    font-size: 20px;
+}
+
+h1,h2,h3,h4{
+    color: white !important;
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    margin: auto !important;
+    font-weight: bold;
+}
+
+.tab-content{
+    padding: 15px 20px;
+}
+
+.btn-create{
+    background-color: black;
+    width: 30%;
+    height: 40px;
+    border: 4px solid black;
+    margin: auto;
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 35px;
+    margin-top: 30px;
+}
+
+.btn-create:hover{
+    background-color: white;
+    transition: 0.2s;
+}
+
+.btn-create a{
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    font-size: 18px;
+    margin: auto;
+    text-decoration: none !important;
+    color: white;
+}
+.btn-create:hover a{
+    color: black;
+}
+
+.info-line{
+    font-family: 'Oswald', sans-serif;
+    border-bottom: 3px solid #efefef;
+    padding: 20px 0px;
+    display: flex;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+
+}
+
+.info-line.last{
+    border-bottom: 0px;
+}
+
+.info-name{
+    text-align: left;
+    color: black;
+    font-size: 16px;
+    padding-left: 30px;
+    margin: auto;
+    font-family: 'Oswald', sans-serif;
+}
+
+.btn-show{
+    height: 40px;
+    border: 3px solid black;
+    margin: auto;
+    display: flex;
+    cursor: pointer;
+}
+.btn-show a{
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    font-size: 15px;
+    margin: auto;
+    text-decoration: none !important;
+    color: black;
+}
+.btn-show:hover a{
+    color: white;
+}
+.btn-show:hover{
+    background-color: dodgerblue;
+    border-color: dodgerblue ;
+    transition: 0.2s;
+}
+
+
+.btn-edit{
+    height: 40px;
+    border: 3px solid black;
+    margin: auto;
+    display: flex;
+    cursor: pointer;
+}
+.btn-edit a{
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    font-size: 15px;
+    margin: auto;
+    text-decoration: none !important;
+    color: black;
+}
+.btn-edit:hover a{
+    color: white;
+}
+.btn-edit:hover{
+    background-color: #FF9100;
+    border-color: #FF9100 ;
+    transition: 0.2s;
+}
+
+form{
+    margin: auto;
+}
+.btn-delete{
+    display: flex;
+}
+.btn-delete input{
+    opacity: 0;
+    z-index: 1;
+}
+.btn-delete:after{
+    content: '\f1f8';
+    font-family: FontAwesome;
+    margin: auto;
+    position: absolute;
+    color: black;
+}
+.btn-delete:hover:after{
+    color: #FF1925;
+    transition: 0.2s;
+}
+
+/************* CREATE QUIZZ PAGE ****************/
+
+.quizz-create{
+    text-align: center;
+}
+.quizz-create label{
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    font-size: 15px;
+    display: block;
+}
+.quizz-create input[type=submit]{
+    width: 100%;
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+}
+.quizz-create input[type=submit]:hover{
+    color: black;
+}
+
+/*************** CHATBOX ****************/
 
 .btn-chatblock{
     width: 30px;

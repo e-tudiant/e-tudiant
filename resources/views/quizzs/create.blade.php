@@ -13,23 +13,31 @@ if ($quizz->id) {
 
 @include('blocks.menuFormateur')
 
-<div class="col-sm-12">
-	<div id="quizz" class="tab-pane fade in active">
-
-		<h3>Quizz</h3>
+<div class="tab">
+	<div id="quizz" class="tab-pane fade in active quizz-create">
+		<div class="title">
+			<h3>Quizz</h3>
+		</div>
+		<div class="tab-content">
 		{!! Form::model($quizz, array('route' => [($quizz->id ? 'quizz.update' : 'quizz.store'), $quizz->id], 'method' => ($quizz->id ? 'PUT' : 'POST'))) !!}
-		<ul>
-			<li>
-				{!! Form::label('name', 'Name:') !!}
+
+			<div>
+				{!! Form::label('name', 'Nom du quiz :') !!}
 				{!! Form::text('name') !!}
 				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
-				{!! Form::submit() !!}
-			</li>
-		</ul>
-		{!! Form::close() !!}
+			</div>
+			<div class="btn-create">
+				{!! Form::submit('Créer') !!}
+			</div>
 
+		{!! Form::close() !!}
+		</div>
+	</div>
 </div>
 
 @endsection()
+
+<style>
+
+
+</style>
