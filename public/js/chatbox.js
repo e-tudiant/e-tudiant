@@ -1,9 +1,8 @@
 function pushMessage(data) {
-  var messageElement = document.createElement("div");
-  messageElement.className += 'message';
-  var message = document.createTextNode(data.username + " : " + data.message);
-  messageElement.appendChild(message);
-  $('#messageBox').append(messageElement);
+  var message = document.createElement("div");
+  message.className += 'message';
+  message.innerHTML = data.username + "<br>" + data.message;
+  $('#messageBox').append(message);
 }
 
 function initChatBox(apikey, classroomId) {
