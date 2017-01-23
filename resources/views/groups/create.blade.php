@@ -31,6 +31,7 @@
 					<li>
 						{!! Form::label('name', 'Name:') !!}
 						{!! Form::text('name') !!}
+						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 					</li>
 					<li>
 						{!! Form::submit() !!}

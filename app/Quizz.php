@@ -12,12 +12,12 @@ class Quizz extends Model {
 
 	public function classroom()
 	{
-		return $this->belongsToMany('Classroom');
+		return $this->belongsToMany('App\Classroom');
 	}
 
 	public function question()
 	{
-		return $this->hasMany('Question');
+		return $this->hasMany('App\Question');
 	}
 
 }

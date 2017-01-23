@@ -12,12 +12,12 @@ class Question extends Model {
 
 	public function quizz()
 	{
-		return $this->belongsTo('Quizz');
+		return $this->belongsTo('App\Quizz');
 	}
 
 	public function answer()
 	{
-		return $this->hasMany('Answer');
+		return $this->hasMany('App\Answer');
 	}
 
 }

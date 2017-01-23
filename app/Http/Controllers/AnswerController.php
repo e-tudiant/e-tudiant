@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\AnswerRequest;
+use App\Answer;
+use App\Question;
+
 class AnswerController extends Controller
 {
 
@@ -23,7 +28,9 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        return view('answers.create');
+        $question_id = Input::get('question_id');
+        $answer = new Answer;
+        return view('answers.create', compact('answer', 'question_id'));
     }
 
     /**
@@ -33,8 +40,12 @@ class AnswerController extends Controller
      */
     public function store()
     {
-        $answer = Answer::create(['name' => Input::get('name')]);
-        return redirect(route('answer.index'));
+        $answer = Answer::create([
+            'answer' => Input::get('answer'),
+            'question_id' => Input::get('question_id'),
+            'correct' => !is_null(Input::get('correct'))
+        ]);
+        return redirect(route('question.show', Input::get('question_id')));
     }
 
     /**
@@ -46,7 +57,8 @@ class AnswerController extends Controller
     public function show($id)
     {
         $answer = Answer::findOrFail($id);
-        return view('answers.show', compact('answer'));
+        $question = Question::findOrFail($answer->question_id);
+        return view('answers.show', compact('answer', 'question'));
     }
 
     /**
@@ -58,7 +70,7 @@ class AnswerController extends Controller
     public function edit($id)
     {
         $answer = Answer::findOrFail($id);
-        return view('answers.edit', compact('answer'));
+        return view('answers.create', compact('answer'));
     }
 
     /**
@@ -70,8 +82,11 @@ class AnswerController extends Controller
     public function update($id, AnswerRequest $request)
     {
         $answer = Answer::findOrFail($id);
+        $request->merge([
+            'correct' => $request->get('correct', 0),
+        ]);
         $answer->update($request->all());
-        return redirect(route('answer.index'));
+        return redirect(route('question.show', $answer->question_id));
     }
 
     /**
@@ -82,8 +97,9 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
+        $answer = Answer::findOrFail($id);
         Answer::destroy($id);
-        return redirect(route('answer.index'));
+        return redirect(route('question.show', $answer->question_id));
     }
 
 }
