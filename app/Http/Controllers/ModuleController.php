@@ -1,7 +1,8 @@
 <?php 
 
 namespace App\Http\Controllers;
-
+use App\Module;
+use Illuminate\Http\Request;
 class ModuleController extends Controller {
 
   /**
@@ -11,7 +12,8 @@ class ModuleController extends Controller {
    */
   public function index()
   {
-    
+      $modules = Module::all();
+      return view('modules.index', compact('modules'));
   }
 
   /**
@@ -21,7 +23,8 @@ class ModuleController extends Controller {
    */
   public function create()
   {
-    
+      $module = new Module();
+      return view('modules.create', compact('module'));
   }
 
   /**
@@ -29,8 +32,10 @@ class ModuleController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(Request $request)
   {
+      $module = Module::create($request->all());
+      return redirect(route('module.index'));
     
   }
 
@@ -53,7 +58,9 @@ class ModuleController extends Controller {
    */
   public function edit($id)
   {
-    
+      $module = Module::findOrFail($id);
+
+      return view('modules.create', compact('module'));
   }
 
   /**

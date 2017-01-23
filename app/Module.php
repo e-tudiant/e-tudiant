@@ -8,6 +8,7 @@ class Module extends Model {
 
 	protected $table = 'modules';
 	public $timestamps = true;
+    protected $fillable = ['name','image_url','slider_url','slider_token'];
 
 	public function classroom()
 	{
