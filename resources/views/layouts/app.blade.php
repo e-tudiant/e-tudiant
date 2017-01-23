@@ -18,7 +18,7 @@
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Styles  -->
-    {{--<link href="/css/style.css" rel="stylesheet">--}}
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">

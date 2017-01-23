@@ -1,13 +1,4 @@
-/*
-$( ".btn-chatblock" ).click(function() {
-  if($( ".chatblock" ).css('display') == 'none'){
-      $( ".chatblock" ).css('display', 'block');
-      $( ".btn-chatblock" ).css('display', 'none');
-  }else{
-      $( ".chatblock" ).css('display', 'none');
-      $( ".btn-chatblock" ).css('display', 'block');
-  }
-});*/
+
 
 $( ".btn-chatblock" ).click(function() {
     $( ".chatblock" ).animate({
