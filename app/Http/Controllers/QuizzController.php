@@ -37,7 +37,7 @@ class QuizzController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(QuizzRequest $request)
     {
         $quizz = Quizz::create(['name' => Input::get('name')]);
         return redirect(route('quizz.index'));
@@ -52,7 +52,7 @@ class QuizzController extends Controller
     public function show($id)
     {
         $quizz = Quizz::findOrFail($id);
-        $questions = Question::all()->where('id', $quizz->id);
+        $questions = Question::all()->where('quizz_id', $quizz->id);
         return view('quizzs.show', compact('quizz', 'questions'));
     }
 
@@ -65,7 +65,7 @@ class QuizzController extends Controller
     public function edit($id)
     {
         $quizz = Quizz::findOrFail($id);
-        return view('quizzs.edit', compact('quizz'));
+        return view('quizzs.create', compact('quizz'));
     }
 
     /**

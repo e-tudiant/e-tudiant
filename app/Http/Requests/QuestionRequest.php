@@ -24,7 +24,6 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'quizz_id' => 'required',
             'question' => 'required',
         ];
     }

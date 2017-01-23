@@ -1,3 +1,12 @@
+<?php
+if ($quizz->id) {
+    $route = ['quizz.update', $quizz->id];
+    $method = 'PUT';
+} else {
+    $route = 'quizz.store';
+    $method = 'POST';
+}
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -21,12 +30,14 @@
 				<li>
 					{!! Form::label('name', 'Name:') !!}
 					{!! Form::text('name') !!}
+					{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 				</li>
 				<li>
 					{!! Form::submit() !!}
 				</li>
 			</ul>
 			{!! Form::close() !!}
+
 		</div>
 	</div>
 </div>
