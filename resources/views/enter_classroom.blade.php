@@ -6,64 +6,6 @@
 @include('blocks.menuFormateur')
 
 
-<style>
-  .btn-chatblock{
-    width: 30px;
-    height: 30px;
-    border: 4px solid black;
-    background-color: white;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .btn-chatblock:before{
-    content:'\f086';
-    font-family: FontAwesome;
-    color: black;
-  }
-
-  .chatblock{
-    display: none;
-    background-color: red;
-    width: 300px;
-    position: fixed;
-    right: 55px;
-    bottom: 25px;
-    border: 2px solid green;
-    height: 400px;
-    max-height: 400px;
-  }
-
-  form{
-    margin-left: -10px;
-    bottom: 5px;
-    position: absolute;
-  }
-
-  form #message{
-    width: 214px;
-  }
-
-  #chatbox{
-    background-color: silver;
-    margin: 5px;
-    padding: 10px;
-    height: 345px;
-    overflow-y: auto;
-  }
-
-  .message{
-    border: 1px solid #a2a8ad;
-    border-radius: 5px;
-    background-color: lightblue;
-    padding: 10px;
-  }
-
-</style>
-
 <div class="tab-content">
   <div id="profil" class="tab-pane fade in active">
 

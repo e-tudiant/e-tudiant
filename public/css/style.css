@@ -1,49 +1,71 @@
-html, body {
-    background-color: #fff;
-    color: #636b6f;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 100;
-    margin: 0;
+/*Style for div chatbox*/
+
+.btn-chatblock{
+    width: 30px;
+    height: 30px;
+    border: 4px solid #828181;
+    background-color: white;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    text-align: center;
+    cursor: pointer;
 }
 
-.full-height {
-    height: 100vh;
+.btn-chatblock:before{
+    content:'\f086';
+    font-family: FontAwesome;
+    color: #828181;
 }
 
-.flex-center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.chatblock{
+    background-color: #828181;
+    width: 250px;
+    position: fixed;
+    right: 55px;
+    bottom: 25px;
+    height: 425px;
+    max-height: 425px;
 }
 
-.position-ref {
-    position: relative;
-}
-
-.top-right {
+form{
+    margin-left: -14px;
+    bottom: 5px;
     position: absolute;
-    right: 10px;
-    top: 18px;
-}
-
-.content {
     text-align: center;
 }
 
-.title {
-    font-size: 84px;
+form #message{
+    width: 239px;
+    height: 35px;
 }
 
-.links > a {
-    color: #636b6f;
-    padding: 0 25px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
+#chatbox{
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
+    height: 325px;
+    overflow-y: auto;
 }
 
-.m-b-md {
-    margin-bottom: 30px;
+input[type=submit]{
+    margin-top: 12px ;
+    margin-bottom: 7px;
+}
+
+.message-box{
+    background-color: #ece9e9;
+    border: 1px solid #a2a8ad;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.username{
+    margin: 0;
+    font-style: italic;
+    text-decoration: underline;
+}
+.username:after{
+    content: ' :';
 }
