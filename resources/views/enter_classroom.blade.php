@@ -31,8 +31,10 @@
 
 @section('scriptpage')
   <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
-  <script src="/js/chatbox.js"></script>
+  <script src="/js/enter-classroom.js"></script>
   <script>
-    initChatBox('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}', '{{ csrf_token() }}');
+    window.initializedPusher = false;
+    initPusher('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}', '{{ csrf_token() }}');
+    initChatBox('{{ $classroom_id }}', '{{ csrf_token() }}');
   </script>
 @endsection
