@@ -32,7 +32,7 @@ class ClassroomMessageEvent extends AbstractEvent
    */
   public function broadcastOn()
   {
-    return new Channel('Classroom.'.$this->classroomId);
+    return new Channel('private-Classroom.'.$this->classroomId);
   }
 
   /**
