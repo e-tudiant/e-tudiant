@@ -8,41 +8,42 @@ if ($module->id) {
 }
 ?>
 @extends('layouts.app')
-{{--{{dd($module)}}--}}
-@section('content')
-    @include('blocks.menuFormateur')
-    <div class="tab-content">
-        <div id="profil" class="tab-pane fade in active">
-            <div class="col-sm-8 col-xs-12">
 
-                <h4>Module</h4>
+@section('content')
+
+@include('blocks.menuFormateur')
+
+<div class="tab module-create">
+    <div id="module" class="tab-pane fade in active">
+        <div class="title">
+            <h3>module</h3>
+        </div>
+        <div class="tab-content">
                 {!! Form::model($module, array('route' => $route, 'method' => $method)) !!}
-                <ul>
-                    <li>
+
+                    <div>
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name') !!}
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         {!! Form::label('image_url', 'Image du module:') !!}
                         {!! Form::file('image_url') !!}
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         {!! Form::label('slider_url', 'URL du slider:') !!}
                         {!! Form::text('slider_url') !!}
-                    </li>
-                    <li>
+                    </div>
+                    <div>
                         {!! Form::label('slider_token', 'Token:') !!}
                         {!! Form::text('slider_token') !!}
                         {!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-                    </li>
-                    <li>
-                        {!! Form::submit() !!}
-                    </li>
-                </ul>
-                {!! Form::close() !!}
-
-            </div>
+                    </div>
+                    <div class="btn-create">
+                        {!! Form::submit('Sauvegarder') !!}
+                    </div>
+            {!! Form::close() !!}
         </div>
     </div>
+</div>
 
 @endsection()

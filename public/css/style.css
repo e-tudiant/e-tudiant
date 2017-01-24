@@ -1,3 +1,17 @@
+/**********FONTS**********/
+
+@font-face {
+    font-family: Oswald;
+    font-style: normal;
+    src: url(../fonts/Oswald/Oswald-Regular.woff);
+}
+
+@font-face {
+    font-family: Tinos;
+    font-style: normal;
+    src: url(../fonts/Tinos/Tinos-Italic.woff);
+}
+
 /********** GENERAL STYLE FOR TABLE **********/
 
 .tab{
@@ -40,7 +54,7 @@ h1,h2,h3,h4{
     transition: 0.2s;
 }
 .btn-create a{
-    font-family: 'Tinos', serif;
+    font-family: Tinos;
     font-style: italic;
     font-size: 18px;
     margin: auto;
@@ -51,7 +65,8 @@ h1,h2,h3,h4{
     color: black;
 }
 .info-line{
-    font-family: 'Oswald', sans-serif;
+    font-family: Oswald;
+    font-weight: normal;
     border-bottom: 3px solid #efefef;
     padding: 20px 0px;
     display: flex;
@@ -68,7 +83,8 @@ h1,h2,h3,h4{
     font-size: 16px;
     padding-left: 30px;
     margin: auto;
-    font-family: 'Oswald', sans-serif;
+    font-family: Oswald;
+    font-weight: normal;
 }
 .btn-show{
     height: 40px;
@@ -78,7 +94,7 @@ h1,h2,h3,h4{
     cursor: pointer;
 }
 .btn-show a{
-    font-family: 'Tinos', serif;
+    font-family: Tinos;
     font-style: italic;
     font-size: 15px;
     margin: auto;
@@ -103,7 +119,7 @@ h1,h2,h3,h4{
     cursor: pointer;
 }
 .btn-edit a{
-    font-family: 'Tinos', serif;
+    font-family: Tinos;
     font-style: italic;
     font-size: 15px;
     margin: auto;
@@ -147,14 +163,15 @@ form{
     text-align: center;
 }
 .quizz-create label{
-    font-family: 'Oswald', sans-serif;
+    font-family: Oswald;
+    font-weight: normal;
     color: black;
     font-size: 15px;
     display: block;
 }
 .quizz-create input[type=submit]{
     width: 100%;
-    font-family: 'Tinos', serif;
+    font-family: Tinos;
     font-style: italic;
     color: white;
     background:none;
@@ -192,14 +209,15 @@ form{
     text-align: center;
 }
 .question-create label{
-    font-family: 'Oswald', sans-serif;
+    font-family: Oswald;
     color: black;
+    font-weight: normal;
     font-size: 15px;
     display: block;
 }
 .question-create input[type=submit]{
     width: 100%;
-    font-family: 'Tinos', serif;
+    font-family: Tinos;
     font-style: italic;
     color: white;
     background:none;
@@ -209,6 +227,90 @@ form{
 .question-create input[type=submit]:hover{
     color: black;
 }
+
+/************ ANSWER FOR QUIZZ *************/
+
+.show-question{
+    margin-bottom: 20px;
+}
+.show-question .info-name{
+    padding-left: 0px;
+}
+.show-answer .btn-create:first-of-type{
+    width: 50%;
+}
+.show-answer .btn-show{
+    margin-right: 5px;
+}
+.show-answer .btn-edit{
+
+}
+.show-answer form{
+    width: 10%;
+}
+.show-answer .right{
+    color: green;
+}
+.show-answer .wrong{
+    color: red;
+}
+/********** CREATE/MODIFY ANSWER ***********/
+
+.answer-create{
+    text-align: center;
+}
+.answer-create label{
+    font-family: Oswald;
+    font-weight: normal;
+    color: black;
+    font-size: 15px;
+    display: block;
+}
+.answer-create input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    font-style: italic;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+}
+.answer-create input[type=submit]:hover{
+    color: black;
+}
+
+/************* CREATE MODULE PAGE ****************/
+
+.module-create{
+    text-align: center;
+}
+.module-create input{
+    margin-bottom: 15px;
+}
+.module-create label{
+    font-family: Oswald;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+}
+.module-create #image_url{
+    display: inline;
+}
+.module-create input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    font-style: italic;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.module-create input[type=submit]:hover{
+    color: black;
+}
+
 
 /*************** CHATBOX ****************/
 
