@@ -12,7 +12,7 @@
             @foreach ($modules as $module)
                 <div>
                     Name : {!! $module->name !!}
-                    {!! link_to_route('module.show', 'Voir', [$module->id]) !!}
+                    {{--{!! link_to_route('module.show', 'Voir', [$module->id]) !!}--}}
                     {!! link_to_route('module.edit', 'Modifier', [$module->id]) !!}
                     {!! Form::open(['method' => 'DELETE', 'route' => ['module.destroy', $module->id]]) !!}
                     {!! Form::submit('Supprimer') !!}
