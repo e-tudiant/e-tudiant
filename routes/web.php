@@ -27,7 +27,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-Route::get('register',['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@showRegistrationForm','roles' => ['formateur', 'admin']])->name('register');
+Route::get('register',['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@showRegistrationForm','roles' => ['admin']])->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
