@@ -34,9 +34,31 @@ class ModuleController extends Controller {
    */
   public function store(Request $request)
   {
-      $module = Module::create($request->all());
-      return redirect(route('module.index'));
-    
+      dd($request->files);
+      $file = array('image_url' => Input::file('image_url'));
+      // setting up rules
+      $rules = array('image_url' => 'required|mimes:jpeg,bmp,png');
+      $validator = Validator::make($file, $rules);
+      if ($validator->fails()) {
+          // send back to the page with the input data and errors
+          return Redirect::to(route('module.index'))->withInput()->withErrors($validator);
+      } else {
+          // checking file is valid.
+          if (Input::file('avatar')->isValid()) {
+              $destinationPath = public_path() . '/uploads/images/modules/';
+              $extension = Input::file('image_url')->getClientOriginalExtension(); // getting image extension
+              $fileName = 'modules_' .$request->name. '_picture.' . $extension; // renameing image
+              Input::file('avatar')->move($destinationPath, $fileName);
+              $module = Module::create([
+                  'name'=>$request->name,
+                  'image_url'=>$fileName,
+                  'slider_url'=>$request->slider_url,
+                  'slider_token'=>$request->slider_token
+              ]);
+              return redirect(route('module.index'));
+
+          }
+      }
   }
 
   /**
