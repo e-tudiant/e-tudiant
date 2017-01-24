@@ -47,12 +47,12 @@ class UserInfoController extends Controller
      */
     public function store()
     {
-//        dd(public_path());
+//
         if (Auth::check()) {
             $user_id = Auth::user()->id;
             $file = array('avatar' => Input::file('avatar'));
             // setting up rules
-            $rules = array('avatar' => 'required|mimes:jpeg,bmp,png');
+            $rules = array('avatar' => 'required|mimes:jpg,jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
                 // send back to the page with the input data and errors
@@ -110,36 +110,42 @@ class UserInfoController extends Controller
     public function update($id, Request $request)
     {
         $user_id = Auth::user()->id;
-//        dd($request->social_network);
+//        var_dump(intval($request->phonebook));
         if ($request->files->get('avatar')) {
             $file = array('avatar' => $request->files->get('avatar'));
             // setting up rules
             $rules = array('avatar' => 'required|mimes:jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
+
                 // send back to the page with the input data and errors
-                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
+//                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
             } else {
                 // checking file is valid.
                 if ($request->files->get('avatar')->isValid()) {
                     $destinationPath = public_path() . '/uploads/images/users/';
                     $extension = $request->files->get('avatar')->getClientOriginalExtension(); // getting image extension
-                    $fileName = 'user_' . $user_id . '_picture.' . $extension; // renameing image
+                    $fileName = date('YmdHi').'_user_' . $user_id . '_picture.' . $extension; // renameing image
                     $request->files->get('avatar')->move($destinationPath, $fileName); // uploading file to given path
-
-                };
-                $userinfo = User_info::findOrFail($id);
-                $userinfo->update([
-                        'user_id' => $user_id,
-                        'social_network' => $request->social_network,
-                        'github_link' => $request->github_link,
-                        'phone' => $request->phone,
-                        'avatar' => $fileName,
-                        'phonebook' => $request->phonebook
-                    ]);
+                    $updateAvatar=array('avatar' => $fileName);
+                }
             }
-            return redirect(route('userinfo.index'));
         }
+        $userinfo = User_info::findOrFail($id);
+        $updaterequest=array(
+            'user_id' => $user_id,
+            'social_network' => $request->social_network,
+            'github_link' => $request->github_link,
+            'phone' => $request->phone,
+            'phonebook' => intval($request->phonebook),
+        );
+        if(!empty($updateAvatar)){
+            $updaterequest=array_merge($updaterequest,$updateAvatar);
+        }
+//        dd($updateAvatar,$updaterequest);
+        $userinfo = User_info::findOrFail($id);
+        $userinfo->update($updaterequest);
+        return redirect(route('userinfo.index'));
     }
 
     /**
@@ -148,7 +154,8 @@ class UserInfoController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
 
     }
