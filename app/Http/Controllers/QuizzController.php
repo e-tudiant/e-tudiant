@@ -6,6 +6,7 @@ use App\Http\Requests\QuizzRequest;
 use Illuminate\Support\Facades\Input;
 use App\Quizz;
 use App\Question;
+use App\Classroom;
 
 class QuizzController extends Controller
 {
@@ -29,7 +30,8 @@ class QuizzController extends Controller
     public function create()
     {
         $quizz = new Quizz;
-        return view('quizzs.create', compact('quizz'));
+        $classrooms = Classroom::pluck('name', 'id');
+        return view('quizzs.create', compact('quizz', 'classrooms'));
     }
 
     /**
@@ -40,6 +42,7 @@ class QuizzController extends Controller
     public function store(QuizzRequest $request)
     {
         $quizz = Quizz::create(['name' => Input::get('name')]);
+        $quizz->classroom()->sync(!is_null(Input::get('classroom_id')) ? Input::get('classroom_id') : []);
         return redirect(route('quizz.index'));
     }
 
@@ -65,7 +68,8 @@ class QuizzController extends Controller
     public function edit($id)
     {
         $quizz = Quizz::findOrFail($id);
-        return view('quizzs.create', compact('quizz'));
+        $classrooms = Classroom::pluck('name', 'id');
+        return view('quizzs.create', compact('quizz', 'classrooms'));
     }
 
     /**
@@ -78,6 +82,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::findOrFail($id);
         $quizz->update($request->all());
+        $quizz->classroom()->sync($request->get('classroom_id', []));
         return redirect(route('quizz.index'));
     }
 
@@ -89,7 +94,9 @@ class QuizzController extends Controller
      */
     public function destroy($id)
     {
-        Quizz::destroy($id);
+        $quizz = Quizz::findOrFail($id);
+        $quizz->classroom()->detach();
+        $quizz->delete();
         return redirect(route('quizz.index'));
     }
 

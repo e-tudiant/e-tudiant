@@ -48,7 +48,7 @@ class ClassroomController extends Controller
             'module_id' => Input::get('module_id'),
             'status' => !is_null(Input::get('status'))
         ]);
-        $classroom->group()->sync(!is_null(Input::get('groups')) ? Input::get('groups') : []);
+        $classroom->group()->sync(!is_null(Input::get('group_id')) ? Input::get('group_id') : []);
         return redirect(route('classroom.index'));
     }
 
