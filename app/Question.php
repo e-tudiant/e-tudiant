@@ -20,4 +20,12 @@ class Question extends Model {
 		return $this->hasMany('App\Answer');
 	}
 
+    public static function hasCorrect($id)
+    {
+        $correct = Answer::where([
+            ['question_id', $id],
+            ['correct', 1],
+        ])->get();
+        return count($correct) > 0;
+    }
 }

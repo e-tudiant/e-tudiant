@@ -14,14 +14,4 @@ class Answer extends Model {
 	{
 		return $this->belongsTo('App\Question');
 	}
-
-    public function hasCorrect()
-    {
-        $correct = Answer::where([
-            ['question_id', $this->question_id],
-            ['correct', 1],
-        ])->get();
-        return count($correct) > 0;
-    }
-
 }

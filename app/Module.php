@@ -12,7 +12,7 @@ class Module extends Model {
 
 	public function classroom()
 	{
-		return $this->hasMany('Classroom');
+		return $this->hasMany('App\Classroom');
 	}
 
 }
