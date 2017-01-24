@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\User_info;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -23,8 +24,8 @@ class UserInfoController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $user = User::find($id);
-            $userinfo=User_info::where('user_id','=',$id)->first();
-            return view('userinfos.index', compact('user','userinfo'));
+            $userinfo = User_info::where('user_id', '=', $id)->first();
+            return view('userinfos.index', compact('user', 'userinfo'));
         }
     }
 
@@ -108,9 +109,37 @@ class UserInfoController extends Controller
      */
     public function update($id, Request $request)
     {
-        $userinfo = User_info::findOrFail($id);
-        $userinfo->update($request->all());
-        return redirect(route('userinfo.index'));
+        $user_id = Auth::user()->id;
+//        dd($request->social_network);
+        if ($request->files->get('avatar')) {
+            $file = array('avatar' => $request->files->get('avatar'));
+            // setting up rules
+            $rules = array('avatar' => 'required|mimes:jpeg,bmp,png');
+            $validator = Validator::make($file, $rules);
+            if ($validator->fails()) {
+                // send back to the page with the input data and errors
+                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
+            } else {
+                // checking file is valid.
+                if ($request->files->get('avatar')->isValid()) {
+                    $destinationPath = public_path() . '/uploads/images/users/';
+                    $extension = $request->files->get('avatar')->getClientOriginalExtension(); // getting image extension
+                    $fileName = 'user_' . $user_id . '_picture.' . $extension; // renameing image
+                    $request->files->get('avatar')->move($destinationPath, $fileName); // uploading file to given path
+
+                };
+                $userinfo = User_info::findOrFail($id);
+                $userinfo->update([
+                        'user_id' => $user_id,
+                        'social_network' => $request->social_network,
+                        'github_link' => $request->github_link,
+                        'phone' => $request->phone,
+                        'avatar' => $fileName,
+                        'phonebook' => $request->phonebook
+                    ]);
+            }
+            return redirect(route('userinfo.index'));
+        }
     }
 
     /**
