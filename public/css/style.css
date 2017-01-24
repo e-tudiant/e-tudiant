@@ -311,6 +311,29 @@ form{
     color: black;
 }
 
+/************ USER INFO INDEX ************/
+.profil-index .tab-content{
+    padding-top: 30px;
+}
+.profil-index span:after {
+    content: ' : ';
+}
+.profil-index .col-sm-6:last-of-type {
+    border-left: 3px solid #efefef;
+}
+.profil-index .avatar{
+    float: right;
+    width: 65%;
+}
+.profil-index .avatar img{
+    width: 90%;
+}
+.profil-index .right{
+    color: green;
+}
+.profil-index .wrong{
+    color: red;
+}
 
 /*************** CHATBOX ****************/
 

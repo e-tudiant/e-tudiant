@@ -26,8 +26,15 @@
 
                 @elseif(count($userinfo)>0)
                     <div><span class="info-name">Git-Hub</span>{!! $userinfo->github_link !!}</div>
-                    <div><span class="info-name">Réseaux social</span>{!! $userinfo->social_network !!}</div>
+                    <div><span class="info-name">Réseaux sociaux</span>{!! $userinfo->social_network !!}</div>
                     <div><span class="info-name">Tél</span>{!! $userinfo->phone !!}</div>
+                    <div>
+                        @if($userinfo->phonebook)
+                            <small class="right info-name"><i class="fa fa-check" aria-hidden="true"></i>Profil public</small>
+                        @else
+                            <small class="wrong info-name"><i class="fa fa-check" aria-hidden="true"></i>Profil privé</small>
+                        @endif
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div>
@@ -47,19 +54,3 @@
     </div>
 
 @endsection()
-
-<style>
-    .profil-index span:after {
-        content: ' : ';
-    }
-    .profil-index .col-sm-6:last-of-type {
-        border-left: 3px solid #efefef;
-    }
-    .profil-index .avatar{
-        float: right;
-        width: 65%;
-    }
-    .profil-index .avatar img{
-        width: 100%;
-    }
-</style>
