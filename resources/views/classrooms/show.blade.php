@@ -7,10 +7,11 @@
 <div class="col-sm-12">
     <div id="profil" class="tab-pane fade in active">
             <h3>Classroom</h3>
-            <div>Id : {!! $classroom->id !!}</div>
             <div>Name : {!! $classroom->name !!}</div>
-            <div>Module : {!! $classroom->module->name !!}</div>
-            <div>Statut : {!! $classroom->status ? 'En cours' : 'Terminé' !!}</div>
+            @if (count($classroom->module) > 0)
+                <div>Module : {!! $classroom->module->name !!}</div>
+            @endif
+            <div>Statut : {!! $classroom->status ? 'Terminé' : 'En cours'!!}</div>
     </div>
 </div>
 @endsection()

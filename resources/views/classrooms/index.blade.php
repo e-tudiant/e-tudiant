@@ -19,7 +19,7 @@
                 <div class="info-line row">
                     <div class="info-name col-sm-3 col-xs-12">Name : {!! $classroom->name !!}</div>
                     <div class="info-module col-sm-3 col-xs-12">Module : {{--{!! $classroom->module->name !!}--}}</div>
-                    <div class="info-status col-sm-3 col-xs-12">Statut : {!! $classroom->status ? 'En cours' : 'Terminé' !!}</div>
+                    <div class="info-status col-sm-3 col-xs-12">Statut : {!! $classroom->status ? 'Terminé' : 'En cours' !!}</div>
                     <div class="col-sm-2"></div>
                     <div class="btn-show col-sm-3 col-xs-12">{!! link_to_route('classroom.show', 'Voir', [$classroom->id]) !!}</div>
                     <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('classroom.edit', 'Modifier', [$classroom->id]) !!}</div>

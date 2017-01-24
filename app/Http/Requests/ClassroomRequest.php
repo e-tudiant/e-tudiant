@@ -25,7 +25,6 @@ class ClassroomRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'module_id' => 'required',
         ];
     }
 }

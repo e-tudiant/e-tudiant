@@ -28,11 +28,11 @@ if ($classroom->id) {
 			</li>
 			<li>
 				{!! Form::label('module_id', 'Module :') !!}
-				{!! Form::select('module_id', $modules) !!}
+				{!! Form::select('module_id', $modules, null, ['placeholder' => 'Aucun']) !!}
 				{!! $errors->first('module_id', '<small class="help-block">:message</small>') !!}
 			</li>
 			<li>
-				{!! Form::label('status', 'En cours :') !!}
+				{!! Form::label('status', 'Terminé :') !!}
 				{!! Form::checkbox('status') !!}
 				{!! $errors->first('status', '<small class="help-block">:message</small>') !!}
 			</li>
