@@ -315,6 +315,9 @@ form{
 .profil-index .tab-content{
     padding-top: 30px;
 }
+.profil-index .col-sm-6 div{
+    margin-bottom: 5px;
+}
 .profil-index span:after {
     content: ' : ';
 }
