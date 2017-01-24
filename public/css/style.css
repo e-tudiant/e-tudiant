@@ -338,6 +338,40 @@ form{
     color: red;
 }
 
+
+/********** CREATE/MODIFY MODULE ***********/
+
+.userinfo-create{
+    text-align: center;
+}
+.userinfo-create input{
+    margin-bottom: 15px;
+}
+.userinfo-create label{
+    font-family: Oswald;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+}
+.userinfo-create #avatar{
+    display: inline;
+}
+.userinfo-create input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    font-style: italic;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.userinfo-create input[type=submit]:hover{
+    color: black;
+}
+
+
 /*************** CHATBOX ****************/
 
 .btn-chatblock{
