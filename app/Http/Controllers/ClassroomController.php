@@ -89,6 +89,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::findOrFail($id);
         $request->merge([
             'status' => $request->get('status', 0),
+            'module_id' => $request->get('module_id') == "" ? null : $request->get('module_id'),
         ]);
         $classroom->update($request->all());
         $classroom->group()->sync($request->get('group_id', []));

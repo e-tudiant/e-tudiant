@@ -10,7 +10,6 @@
             <h3>Question</h3>
         </div>
         <div class="tab-content">
-            <div class="info-name">Id : {!! $question->id !!}</div>
             <div class="info-name">Quizz : {!! $question->quizz->name !!}</div>
             <div class="info-name">Question : {!! $question->question !!}</div>
         </div>

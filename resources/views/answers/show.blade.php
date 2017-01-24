@@ -10,7 +10,6 @@
                 <h3>Réponse</h3>
             </div>
             <div class="tab-content">
-                <div class="info-name">Id : {!! $answer->id !!}</div>
                 <div class="info-name">Réponse : {!! $answer->answer !!}</div>
                 <div class="info-name">Correct : {!! $answer->correct ? 'Vrai' : 'Faux' !!}</div>
             </div>

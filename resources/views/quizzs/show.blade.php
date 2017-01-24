@@ -10,8 +10,16 @@
             <h3>Quizz</h3>
         </div>
         <div class="tab-content">
-            <div class="info-name">Id : {!! $quizz->id !!}</div>
-            <div class="info-name">Name : {!! $quizz->name !!}</div>
+            <div class="info-name">Nom : {!! $quizz->name !!}</div>
+            @if (count($quizz->classroom) > 0)
+                <div class="info-classroom">Classe(s) :
+                    <ul>
+                        @foreach($quizz->classroom as $classroom)
+                            <li>{!! $classroom->name !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </div>

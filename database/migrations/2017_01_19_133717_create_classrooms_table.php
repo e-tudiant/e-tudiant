@@ -12,7 +12,7 @@ class CreateClassroomsTable extends Migration {
 			$table->timestamps();
 			$table->string('name', 100);
 			$table->integer('status')->unsigned();
-			$table->integer('module_id')->unsigned();
+			$table->integer('module_id')->unsigned()->nullable();
 		});
 	}
 
