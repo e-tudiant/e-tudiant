@@ -1,4 +1,6 @@
-
+@section('nav')
+    @include('layouts.navbar')
+@endsection
     <h2>Titre possible</h2>
     <p>Bienvenue dans votre interface d'apprenant , venez ici gerer pas mal de truc</p>
 

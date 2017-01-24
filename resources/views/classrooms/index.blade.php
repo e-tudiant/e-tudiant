@@ -62,7 +62,7 @@
         .btn-create{
             width: 30%;
             height: 40px;
-            border: 4px solid black;
+            border: 3px solid black;
             margin: auto;
             display: flex;
             cursor: pointer;
