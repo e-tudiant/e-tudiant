@@ -30,7 +30,7 @@ if ($module->id) {
                         {!! Form::file('image_url') !!}
                     </div>
                     <div>
-                        {!! Form::label('slider_url', 'URL du slider:') !!}
+                        {!! Form::label('slider_url', 'URL du module:') !!}
                         {!! Form::text('slider_url') !!}
                     </div>
                     <div>
