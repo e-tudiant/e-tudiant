@@ -69,12 +69,13 @@ class ModuleController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
-  {
-    
-  }
-
-  /**
+    public function update($id,Request $request)
+    {
+        $module = Module::findOrFail($id);
+        $module->update($request->all());
+        return redirect(route('module.index'));
+    }
+    /**
    * Remove the specified resource from storage.
    *
    * @param  int  $id
@@ -82,7 +83,8 @@ class ModuleController extends Controller {
    */
   public function destroy($id)
   {
-    
+      Module::destroy($id);
+      return redirect(route('module.index'));
   }
   
 }
