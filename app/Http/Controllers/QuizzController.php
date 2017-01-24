@@ -100,6 +100,7 @@ class QuizzController extends Controller
         return redirect(route('quizz.index'));
     }
 
+
 }
 
 ?>
