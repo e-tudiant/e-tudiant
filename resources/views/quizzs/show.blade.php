@@ -4,8 +4,8 @@
 
 @include('blocks.menuFormateur')
 
-<div class="tab col-sm-4">
-    <div id="profil" class="tab-pane fade in active">
+<div class="tab col-sm-3 show-quizz">
+    <div id="quizz" class="tab-pane fade in active">
         <div class="title">
             <h3>Quizz</h3>
         </div>

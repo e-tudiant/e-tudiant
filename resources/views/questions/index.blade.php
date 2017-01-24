@@ -1,10 +1,11 @@
-<div class="tab col-sm-8">
-    <div id="quizz" class="tab-pane fade in active show-question">
+<div class="col-sm-1 hidden-xs inter"></div>
+<div class="tab col-sm-8 show-question">
+    <div id="quizz" class="tab-pane fade in active">
         <div class="title">
             <h3>Questions</h3>
         </div>
         <div class="tab-content">
-            <div class="btn-create">{!! link_to_route('question.create', 'Ajouter un question', ['quizz_id' => $quizz->id]) !!}</div>
+            <div class="btn-create">{!! link_to_route('question.create', 'Ajouter une question', ['quizz_id' => $quizz->id]) !!}</div>
 
             @foreach ($questions as $question)
                 @if($question == $questions->last())
@@ -28,7 +29,7 @@
 </div>
 
 <style>
-    .show-question .btn-create:first-of-type{
-        width: 50%;
-    }
+
+
+
 </style>

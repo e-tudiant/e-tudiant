@@ -12,5 +12,6 @@
         {!! Form::submit('Supprimer') !!}
     {!! Form::close() !!}
 </div>
+    TEST
 @endforeach
 </div>

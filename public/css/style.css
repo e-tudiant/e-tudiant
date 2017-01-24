@@ -11,11 +11,9 @@
     height: 50px;
     display: flex;
 }
-
 .title h3{
     font-size: 20px;
 }
-
 h1,h2,h3,h4{
     color: white !important;
     font-family: 'Oswald', sans-serif !important;
@@ -23,11 +21,9 @@ h1,h2,h3,h4{
     margin: auto !important;
     font-weight: bold;
 }
-
 .tab-content{
     padding: 15px 20px;
 }
-
 .btn-create{
     background-color: black;
     width: 30%;
@@ -39,12 +35,10 @@ h1,h2,h3,h4{
     margin-bottom: 35px;
     margin-top: 30px;
 }
-
 .btn-create:hover{
     background-color: white;
     transition: 0.2s;
 }
-
 .btn-create a{
     font-family: 'Tinos', serif;
     font-style: italic;
@@ -56,7 +50,6 @@ h1,h2,h3,h4{
 .btn-create:hover a{
     color: black;
 }
-
 .info-line{
     font-family: 'Oswald', sans-serif;
     border-bottom: 3px solid #efefef;
@@ -66,11 +59,9 @@ h1,h2,h3,h4{
     margin-right: 0px !important;
 
 }
-
 .info-line.last{
     border-bottom: 0px;
 }
-
 .info-name{
     text-align: left;
     color: black;
@@ -79,7 +70,6 @@ h1,h2,h3,h4{
     margin: auto;
     font-family: 'Oswald', sans-serif;
 }
-
 .btn-show{
     height: 40px;
     border: 3px solid black;
@@ -175,6 +165,51 @@ form{
     color: black;
 }
 
+/************ QUESTION FOR QUIZZ *************/
+
+.show-quizz{
+    margin-bottom: 20px;
+}
+.show-quizz .info-name{
+    padding-left: 0px;
+}
+.show-question .btn-create:first-of-type{
+    width: 50%;
+}
+.show-question .btn-show{
+    margin-right: 5px;
+}
+.show-question .btn-edit{
+
+}
+.show-question form{
+    width: 10%;
+}
+
+/********** CREATE/MODIFY QUESTION ***********/
+
+.question-create{
+    text-align: center;
+}
+.question-create label{
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    font-size: 15px;
+    display: block;
+}
+.question-create input[type=submit]{
+    width: 100%;
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+}
+.question-create input[type=submit]:hover{
+    color: black;
+}
+
 /*************** CHATBOX ****************/
 
 .btn-chatblock{
@@ -188,13 +223,11 @@ form{
     text-align: center;
     cursor: pointer;
 }
-
 .btn-chatblock:before{
     content:'\f086';
     font-family: FontAwesome;
     color: #828181;
 }
-
 .chatblock{
     background-color: #828181;
     width: 250px;
@@ -204,19 +237,16 @@ form{
     height: 425px;
     max-height: 425px;
 }
-
 .chatblock form{
     margin-left: -14px;
     bottom: 5px;
     position: absolute;
     text-align: center;
 }
-
 .chatblock form #message{
     width: 239px;
     height: 35px;
 }
-
 .chatblock #chatbox{
     background-color: white;
     margin: 5px;
@@ -224,12 +254,10 @@ form{
     height: 325px;
     overflow-y: auto;
 }
-
 .chatblock input[type=submit]{
     margin-top: 12px ;
     margin-bottom: 7px;
 }
-
 .chatblock .message-box{
     background-color: #ece9e9;
     border: 1px solid #a2a8ad;
@@ -237,15 +265,11 @@ form{
     padding: 10px;
     margin-bottom: 8px;
 }
-
 .chatblock .username{
     margin: 0;
     font-style: italic;
     text-decoration: underline;
 }
-
 .chatblock.username:after{
     content: ' :';
 }
-
-/*************** Style for quizz page *************

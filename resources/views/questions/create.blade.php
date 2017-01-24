@@ -14,21 +14,24 @@ if ($question->id) {
 @include('blocks.menuFormateur')
 
 
-<div class="col-sm-12">
-	<h4>Quizz</h4>
+<div class="tab question-create">
+	<div id="question" class="tab-pane fade in active">
+		<div class="title">
+	<h4>Question</h4>
+		</div>
+		<div class="tab-content">
 	{!! Form::model($question, array('url' => $route, 'method' => $method)) !!}
-		<ul>
-			<li>
+			<div>
 				{!! Form::label('question', 'Question : ') !!}
 				{!! Form::textarea('question') !!}
 				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
-				{!! Form::submit() !!}
-			</li>
-		</ul>
-	{!! Form::close() !!}
-</div>
-
+			</div>
+			<div class="btn-create">
+				{!! Form::submit('Sauvegarder') !!}
+			</div>
+				{!! Form::close() !!}
+			</div>
+		</div>
+	</div>
 
 @endsection()

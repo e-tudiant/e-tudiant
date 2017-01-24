@@ -27,7 +27,7 @@ if ($quizz->id) {
 				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 			</div>
 			<div class="btn-create">
-				{!! Form::submit('Créer') !!}
+				{!! Form::submit('Sauvegarder') !!}
 			</div>
 
 		{!! Form::close() !!}
@@ -36,8 +36,3 @@ if ($quizz->id) {
 </div>
 
 @endsection()
-
-<style>
-
-
-</style>
