@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 
-@include('blocks.menuFormateur')
 
-<div class="tab userinfo-create">
+    <div class="tab userinfo-create">
     <div id="profil" class="tab-pane fade in active">
         <div class="title">
             <h3>Quizz</h3>

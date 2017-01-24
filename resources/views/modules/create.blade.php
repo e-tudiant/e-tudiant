@@ -9,9 +9,9 @@ if ($module->id) {
 ?>
 @extends('layouts.app')
 
-@section('content')
+@include('layouts.navbar')
 
-@include('blocks.menuFormateur')
+@section('content')
 
 <div class="tab module-create">
     <div id="module" class="tab-pane fade in active">

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
-@include('blocks.menuFormateur')
 
 <div class="tab-content">
     <div id="profil" class="tab-pane fade in active">

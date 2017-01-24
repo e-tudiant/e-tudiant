@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 
-@include('blocks.menuFormateur')
 
-
-<div class="tab">
+    <div class="tab">
     <div id="quizz" class="tab-pane fade in active">
         <div class="title">
             <h3>Quizz</h3>

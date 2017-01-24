@@ -2,18 +2,8 @@
 
 @section('content')
 
-
-    <div class="panel-body">
-        Bienvenue à toi "nom du user connecté"
-    </div>
-
-    @if(Auth::user()->role_id == 3)
-        @include('blocks.menuApprenant')
-    @elseif(Auth::user()->role_id == 2)
-        @include('blocks.menuFormateur')
-    @else
-        @include('blocks.menuFormateur')
-        <p>admin pas encore fait, <a href="/login">retour loggin</a></p>
-    @endif
+@section('nav')
+    @include('layouts.navbar')
+@endsection
 
 @endsection

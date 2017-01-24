@@ -9,9 +9,9 @@ if ($question->id) {
 ?>
 @extends('layouts.app')
 
-@section('content')
+@include('layouts.navbar')
 
-@include('blocks.menuFormateur')
+@section('content')
 
 
 <div class="tab question-create">

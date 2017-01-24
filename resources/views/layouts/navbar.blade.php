@@ -11,8 +11,8 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'E-tudiant') }}
+            <a class="navbar-brand" id="appname" href="{{ url('/home') }}">
+                E-tudiant
             </a>
         </div>
 
@@ -26,24 +26,40 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/login') }}">Se connecter</a></li>
                     <!--A deplacer-->
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/register') }}">Se créer un compte</a></li>
                     <!--A deplacer-->
                 @else
+                    @if(Auth::user()->role_id == 3)
+                        @include('blocks.menuApprenant')
+                    @elseif(Auth::user()->role_id == 2)
+                        @include('blocks.menuFormateur')
+                    @elseif(Auth::user()->role_id == 1)
+                        @include('blocks.menuAdmin')
+                    @endif
                     <li>
                         <a href="{{ url('/logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            Logout
+                            Se déconnecter
                         </a>
 
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                     </li>
+
                 @endif
             </ul>
         </div>
     </div>
 </nav>
+
+<style>
+    #appname{
+        font-family: ReenieBeanie;
+        color: black;
+        font-size: 35px;
+    }
+</style>

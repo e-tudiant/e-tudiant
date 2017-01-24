@@ -12,9 +12,9 @@ if ($quizz->id) {
 ?>
 @extends('layouts.app')
 
-@section('content')
+@include('layouts.navbar')
 
-@include('blocks.menuFormateur')
+@section('content')
 
 <div class="tab quizz-create">
 	<div id="quizz" class="tab-pane fade in active ">
