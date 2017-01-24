@@ -40,7 +40,7 @@ class AnswerController extends Controller
      */
     public function store(AnswerRequest $request)
     {
-        if ($request->get('correct') == 1 && Input::get('correct') == 1) {
+        if (Input::get('correct') == 1 && Question::hasCorrect(Input::get('question_id'))) {
             return back()->withErrors(['correct' => 'Une réponse correct existe déjà.'])->withInput();
         }
 
@@ -90,7 +90,8 @@ class AnswerController extends Controller
             'correct' => $request->get('correct', 0),
         ]);
 
-        if ($request->get('correct') == 1 && $answer->hasCorrect()) {
+
+        if ($request->get('correct') == 1 && Question::hasCorrect($answer->question_id)) {
             return back()->withErrors(['correct' => 'Une réponse correct existe déjà.'])->withInput();
         }
 

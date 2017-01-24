@@ -8,25 +8,26 @@ class Classroom extends Model {
 
 	protected $table = 'classrooms';
 	public $timestamps = true;
+	protected $fillable = ['name', 'status', 'module_id'];
 
 	public function module()
 	{
-		return $this->hasOne('Module');
+		return $this->BelongsTo('App\Module');
 	}
 
 	public function group()
 	{
-		return $this->belongsToMany('Group');
+		return $this->belongsToMany('App\Group');
 	}
 
 	public function quizz()
 	{
-		return $this->belongsToMany('Quizz');
+		return $this->belongsToMany('App\Quizz');
 	}
 
 	public function session()
 	{
-		return $this->hasMany('Session');
+		return $this->hasMany('App\Session');
 	}
 
 }

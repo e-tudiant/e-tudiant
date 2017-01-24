@@ -1,3 +1,12 @@
+<?php
+if ($group->id) {
+    $route = ['group.update', $group->id];
+    $method = 'PUT';
+} else {
+    $route = 'group.store';
+    $method = 'POST';
+}
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -26,7 +35,7 @@
 			<div class="col-sm-8 col-xs-12">
 
 				<h4>Groupe</h4>
-				{!! Form::model($group, array('route' => [($group->id ? 'group.update' : 'group.store'), $group->id], 'method' => ($group->id ? 'PUT' : 'POST'))) !!}
+				{!! Form::model($group, array('route' => $route, 'method' => $method)) !!}
 				<ul>
 					<li>
 						{!! Form::label('name', 'Name:') !!}

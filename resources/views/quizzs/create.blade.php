@@ -19,10 +19,11 @@ if ($quizz->id) {
 			<h3>Quizz</h3>
 		</div>
 		<div class="tab-content">
-		{!! Form::model($quizz, array('route' => [($quizz->id ? 'quizz.update' : 'quizz.store'), $quizz->id], 'method' => ($quizz->id ? 'PUT' : 'POST'))) !!}
+		{!! Form::model($quizz, array('route' => $route, 'method' => $method)) !!}
 
 			<div>
 				{!! Form::label('name', 'Nom du quiz :') !!}
+
 				{!! Form::text('name') !!}
 				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 			</div>

@@ -102,7 +102,6 @@ class GroupController extends Controller {
   }
     public function addUserFromGroup($group_id,Request $request){
         $group = Group::findOrFail($group_id);
-//        dd($request);
         $group->user()->sync($request->get('ids'));
         return redirect(route('group.index'));
     }

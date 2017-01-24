@@ -25,7 +25,7 @@
 
                     <div class="info-name col-sm-5 col-xs-12">{!! $quizz->name !!}</div>
                     <div class="btn-show col-sm-3 col-xs-12">{!! link_to_route('quizz.show', 'Voir', [$quizz->id]) !!}</div>
-                    <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('quizz.create', 'Modifier', [$quizz->id]) !!}</div>
+                    <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('quizz.edit', 'Modifier', [$quizz->id]) !!}</div>
 
                     {!! Form::open(['method' => 'DELETE', 'route' => ['quizz.destroy', $quizz->id]]) !!}
                     <div class="btn-delete col-sm-1 col-xs-12">{!! Form::submit('') !!}</div>
