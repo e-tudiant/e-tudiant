@@ -12,6 +12,12 @@
     src: url(../fonts/Tinos/Tinos-Italic.woff);
 }
 
+@font-face {
+    font-family: ReenieBeanie;
+    font-style: normal;
+    src: url(../fonts/ReenieBeanie/ReenieBeanie.woff);
+}
+
 /********** GENERAL STYLE FOR TABLE **********/
 
 .tab{
@@ -28,7 +34,7 @@
 .title h3{
     font-size: 20px;
 }
-h1,h2,h3,h4{
+h2,h3,h4{
     color: white !important;
     font-family: 'Oswald', sans-serif !important;
     text-transform: uppercase;
@@ -42,7 +48,7 @@ h1,h2,h3,h4{
     background-color: black;
     width: 30%;
     height: 40px;
-    border: 4px solid black;
+    border: 3px solid black;
     margin: auto;
     display: flex;
     cursor: pointer;
@@ -155,6 +161,82 @@ form{
 .btn-delete:hover:after{
     color: #FF1925;
     transition: 0.2s;
+}
+
+/************* HOMEPAGE ****************/
+
+.center{
+    display: flex !important;
+    height: 100%;
+}
+.center #appname{
+    font-family: ReenieBeanie !important;
+    font-size: 10em;
+    color: black;
+    margin: auto;
+    text-align: center;
+}
+.center #appname a{
+    font-family: ReenieBeanie !important;
+    color: black;
+    margin: auto;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+/************* LOGGIN PAGE ****************/
+
+.connexion.tab{
+    display: flex !important;
+    height: 100%;
+    border: 0px;
+    background-color: #f5f8fa;
+}
+.connexion #connexion-table{
+    margin: auto;
+    border: 4px solid black;
+    background-color: white;
+    width: 50%;
+}
+.connexion #connexion-table .form-group{
+    text-align: center;
+}
+.connexion #connexion-table .form-group label{
+    font-family: Oswald;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 5px;
+}
+.connexion #connexion-table .btn-create{
+    width: 65%;
+    font-size: 16px;
+    font-family: Tinos;
+    font-style: italic;
+    color: white;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+.connexion #connexion-table .btn-create:hover{
+    color: black;
+}
+.connexion #connexion-table .btn-show{
+    color: white;
+    width: 65%;
+    background-color: red;
+    border-color: red;
+}
+.connexion #connexion-table .btn-show a{
+    padding: 0;
+    font-size: 16px;
+    color: white;
+}
+.connexion #connexion-table .btn-show:hover{
+    background-color: white;
+    border-color: black;
+}
+.connexion #connexion-table .btn-show:hover a{
+    color: black;
 }
 
 /************* CREATE QUIZZ PAGE ****************/

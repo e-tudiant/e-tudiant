@@ -1,4 +1,6 @@
-
+@section('nav')
+    @include('layouts.navbar')
+@endsection
 
 <ul class="nav nav-tabs">
     <li><a href="/home/">Accueil</a></li>
