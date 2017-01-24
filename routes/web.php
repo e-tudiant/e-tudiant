@@ -99,7 +99,7 @@ Route::get('classroomgroup/{classroomgroup}/edit', ['middleware' => ['auth', 'ro
 Route::get('module', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@index','roles' => ['formateur', 'admin']])->name('module.index');
 Route::post('module', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@store','roles' => ['formateur', 'admin']])->name('module.store');
 Route::get('module/create', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@create','roles' => ['formateur', 'admin']])->name('module.create');
-//Route::get('module/{module}', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@show','roles' => ['formateur', 'admin']])->name('module.show');
+Route::get('module/{module}', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@show','roles' => ['formateur', 'admin']])->name('module.show');
 Route::put('module/{module}', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@update','roles' => ['formateur', 'admin']])->name('module.update');
 Route::delete('module/{module}', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@destroy','roles' => ['formateur', 'admin']])->name('module.destroy');
 Route::get('module/{module}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'ModuleController@edit','roles' => ['formateur', 'admin']])->name('module.edit');
