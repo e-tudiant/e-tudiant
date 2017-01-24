@@ -7,6 +7,8 @@ use App\User_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class UserInfoController extends Controller
 {
@@ -20,8 +22,9 @@ class UserInfoController extends Controller
     {
         if (Auth::check()) {
             $id = Auth::user()->id;
-            $data = User::find($id);
-            return view('userinfos.index', compact('data'));
+            $user = User::find($id);
+            $userinfo=User_info::where('user_id','=',$id)->first();
+            return view('userinfos.index', compact('user','userinfo'));
         }
     }
 
@@ -32,8 +35,8 @@ class UserInfoController extends Controller
      */
     public function create()
     {
-        $userinfo=new User_info();
-        return view('userinfos.create',compact('userinfo'));
+        $userinfo = new User_info();
+        return view('userinfos.create', compact('userinfo'));
     }
 
     /**
@@ -43,19 +46,35 @@ class UserInfoController extends Controller
      */
     public function store()
     {
+//        dd(public_path());
         if (Auth::check()) {
             $user_id = Auth::user()->id;
-            $userInfo = User_info::create([
-                'user_id' => $user_id,
-                'social_network'=>Input::get('social_network'),
-                'github_link'=>Input::get('social_network'),
-                'phone'=>Input::get('phone'),
-                'avatar'=>Input::get('avatar'),
-                'phonebook'=>Input::get('phonebook')
-            ]);
-            return redirect(route('userinfo.index'));
+            $file = array('avatar' => Input::file('avatar'));
+            // setting up rules
+            $rules = array('avatar' => 'required|mimes:jpeg,bmp,png');
+            $validator = Validator::make($file, $rules);
+            if ($validator->fails()) {
+                // send back to the page with the input data and errors
+                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
+            } else {
+                // checking file is valid.
+                if (Input::file('avatar')->isValid()) {
+                    $destinationPath = public_path() . '/uploads/images/users/';
+                    $extension = Input::file('avatar')->getClientOriginalExtension(); // getting image extension
+                    $fileName = 'user_' . $user_id . '_picture.' . $extension; // renameing image
+                    Input::file('avatar')->move($destinationPath, $fileName); // uploading file to given path
+                    $userInfo = User_info::create([
+                        'user_id' => $user_id,
+                        'social_network' => Input::get('social_network'),
+                        'github_link' => Input::get('social_network'),
+                        'phone' => Input::get('phone'),
+                        'avatar' => $fileName,
+                        'phonebook' => Input::get('phonebook')
+                    ]);
+                    return redirect(route('userinfo.index'));
+                }
+            }
         }
-
     }
 
     /**
@@ -87,9 +106,8 @@ class UserInfoController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id,Request $request)
+    public function update($id, Request $request)
     {
-//        dd($request);
         $userinfo = User_info::findOrFail($id);
         $userinfo->update($request->all());
         return redirect(route('userinfo.index'));

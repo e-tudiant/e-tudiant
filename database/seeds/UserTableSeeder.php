@@ -17,10 +17,24 @@ class UserTableSeeder extends Seeder
         DB::table('users')->delete();
 
         DB::table('users')->insert([
-            'lastname' => 'T. Kirk',
-            'firstname' => 'James',
+            'lastname' => 'admin',
+            'firstname' => 'admin',
             'role_id' => '1',
-            'email' => 'monadresse@mail.com',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123456'),
+        ]);
+        DB::table('users')->insert([
+            'lastname' => 'formateur',
+            'firstname' => 'formateur',
+            'role_id' => '2',
+            'email' => 'formateur@formateur.com',
+            'password' => bcrypt('123456'),
+        ]);
+        DB::table('users')->insert([
+            'lastname' => 'apprenant',
+            'firstname' => 'apprenant',
+            'role_id' => '3',
+            'email' => 'apprenant@apprenant.com',
             'password' => bcrypt('123456'),
         ]);
     }
