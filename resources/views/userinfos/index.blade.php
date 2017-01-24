@@ -10,35 +10,56 @@
                 <h3>Mon profil</h3>
             </div>
             <div class="tab-content">
+            <div class="row">
+                <div class="col-sm-6">
 
-                {!! $user->firstname !!}<br>
-                {!! $user->lastname !!}<br>
-                {!! $user->email !!}<br>
-                {!! $user->role->description !!}<br>
+                    <div><span class="info-name">Prénom</span>{!! $user->firstname !!}</div>
+                    <div><span class="info-name">Nom</span>{!! $user->lastname !!}</div>
+                    <div><span class="info-name">E-mail</span>{!! $user->email !!}</div>
+                    <div><span class="info-name">Rôle</span>{!! $user->role->description !!}</div>
 
                 @if(count($userinfo)==0)
-                    <div class="btn-create">
-                    {!!link_to_route('userinfo.create','Ajouter informations') !!}<br>
-                    </div>
+                </div>
+                <div class="btn-create">
+                    {!!link_to_route('userinfo.create','Ajouter informations') !!}
+                </div>
 
-                    {{--@endif--}}
                 @elseif(count($userinfo)>0)
-                    <h5>Informations complémentaires</h5>
-                    <span>GibHub:</span>{!! $userinfo->github_link !!}<br>
-                    <span>Réseau social:</span>{!! $userinfo->social_network !!}<br>
-                    <span>Téléphone:</span>{!! $userinfo->phone !!}<br>
-                    <span>Avatar :</span><img src="{!!'/uploads/images/users/'.($userinfo->avatar)!!}"
-                                              alt="avatar utilisateur" width="200"><br>
-
-
-                    <div class="btn-create">
-                    {!!link_to_route('userinfo.edit','EDITER INFOS SUPPLEMENTAIRES',$userinfo->id) !!}
+                    <div><span class="info-name">Git-Hub</span>{!! $userinfo->github_link !!}</div>
+                    <div><span class="info-name">Réseaux social</span>{!! $userinfo->social_network !!}</div>
+                    <div><span class="info-name">Tél</span>{!! $userinfo->phone !!}</div>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <span class="info-name">Avatar</span>
+                        <div class="avatar">
+                            <img src="{!!'/uploads/images/users/'.($userinfo->avatar)!!}" alt="avatar utilisateur" width="200">
+                        </div>
                     </div>
                 </div>
+            </div>
+                    <div class="btn-create">
+                        {!!link_to_route('userinfo.edit','Modifier informations',$userinfo->id) !!}
+                    </div>
+            </div>
             @endif
         </div>
     </div>
 
-
-
 @endsection()
+
+<style>
+    .profil-index span:after {
+        content: ' : ';
+    }
+    .profil-index .col-sm-6:last-of-type {
+        border-left: 3px solid #efefef;
+    }
+    .profil-index .avatar{
+        float: right;
+        width: 65%;
+    }
+    .profil-index .avatar img{
+        width: 100%;
+    }
+</style>
