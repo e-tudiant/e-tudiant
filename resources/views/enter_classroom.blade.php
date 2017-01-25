@@ -8,7 +8,8 @@
     <div class="tab-content">
         <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom_id }}">
 
-            <div id="viewer">
+            <div class="row">
+            <div class="col-md-10" id="viewer">
                 @if(Auth::user()->role_id == 3)
                     <p class="module-name"></p>
                 @endif
@@ -18,70 +19,85 @@
                     {!! Form::select('module_id', $module_list, null, ['placeholder' => 'Choisissez un module', 'id' => 'module-list']) !!}
                     {!! Form::close() !!}
                 @endif
-                <iframe allowfullscreen></iframe>
+                <div class="viewer-iframe">
+                    <iframe allowfullscreen></iframe>
+                </div>
             </div>
 
 
-    @if(Auth::user()->role_id == 2)
-    <div id="register">
-        <div id="student-list">
-            <p id="user-4" class="absent">Apprenant</p>
-            <p id="user-5" class="absent">Daniel Gonçalves</p>
-            <p id="user-6" class="absent">Guillaume Perrier</p>
-            <p id="user-7" class="absent">Nicolas Aslantas</p>
-            <p id="user-8" class="absent">Creneguy Johann</p>
-        </div>
-    </div>
-    @endif
-
-    @if(Auth::user()->role_id == 3)
-    <div id="quizz-student">
-        
-    </div>
-    @endif
-
-    @if(Auth::user()->role_id == 2)
-    <div id="quizz-teacher">
-        {{ Form::open(['id' => 'quizz-teacher']) }}
-            <ul>
-            @foreach($quizz_list as $quizz_id => $quizz_name)
-                <li>
-                {{ Form::label('quizz.'.$quizz_id, $quizz_name) }}
-                <input type="checkbox" id="quizz.{{ $quizz_id }}" class="quizz-checkbox" name="quizz_id" value="{{ $quizz_id }}">
-                </li>
-            @endforeach
-            </ul>
-        {{ Form::close() }}
-    </div>
-    @endif
-
-    <div id="resources">
-        <p>Doing some cool stuff about resources (optional)</p>
-    </div>
-
-
-                <div class="chatblock">
-                    <div id="chatbox">
-                        <div id="messageBox"></div>
-                        <div id="sender">
-                            <form id="sendMessage" method="post" action="/classroom/{{ $classroom_id }}/send">
-                                {!! csrf_field() !!}
-                                <input id="message" type="text" name="message" placeholder="Tapez votre message">
-                                <div class="btn-create">
-                                <input type="submit" value="Envoyer">
-                                </div>
-                            </form>
-                            {{--<a id="sendFile">Envoyer un fichier</a>--}}
-                        </div>
+            @if(Auth::user()->role_id == 2)
+                <div class="col-md-2" id="register">
+                    <div id="student-list">
+                        <p id="user-4" class="absent">Apprenant</p>
+                        <p id="user-5" class="absent">Daniel Gonçalves</p>
+                        <p id="user-6" class="absent">Guillaume Perrier</p>
+                        <p id="user-7" class="absent">Nicolas Aslantas</p>
+                        <p id="user-8" class="absent">Creneguy Johann</p>
                     </div>
                 </div>
-                <div class="btn-chatblock"></div>
+            @endif
+            </div>
+
+
+            @if(Auth::user()->role_id == 3)
+                <div id="quizz-student">
+
+                </div>
+            @endif
+
+            @if(Auth::user()->role_id == 2)
+                <div id="quizz-teacher">
+                    {{ Form::open(['id' => 'quizz-teacher']) }}
+                    <ul>
+                        @foreach($quizz_list as $quizz_id => $quizz_name)
+                            <li>
+                                {{ Form::label('quizz.'.$quizz_id, $quizz_name) }}
+                                <input type="checkbox" id="quizz.{{ $quizz_id }}" class="quizz-checkbox" name="quizz_id"
+                                       value="{{ $quizz_id }}">
+                            </li>
+                        @endforeach
+                    </ul>
+                    {{ Form::close() }}
+                </div>
+            @endif
+
+            <div id="resources">
+                <p>Doing some cool stuff about resources (optional)</p>
+            </div>
+
+
+            <div class="chatblock">
+                <div id="chatbox">
+                    <div id="messageBox"></div>
+                    <div id="sender">
+                        <form id="sendMessage" method="post" action="/classroom/{{ $classroom_id }}/send">
+                            {!! csrf_field() !!}
+                            <input id="message" type="text" name="message" placeholder="Tapez votre message">
+                            <div class="btn-create">
+                                <input type="submit" value="Envoyer">
+                            </div>
+                        </form>
+                        {{--<a id="sendFile">Envoyer un fichier</a>--}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-chatblock"></div>
 
         </div>
     </div>
 
 
     <style>
+
+        #viewer .viewer-iframe{
+            width: 70%;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+        }
+
         .absent {
             color: red
         }
