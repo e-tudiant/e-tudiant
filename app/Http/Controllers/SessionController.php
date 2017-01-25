@@ -29,16 +29,16 @@ class SessionController extends Controller
     public function create($quizz_id, $classroom_id)
     {
 
-
         if(Session::exists($quizz_id, $classroom_id, Auth::user()->id)) {
-//            return 'Vous avez déjà passé ce test.';
-            return redirect(route('home'))->withError('Vous avez déjà passé ce test.');
+            return null;
+            //return 'Vous avez déjà passé ce test.';
+            //return redirect(route('home'))->withError('Vous avez déjà passé ce test.');
 
         }
 
         //Session::where([['classroom_id', $classroom_id], ['user_id', Auth::user()->id]])->get();
         $quizz = Quizz::findOrFail($quizz_id);
-        return view('sessions.create', compact('quizz', 'classroom_id'));
+        return view('sessions.create', compact('quizz', 'classroom_id'))->withOk('Le quizz a été soumis au formateur.');
     }
 
     /**
@@ -59,7 +59,7 @@ class SessionController extends Controller
                 'answer_id' => Input::get('question_' . $question->id)
             ]);
         }
-        return redirect(route('home'));
+        return redirect(route('classroom.enter', $classroom_id));
     }
 
     /**
