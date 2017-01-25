@@ -1,14 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
-
-@include('blocks.menuFormateur')
-
 <div class="tab quizz-create">
 	<div id="quizz" class="tab-pane fade in active ">
 		<div class="title">
 			<h3>Quizz</h3>
 		</div>
+{{--        {!! dd($_POST) !!}--}}
 		<div class="tab-content">
 		{!! Form::open(array('url' => 'session/' . $quizz->id . '/' . $classroom_id, 'method' => 'post')) !!}
 			@foreach($quizz->question as $question)
@@ -32,5 +27,3 @@
 		</div>
 	</div>
 </div>
-
-@endsection()

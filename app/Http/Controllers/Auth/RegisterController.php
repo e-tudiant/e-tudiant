@@ -107,6 +107,8 @@ class RegisterController extends Controller
             foreach ($users as $user) {
                 if (!is_null($user->User_info) && $user->User_info->phonebook != 0) {
 
+
+
                     $userList[] = $user;
                 }
             }
