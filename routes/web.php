@@ -38,7 +38,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index');
 //User
 Route::get('user/show', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@show','roles' => ['admin']])->name('user.show');
 Route::delete('user/{user_id}', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@destroy','roles' => ['admin']])->name('user.destroy');
@@ -129,13 +128,13 @@ Route::delete('classroomquizz/{classroomquizz}', ['middleware' => ['auth', 'role
 Route::get('classroomquizz/{classroomquizz}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomQuizzController@edit','roles' => ['formateur', 'admin']])->name('classroomquizz.edit');
 
 // Session
-Route::get('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@index','roles' => ['formateur', 'admin']])->name('session.index');
-Route::post('session/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'apprenant']])->name('session.store');
-Route::get('session/create/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['formateur', 'apprenant']])->name('session.create');
-Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@show','roles' => ['formateur', 'admin']])->name('session.show');
-Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');
-Route::delete('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@destroy','roles' => ['formateur', 'admin']])->name('session.destroy');
-Route::get('session/{session}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@edit','roles' => ['formateur', 'admin']])->name('session.edit');
+//Route::get('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@index','roles' => ['formateur', 'admin']])->name('session.index');
+Route::post('session/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['apprenant']])->name('session.store');
+Route::get('session/create/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['apprenant']])->name('session.create');
+//Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@show','roles' => ['formateur', 'admin']])->name('session.show');
+//Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');
+//Route::delete('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@destroy','roles' => ['formateur', 'admin']])->name('session.destroy');
+//Route::get('session/{session}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@edit','roles' => ['formateur', 'admin']])->name('session.edit');
 
 //User_info
 Route::get('userinfo', 'UserInfoController@index')->name('userinfo.index');
