@@ -39,10 +39,11 @@
                         @include('blocks.menuAdmin')
                     @endif
                     <li>
-                        <a href="{{ url('/logout') }}"
+                        <a href="{{ url('/logout') }}" title="déconnexion"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            Se déconnecter
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+
                         </a>
 
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
