@@ -24,7 +24,7 @@ if ($question->id) {
 			<div>
 				{!! Form::label('question', 'Question : ') !!}
 				{!! Form::textarea('question') !!}
-				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+				{!! $errors->first('question', '<small class="help-block">:message</small>') !!}
 			</div>
 			<div class="btn-create">
 				{!! Form::submit('Sauvegarder') !!}

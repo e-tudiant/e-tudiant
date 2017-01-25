@@ -12,7 +12,17 @@ class Session extends Model {
 
 	public function classroom()
 	{
-		return $this->belongsTo('Classroom');
+		return $this->belongsTo('App\Classroom');
 	}
+
+    public function answer()
+    {
+        return $this->belongsTo('App\Answer');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
 }

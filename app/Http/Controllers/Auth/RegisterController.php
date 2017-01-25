@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\User_info;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -44,7 +45,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -54,14 +55,14 @@ class RegisterController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'role'=>'required|max:3'
+            'role' => 'required|max:3'
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -71,9 +72,10 @@ class RegisterController extends Controller
             'firstname' => $data['firstname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-           'role_id'=>$data['role']
+            'role_id' => $data['role']
         ]);
     }
+
     //override registers
     public function register(Request $request)
     {
@@ -82,4 +84,36 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
+
+    public function show()
+    {
+//        dd($this->countAdmin());
+        $users = User::all();
+        return view('users.show', compact('users'));
+    }
+
+    public function destroy($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $user->delete();
+        return redirect(route('user.show'));
+    }
+
+    //Send an array with all users able to be shown into the phonebook page
+    public function phonebook()
+    {
+        $userList=array();
+        $users = User::all()->whereIn('role_id', [2, 3]);
+        if ($users && count($users) > 0) {
+            foreach ($users as $user) {
+                if ($user->User_info->phonebook != 0) {
+                    $userList[] = $user;
+                }
+            }
+        }
+
+        return view('phonebook', compact('userList'));
+
+    }
+
 }

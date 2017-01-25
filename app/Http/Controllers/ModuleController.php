@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ModuleRequest;
 use App\Module;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -39,7 +40,7 @@ class ModuleController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(ModuleRequest $request)
     {
 
         $file = array('image_url' => Input::file('image_url'));
@@ -99,7 +100,7 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, ModuleRequest $request)
     {
         $module = Module::findOrFail($id);
 //        dd($request->files);
@@ -109,9 +110,8 @@ class ModuleController extends Controller
             $rules = array('image_url' => 'required|mimes:jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
-
                 // send back to the page with the input data and errors
-                return Redirect::to(route('module.index'))->withInput()->withErrors($validator);
+                return Redirect::to(route('module.edit'))->withInput()->withErrors($validator);
             } else {
                 // checking file is valid.
                 if ($request->files->get('image_url')->isValid()) {

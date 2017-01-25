@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 /*Middleware exemple*/
 Route::get('test', [
     'middleware' => ['auth', 'roles'], // A 'roles' middleware must be specified
@@ -35,7 +35,17 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/home', 'HomeController@index');
+//User
+Route::get('user/show', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@show','roles' => ['admin']])->name('user.show');
+Route::delete('user/{user_id}', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@destroy','roles' => ['admin']])->name('user.destroy');
+
+//Phonebook
+Route::get('phonebook', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@phonebook','roles' => ['apprenant','formateur','admin']])->name('phonebook');
+
 
 // Quizz
 Route::get('quizz', ['middleware' => ['auth', 'roles'],'uses' => 'QuizzController@index','roles' => ['formateur', 'admin']])->name('quizz.index');
@@ -85,6 +95,9 @@ Route::delete('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses'
 Route::get('classroom/{classroom}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@edit','roles' => ['formateur', 'admin']])->name('classroom.edit');
 Route::get('classroom/{classroom}/enter', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@enter', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.enter');
 Route::post('classroom/{classroom}/send', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@send', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.send');
+Route::post('classroom/{classroom}/want-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@wantModule', 'roles' => ['apprenant']])->where('classroom', '[0-9]+')->name('classroom.wantModule');
+Route::post('classroom/{classroom}/init-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@initModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.initModule');
+Route::post('classroom/{classroom}/change-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@changeModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.changeModule');
 
 // ClassroomGroup
 Route::get('classroomgroup', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomGroupController@index','roles' => ['formateur', 'admin']])->name('classroomgroup.index');
@@ -115,7 +128,7 @@ Route::get('classroomquizz/{classroomquizz}/edit', ['middleware' => ['auth', 'ro
 
 // Session
 Route::get('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@index','roles' => ['formateur', 'admin']])->name('session.index');
-Route::post('session/{quizz}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
+Route::post('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
 Route::get('session/{quizz}/create', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['formateur', 'admin']])->name('session.create');
 Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@show','roles' => ['formateur', 'admin']])->name('session.show');
 Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');

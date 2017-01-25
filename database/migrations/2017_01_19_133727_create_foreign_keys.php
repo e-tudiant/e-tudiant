@@ -50,8 +50,8 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('sessions', function(Blueprint $table) {
 			$table->foreign('answer_id')->references('id')->on('answers')
-						->onDelete('cascade')
-						->onUpdate('cascade');
+						->onDelete('restrict')
+						->onUpdate('restrict');
 		});
         Schema::table('classrooms', function(Blueprint $table) {
             $table->foreign('module_id')->references('id')->on('modules')
@@ -62,9 +62,9 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
-		/*Schema::table('group_user', function(Blueprint $table) {
+		Schema::table('group_user', function(Blueprint $table) {
 			$table->dropForeign('group_user_user_id_foreign');
-		});*/
+		});
 		Schema::table('group_user', function(Blueprint $table) {
 			$table->dropForeign('group_user_group_id_foreign');
 		});
@@ -86,15 +86,15 @@ class CreateForeignKeys extends Migration {
 		Schema::table('classroom_quizz', function(Blueprint $table) {
 			$table->dropForeign('classroom_quizz_quizz_id_foreign');
 		});
-		Schema::table('sessions', function(Blueprint $table) {
+        Schema::table('sessions', function(Blueprint $table) {
 			$table->dropForeign('sessions_classroom_id_foreign');
 		});
-		Schema::table('sessions', function(Blueprint $table) {
+        Schema::table('sessions', function(Blueprint $table) {
 			$table->dropForeign('sessions_user_id_foreign');
 		});
-		Schema::table('sessions', function(Blueprint $table) {
-			$table->dropForeign('sessions_answer_id_foreign');
-		});
+        Schema::table('sessions', function(Blueprint $table) {
+            $table->dropForeign('sessions_answer_id_foreign');
+        });
         Schema::table('classrooms', function(Blueprint $table) {
             $table->dropForeign('classrooms_module_id_foreign');
         });

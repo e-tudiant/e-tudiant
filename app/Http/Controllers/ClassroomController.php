@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Events\ClassroomMessageEvent;
+use App\Events\ClassroomWantModuleEvent;
+use App\Events\ClassroomChangeModuleEvent;
 use App\Http\Requests\ClassroomRequest;
+use App\Http\Requests\ClassroomSendRequest;
+use App\Http\Requests\ClassroomChangeModuleRequest;
 use Illuminate\Support\Facades\Input;
 use App\Classroom;
 use App\Module;
@@ -118,18 +122,59 @@ class ClassroomController extends Controller
      */
     public function enter($id)
     {
-        return view('enter_classroom')->withClassroomId($id);
+        // @TODO : Hydrate the module list
+        return view('enter_classroom')
+            ->withClassroomId($id)
+            ->withModuleList(["1"=>"Linux", "7"=>"Node.js"]);
     }
 
     /**
      * Send a message to the classroom.
      *
-     * @param  int $id
+     * @param  Request $request
+     * @param  int $classroomId
      * @return Response
      */
-    public function send(ClassroomRequest $request, $classroomId)
+    public function send(ClassroomSendRequest $request, $classroomId)
     {
         broadcast(new ClassroomMessageEvent($classroomId, $request->input('message')));
+    }
+
+    /**
+     * Change the classroom's module.
+     *
+     * @param  int $classroomId
+     * @return void
+     */
+    public function wantModule($classroomId)
+    {
+        broadcast(new ClassroomWantModuleEvent($classroomId));
+    }
+
+    /**
+     * Change the classroom's module.
+     *
+     * @param  Request $request
+     * @param  int $classroomId
+     * @return void
+     */
+    public function initModule(ClassroomChangeModuleRequest $request, $classroomId)
+    {
+        $module = Module::findOrFail($request->input('module_id'));
+        broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'init'));
+    }
+
+    /**
+     * Change the classroom's module.
+     *
+     * @param  Request $request
+     * @param  int $classroomId
+     * @return void
+     */
+    public function changeModule(ClassroomChangeModuleRequest $request, $classroomId)
+    {
+        $module = Module::findOrFail($request->input('module_id'));
+        broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'change'));
     }
 
 }

@@ -10,31 +10,20 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'lastname','firstname','email', 'password','role_id'
-    ];
+    protected $fillable = ['lastname','firstname','email', 'password','role_id'];
+    protected $hidden = ['password', 'remember_token'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
     public function group(){
         return $this->belongsToMany('App\Group');
+    }
+
+    public function session(){
+        return $this->hasMany('App\Session');
     }
 
     /*RELATION TABLE USER INFO*/
     public function User_info(){
         return $this->hasOne('App\User_info');
-
     }
 
     /*GESTION DES ROLES*/
