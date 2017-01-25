@@ -3,6 +3,7 @@
 @if(count($userList)>0)
 
     @foreach($userList as $user)
+        {{ $user->getUserGroups() }}
         {{ $user->firstname }}
         {{ $user->lastname }}<br>
         {{ $user->email }}<br>

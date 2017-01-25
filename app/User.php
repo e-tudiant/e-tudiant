@@ -56,5 +56,12 @@ class User extends Authenticatable
     {
         return (strtolower($need_role)==strtolower($this->have_role->name)) ? true : false;
     }
+    //Send an array width all objects groups user belongs to
+    public function getUserGroups(){
+        return $this->group()->getResults();
+    }
+
+
+
 
 }

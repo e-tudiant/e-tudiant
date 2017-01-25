@@ -67,7 +67,7 @@ class UserInfoController extends Controller
                     $userInfo = User_info::create([
                         'user_id' => $user_id,
                         'social_network' => Input::get('social_network'),
-                        'github_link' => Input::get('social_network'),
+                        'github_link' => Input::get('github_link'),
                         'phone' => Input::get('phone'),
                         'avatar' => $fileName,
                         'phonebook' => Input::get('phonebook')

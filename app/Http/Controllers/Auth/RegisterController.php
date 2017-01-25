@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\User_info;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -102,18 +101,18 @@ class RegisterController extends Controller
     //Send an array with all users able to be shown into the phonebook page
     public function phonebook()
     {
-        $userList=array();
-        $users = User::all()->whereIn('role_id', [2, 3]);
+        $userList = array();
+        $users = User::all()->whereIn('role_id',[2, 3]);
         if ($users && count($users) > 0) {
             foreach ($users as $user) {
-                if ($user->User_info->phonebook != 0) {
+                if (!is_null($user->User_info) && $user->User_info->phonebook != 0) {
+
                     $userList[] = $user;
                 }
             }
         }
-
         return view('phonebook', compact('userList'));
-
     }
+
 
 }

@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
         Schema::table('user_infos',function (Blueprint $table){
-            $table->foreign('user_id')->references('id')->on('user_infos')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
 
