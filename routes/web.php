@@ -95,6 +95,9 @@ Route::delete('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses'
 Route::get('classroom/{classroom}/edit', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@edit','roles' => ['formateur', 'admin']])->name('classroom.edit');
 Route::get('classroom/{classroom}/enter', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@enter', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.enter');
 Route::post('classroom/{classroom}/send', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@send', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.send');
+Route::post('classroom/{classroom}/want-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@wantModule', 'roles' => ['apprenant']])->where('classroom', '[0-9]+')->name('classroom.wantModule');
+Route::post('classroom/{classroom}/init-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@initModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.initModule');
+Route::post('classroom/{classroom}/change-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@changeModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.changeModule');
 
 // ClassroomGroup
 Route::get('classroomgroup', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomGroupController@index','roles' => ['formateur', 'admin']])->name('classroomgroup.index');
