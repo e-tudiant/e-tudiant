@@ -124,9 +124,11 @@ class ClassroomController extends Controller
     public function enter($id)
     {
         // @TODO : Hydrate the module list
+        // @TODO : Hydrate the quizz list
         return view('enter_classroom')
             ->withClassroomId($id)
-            ->withModuleList(["1"=>"Linux", "7"=>"Node.js"]);
+            ->withModuleList(["1"=>"Linux", "7"=>"Node.js"])
+            ->withQuizzList(["1"=>"Quizz0", "2"=>"Quizz1"]);
     }
 
     /**

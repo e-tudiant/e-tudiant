@@ -23,7 +23,7 @@
     </div>
 
     @if(Auth::user()->role_id == 2)
-    <div id="register-teacher">
+    <div id="register">
         <div id="student-list">
             <p id="user-4" class="absent">Apprenant</p>
             <p id="user-5" class="absent">Daniel Gonçalves</p>
@@ -34,11 +34,28 @@
     </div>
     @endif
 
+    @if(Auth::user()->role_id == 3)
     <div id="quizz-student">
-        <p>Doing some cool stuff about quizz</p>
+        
     </div>
+    @endif
 
-    <div id="resources-student">
+    @if(Auth::user()->role_id == 2)
+    <div id="quizz-teacher">
+        {{ Form::open(['id' => 'quizz-teacher']) }}
+            <ul>
+            @foreach($quizz_list as $quizz_id => $quizz_name)
+                <li>
+                {{ Form::label('quizz.'.$quizz_id, $quizz_name) }}
+                <input type="checkbox" id="quizz.{{ $quizz_id }}" class="quizz-checkbox" name="quizz_id" value="{{ $quizz_id }}">
+                </li>
+            @endforeach
+            </ul>
+        {{ Form::close() }}
+    </div>
+    @endif
+
+    <div id="resources">
         <p>Doing some cool stuff about resources (optional)</p>
     </div>
 

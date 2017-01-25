@@ -15,6 +15,14 @@ $(document).ready(function() {
         });
     })
 
+    $('.quizz-checkbox').on('click', function(e) {
+        checked = this.checked;
+        $('.quizz-checkbox').each(function(i) {
+            this.checked = false;
+        });
+        this.checked = checked;
+    });
+
     registerChannel.bind('pusher:subscription_succeeded', function(members) {
         members.each(studentIsPresent);
     });
