@@ -1,9 +1,14 @@
+<?php
+if (isset($_POST['errors'])) {
+    $errors = unserialize(base64_decode($_POST['errors']));
+}
+?>
 <div class="tab quizz-create">
 	<div id="quizz" class="tab-pane fade in active ">
 		<div class="title">
 			<h3>Quizz</h3>
 		</div>
-{{--        {!! dd($_POST) !!}--}}
+
 		<div class="tab-content">
 		{!! Form::open(array('url' => 'session/' . $quizz->id . '/' . $classroom_id, 'method' => 'post')) !!}
 			@foreach($quizz->question as $question)

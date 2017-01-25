@@ -107,7 +107,9 @@
         }
     </style>
 @endsection()
+
 @section('scriptpage')
+
     <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <script src="/js/enter-classroom.js"></script>
     <script>
@@ -115,9 +117,36 @@
             initPusher('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}', '{{ csrf_token() }}');
             initModule('{{ $classroom_id }}', '{{ csrf_token() }}');
             initChatBox('{{ $classroom_id }}', '{{ csrf_token() }}');
-            @if (Auth::user()->role_id == 3)
-                $('#quizz-student').load('/session/create/1/{{ $classroom_id }}'/*, { errors: '{!! serialize($errors) !!}' }*/);
+            @if (Auth::user()->role_id == 3) // TODO quizz_id here
+                $('#quizz-student').load('/session/create/1/{{ $classroom_id }}', { _token: '{{ csrf_token() }}', errors: '{!! base64_encode(serialize($errors)) !!}' }, function() {
+                    $('#quizz form').on('submit', function(e) {
+
+                        e.preventDefault();
+
+                        var data = {};
+                        data._token = '{{ csrf_token() }}';
+                        $(e.currentTarget).find('input:checked').each(function(i,item) {
+                            data[$(item).attr('name')] = $(item).val();
+                        });
+
+                        $.post('/session/1/{{ $classroom_id }}', data, function(response) { // TODO quizz_id here
+                            if (response.success) {
+                                $('#quizz-student').html('Le quizz a été soumis au formateur.');
+                            } else {
+                                $('#quizz .help-block').remove();
+                                console.log(response.errors);
+                                $.each(response.errors, function(i,item) {
+                                    console.log($('#quizz-student input[name="' + i + '"]'));
+                                    $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
+                                });
+                                //$('#quizz-student').html('Erreur.');
+                            }
+                        }, 'json');
+                    });
+                });
             @endif
+
+
         });
     </script>
     @if(Auth::user()->role_id == 2)

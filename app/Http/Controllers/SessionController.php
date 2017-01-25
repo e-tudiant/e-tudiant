@@ -49,17 +49,33 @@ class SessionController extends Controller
     public function store($quizz_id, $classroom_id, SessionRequest $request)
     {
         $quizz = Quizz::findOrFail($quizz_id);
+        $errors = [];
+        $toAdd = [];
         foreach ($quizz->question as $question) {
+
             if(is_null(Input::get('question_' . $question->id))) {
-                return back()->withInput()->withErrors(['question_' . $question->id => 'Selectionnez une réponse']);
+
+                $errors['question_' . $question->id] = 'Selectionnez une réponse';
+
+            } else {
+
+                $toAdd[] = [
+                    'user_id' => Auth::user()->id,
+                    'classroom_id' => $classroom_id,
+                    'answer_id' => Input::get('question_' . $question->id)
+                ];
             }
-            $session = Session::create([
-                'user_id' => Auth::user()->id,
-                'classroom_id' => $classroom_id,
-                'answer_id' => Input::get('question_' . $question->id)
-            ]);
         }
-        return redirect(route('classroom.enter', $classroom_id));
+        if($errors) {
+            return response()->json(['success' => false, 'errors' => $errors]);
+//            return back()->withInput()->withErrors($errors);
+        } else {
+            foreach ($toAdd as $item) {
+                $session = Session::create($item);
+            }
+        }
+        return response()->json(['success' => true]);
+//        return redirect(route('classroom.enter', $classroom_id));
     }
 
     /**
