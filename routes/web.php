@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 /*Middleware exemple*/
 Route::get('test', [
     'middleware' => ['auth', 'roles'], // A 'roles' middleware must be specified
@@ -35,7 +35,7 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Quizz
 Route::get('quizz', ['middleware' => ['auth', 'roles'],'uses' => 'QuizzController@index','roles' => ['formateur', 'admin']])->name('quizz.index');
@@ -115,7 +115,7 @@ Route::get('classroomquizz/{classroomquizz}/edit', ['middleware' => ['auth', 'ro
 
 // Session
 Route::get('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@index','roles' => ['formateur', 'admin']])->name('session.index');
-Route::post('session/{quizz}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
+Route::post('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
 Route::get('session/{quizz}/create', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['formateur', 'admin']])->name('session.create');
 Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@show','roles' => ['formateur', 'admin']])->name('session.show');
 Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');

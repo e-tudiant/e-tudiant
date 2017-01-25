@@ -6,6 +6,7 @@ use App\Quizz;
 use App\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SessionRequest;
 
 class SessionController extends Controller
 {
@@ -36,15 +37,20 @@ class SessionController extends Controller
      *
      * @return Response
      */
-    public function store($classroom_id)
+    public function store(SessionRequest $request)
     {
-
-        $session = Session::create([
-            'answer_id' => Input::get('answer_id'),
-            'user_id' => Auth::user()->id,
-            'classroom_id' => $classroom_id,
-        ]);
-        return view('home');
+        $quizz = Quizz::findOrFail(Input::get('quizz_id'));
+        foreach ($quizz->question as $question) {
+            if(is_null(Input::get('question_' . $question->id))) {
+                return back()->withInput()->withErrors(['question_' . $question->id => 'Selectionnez une réponse']);
+            }
+            $session = Session::create([
+                'user_id' => Auth::user()->id,
+                'classroom_id' => Input::get('classroom_id'),
+                'answer_id' => Input::get('question_' . $question->id)
+            ]);
+        }
+        return redirect(route('home'));
     }
 
     /**
