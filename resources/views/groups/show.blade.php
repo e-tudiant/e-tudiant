@@ -19,3 +19,8 @@
 </div>
 
 @endsection()
+
+
+<style>
+
+</style>

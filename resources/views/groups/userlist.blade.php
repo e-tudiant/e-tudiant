@@ -25,9 +25,8 @@
 {{--@foreach ($allUser as $RegistredUser)--}}
 
         <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-            <label for="role" class="col-md-4 control-label">Rôle</label>
-            <div class="col-md-6">
-                {{Form::select('ids[]', $allUser,null,['multiple'=>'multiple','class' => 'col-md-4 form-control'])}}
+            <div>
+                {{Form::select('ids[]', $allUser,null,['multiple'=>'multiple','class' => 'form-control'])}}
             </div>
         </div>
 

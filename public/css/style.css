@@ -593,6 +593,11 @@ form{
 .group-edit-members .btn-create:hover{
     color: black;
 }
+.group-edit-members .members-add form select{
+    width: 75%;
+    margin: auto;
+    margin-bottom: 25px;
+}
 .group-edit-members .members-add input[type=submit]{
     width: 100%;
     font-family: Tinos;
