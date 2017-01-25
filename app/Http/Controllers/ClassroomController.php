@@ -140,6 +140,7 @@ class ClassroomController extends Controller
         broadcast(new ClassroomMessageEvent($classroomId, $request->input('message')));
     }
 
+
     /**
      * Change the classroom's module.
      *
@@ -175,6 +176,7 @@ class ClassroomController extends Controller
     {
         $module = Module::findOrFail($request->input('module_id'));
         broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'change'));
+        
     }
 
 }

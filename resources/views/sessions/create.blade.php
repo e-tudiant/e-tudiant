@@ -10,10 +10,7 @@
 			<h3>Quizz</h3>
 		</div>
 		<div class="tab-content">
-		{!! Form::open(array('route' => 'session.store', 'method' => 'post')) !!}
-            {{--TODO These parameters shouldn't stay here--}}
-            {!! Form::hidden('quizz_id', $quizz->id) !!}
-            {!! Form::hidden('classroom_id', 1) !!}
+		{!! Form::open(array('url' => 'session/' . $quizz->id . '/' . $classroom_id, 'method' => 'post')) !!}
 			@foreach($quizz->question as $question)
 				<div>
 					{{ $question->question }} :

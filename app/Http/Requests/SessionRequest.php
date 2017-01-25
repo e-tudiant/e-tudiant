@@ -25,7 +25,7 @@ class SessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'classroom_id' => 'required'
+            //
         ];
 
         /*$rules = ['classroom_id' => 'required'];

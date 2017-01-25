@@ -26,10 +26,19 @@ class SessionController extends Controller
      *
      * @return Response
      */
-    public function create($quizz_id)
+    public function create($quizz_id, $classroom_id)
     {
+
+
+        if(Session::exists($quizz_id, $classroom_id, Auth::user()->id)) {
+//            return 'Vous avez déjà passé ce test.';
+            return redirect(route('home'))->withError('Vous avez déjà passé ce test.');
+
+        }
+
+        //Session::where([['classroom_id', $classroom_id], ['user_id', Auth::user()->id]])->get();
         $quizz = Quizz::findOrFail($quizz_id);
-        return view('sessions.create', compact('quizz'));
+        return view('sessions.create', compact('quizz', 'classroom_id'));
     }
 
     /**
@@ -37,16 +46,16 @@ class SessionController extends Controller
      *
      * @return Response
      */
-    public function store(SessionRequest $request)
+    public function store($quizz_id, $classroom_id, SessionRequest $request)
     {
-        $quizz = Quizz::findOrFail(Input::get('quizz_id'));
+        $quizz = Quizz::findOrFail($quizz_id);
         foreach ($quizz->question as $question) {
             if(is_null(Input::get('question_' . $question->id))) {
                 return back()->withInput()->withErrors(['question_' . $question->id => 'Selectionnez une réponse']);
             }
             $session = Session::create([
                 'user_id' => Auth::user()->id,
-                'classroom_id' => Input::get('classroom_id'),
+                'classroom_id' => $classroom_id,
                 'answer_id' => Input::get('question_' . $question->id)
             ]);
         }

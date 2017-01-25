@@ -98,6 +98,8 @@ Route::post('classroom/{classroom}/send', ['middleware' => ['auth', 'roles'], 'u
 Route::post('classroom/{classroom}/want-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@wantModule', 'roles' => ['apprenant']])->where('classroom', '[0-9]+')->name('classroom.wantModule');
 Route::post('classroom/{classroom}/init-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@initModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.initModule');
 Route::post('classroom/{classroom}/change-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@changeModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.changeModule');
+Route::get('classroom/{classroom}/quizz/{quizz}/user/{user}', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@quizzResult', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.enter');
+
 
 // ClassroomGroup
 Route::get('classroomgroup', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomGroupController@index','roles' => ['formateur', 'admin']])->name('classroomgroup.index');
@@ -128,8 +130,8 @@ Route::get('classroomquizz/{classroomquizz}/edit', ['middleware' => ['auth', 'ro
 
 // Session
 Route::get('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@index','roles' => ['formateur', 'admin']])->name('session.index');
-Route::post('session', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
-Route::get('session/{quizz}/create', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['formateur', 'admin']])->name('session.create');
+Route::post('session/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@store','roles' => ['formateur', 'admin']])->name('session.store');
+Route::get('session/create/{quizz}/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@create','roles' => ['formateur', 'admin']])->name('session.create');
 Route::get('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@show','roles' => ['formateur', 'admin']])->name('session.show');
 Route::put('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@update','roles' => ['formateur', 'admin']])->name('session.update');
 Route::delete('session/{session}', ['middleware' => ['auth', 'roles'],'uses' => 'SessionController@destroy','roles' => ['formateur', 'admin']])->name('session.destroy');
