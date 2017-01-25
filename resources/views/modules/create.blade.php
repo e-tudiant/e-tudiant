@@ -19,7 +19,7 @@ if ($module->id) {
             <h3>module</h3>
         </div>
         <div class="tab-content">
-                {!! Form::model($module, array('route' => $route, 'method' => $method)) !!}
+                {!! Form::model($module, array('files'=>true,'route' => $route, 'method' => $method)) !!}
 
                     <div>
                         {!! Form::label('name', 'Name:') !!}

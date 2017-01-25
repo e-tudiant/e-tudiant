@@ -62,7 +62,7 @@ class UserInfoController extends Controller
                 if (Input::file('avatar')->isValid()) {
                     $destinationPath = public_path() . '/uploads/images/users/';
                     $extension = Input::file('avatar')->getClientOriginalExtension(); // getting image extension
-                    $fileName = 'user_' . $user_id . '_picture.' . $extension; // renameing image
+                    $fileName = date('YmdHi').'_user_' . $user_id . '_picture.' . $extension; // renameing image
                     Input::file('avatar')->move($destinationPath, $fileName); // uploading file to given path
                     $userInfo = User_info::create([
                         'user_id' => $user_id,
@@ -119,7 +119,7 @@ class UserInfoController extends Controller
             if ($validator->fails()) {
 
                 // send back to the page with the input data and errors
-//                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
+                return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
             } else {
                 // checking file is valid.
                 if ($request->files->get('avatar')->isValid()) {
