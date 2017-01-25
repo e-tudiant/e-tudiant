@@ -8,11 +8,11 @@ class CreateSessionsTable extends Migration {
 	public function up()
 	{
 		Schema::create('sessions', function(Blueprint $table) {
-			$table->increments('id');
 			$table->timestamps();
 			$table->integer('classroom_id')->unsigned();
 			$table->integer('user_id')->unsigned();
-			$table->integer('answer_id')->unsigned();
+			$table->integer('answer_id')->unsigned()->nullable();
+			$table->primary(['classroom_id', 'user_id', 'answer_id']);
 		});
 	}
 

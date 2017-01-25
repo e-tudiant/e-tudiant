@@ -14,4 +14,8 @@ class Answer extends Model {
 	{
 		return $this->belongsTo('App\Question');
 	}
+
+	public function session() {
+	    return $this->hasMany('App\Session');
+    }
 }

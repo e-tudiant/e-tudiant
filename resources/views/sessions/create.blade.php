@@ -10,18 +10,21 @@
 			<h3>Quizz</h3>
 		</div>
 		<div class="tab-content">
-		{!! Form::open(array('route' => ['session.store', 1/* TODO DYNAMIC CLASSROOM_ID */], 'method' => 'post')) !!}
-
+		{!! Form::open(array('route' => 'session.store', 'method' => 'post')) !!}
+            {{--TODO These parameters shouldn't stay here--}}
+            {!! Form::hidden('quizz_id', $quizz->id) !!}
+            {!! Form::hidden('classroom_id', 1) !!}
 			@foreach($quizz->question as $question)
 				<div>
 					{{ $question->question }} :
 
-					@foreach($question->answer as $answer)
-						{!! Form::label('question_' . $answer->question_id, $answer->answer) !!}
-						{!! Form::radio('question_' . $answer->question_id, $answer->id) !!}
-					@endforeach
-					{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-				</div>
+                    @foreach($question->answer as $answer)
+                        {!! Form::label('question_' . $answer->question_id, $answer->answer) !!}
+                        {!! Form::radio('question_' . $answer->question_id, $answer->id) !!}
+                    @endforeach
+
+                    {!! $errors->first('question_' . $answer->question_id, '<small class="help-block">:message</small>') !!}
+                </div>
 			@endforeach
 
 			<div class="btn-create">
