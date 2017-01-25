@@ -501,6 +501,61 @@ form{
     color: black;
 }
 
+/************ GROUPS INDEX ************/
+
+.group-index{
+    margin-bottom: 20px;
+}
+.group-index .info-name{
+    padding-left: 15px;
+}
+.group-index .btn-create:first-of-type{
+    width: 40%;
+}
+.group-index .btn-show{
+    margin-right: 5px;
+}
+.group-index form{
+    width: 8%;
+}
+.group-index .info-line:last-of-type{
+    border-bottom: 0px;
+}
+
+/************ GROUPS EDIT NAME ************/
+
+.group-edit{
+    text-align: center;
+}
+.group-edit .tab-content{
+    padding-top: 25px;
+}
+.group-edit input{
+    margin-bottom: 15px;
+}
+.group-edit label{
+    font-family: Oswald;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+    padding-bottom: 5px;
+}
+.group-edit input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.group-edit input[type=submit]:hover{
+    color: black;
+}
+.group-edit .btn-create{
+    margin-bottom: 25px;
+}
 
 /*************** CHATBOX ****************/
 

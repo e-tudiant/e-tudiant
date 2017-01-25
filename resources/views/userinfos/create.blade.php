@@ -8,7 +8,7 @@
     <div class="tab userinfo-create">
     <div id="profil" class="tab-pane fade in active">
         <div class="title">
-            <h3>Quizz</h3>
+            <h3>Mon Profil</h3>
         </div>
         <div class="tab-content">
 {!! Form::model($userinfo, array('files'=>true,'route' => [($userinfo->id ? 'userinfo.update' : 'userinfo.store'), $userinfo->id], 'method' => ($userinfo->id ? 'PUT' : 'POST'))) !!}
