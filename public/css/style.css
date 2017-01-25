@@ -191,6 +191,145 @@ form{
     text-decoration: none;
 }
 
+/************** WELCOME PAGE ***************/
+
+.home-block{
+    padding-top: 20px;
+}
+.block-task{
+    height: 270px;
+}
+.block-task h2{
+    font-size: 20px;
+    padding: 10px;
+}
+.classWithPad{
+    height: 90%;
+    opacity: 0.4;
+}
+
+.classWithPad div:first-of-type{
+    border: 4px solid white;
+    border-radius: 0 15px 0 0;
+
+}
+#home-profil .classWithPad div:first-of-type{
+    background-color: orange;
+}
+#home-phonebook .classWithPad div:first-of-type{
+    background-color: dodgerblue;
+}
+#home-group .classWithPad div:first-of-type{
+    background-color: firebrick;
+}
+#home-course .classWithPad div:first-of-type{
+    background-color: mediumseagreen;
+}
+#home-quizz .classWithPad div:first-of-type{
+    background-color: hotpink;
+}
+#home-create-account .classWithPad div:first-of-type{
+    background-color: mediumpurple;
+}
+#home-class .classWithPad div:first-of-type{
+    background-color: silver;
+}
+
+.classWithPad div:last-of-type{
+    border: 4px solid white;
+    border-top: 0;
+    height: 200px;
+    display: flex;
+    /*cursor: pointer;*/
+}
+#home-profil .classWithPad div:last-of-type{
+    background-color: orange;
+}
+#home-phonebook .classWithPad div:last-of-type{
+    background-color: dodgerblue;
+}
+#home-group .classWithPad div:last-of-type{
+    background-color: firebrick;
+}
+#home-course .classWithPad div:last-of-type{
+    background-color: mediumseagreen;
+}
+#home-quizz .classWithPad div:last-of-type{
+    background-color: hotpink;
+}
+#home-create-account .classWithPad div:last-of-type{
+    background-color: mediumpurple;
+}
+#home-class .classWithPad div:last-of-type{
+    background-color: silver;
+}
+
+.classWithPad div:last-of-type i{
+    margin: auto;
+    color: white;
+    font-size: 7em;
+}
+.classWithPad .home-effect{
+    opacity: 0;
+    position: absolute;
+    bottom: 19%;
+    left: 39%;
+    width: 22%;
+    height: 30px;
+    border: 3px solid white;
+    margin: auto;
+    text-align: center;
+    color: white;
+    font-family: Tinos;
+    font-size: 16px;
+    text-decoration: none;
+    padding-bottom: 25px;
+}
+.classWithPad:hover{
+    opacity: 1;
+    transition: 0.5s;
+}
+.classWithPad:hover .home-effect{
+    opacity: 1;
+    transition: 0.5s;
+}
+.classWithPad .home-effect:hover{
+    background-color: white;
+}
+#home-profil .classWithPad .home-effect:hover{
+    color: orange;
+}
+#home-phonebook .classWithPad .home-effect:hover{
+    color: dodgerblue;
+}
+#home-group .classWithPad .home-effect:hover{
+    color: firebrick;
+}
+#home-course .classWithPad .home-effect:hover{
+    color: mediumseagreen;
+}
+#home-quizz .classWithPad .home-effect:hover{
+    color: hotpink;
+}
+#home-create-account .classWithPad .home-effect:hover{
+    color: mediumpurple;
+}
+#home-class .classWithPad .home-effect:hover{
+    color: silver;
+}
+.classWithPad:hover i{
+    padding-bottom: 60px;
+    /*position: absolute;*/
+    /*animation: bounce 0.6s alternate ease infinite;
+    transition: 0.3s;*/
+    transition: 0.5s;
+}
+@keyframes bounce{
+    from {left: 36%;top: 36.5%;}
+    /* 50%  {top: 60px;}*/
+    to   {left: 40%;top: 36.5%;}
+}
+
 /************* LOGGIN PAGE ****************/
 
 .connexion.tab{
@@ -198,6 +337,7 @@ form{
     height: 100%;
     border: 0px;
     background-color: #f5f8fa;
+    margin-top: 0px;
 }
 .connexion #connexion-table{
     margin: auto;
