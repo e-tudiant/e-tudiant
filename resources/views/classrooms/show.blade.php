@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{$classroom->getusers()}}
 @section('content')
 
 @include('blocks.menuFormateur')

@@ -24,25 +24,19 @@ class Classroom extends Model {
 	{
 		return $this->belongsToMany('App\Quizz');
 	}
-
 	public function session()
 	{
 		return $this->hasMany('App\Session');
 	}
 	public function getUsers(){
 	    $groups=$this->group()->getResults();
-	    if ($groups && count($groups)>0){
+	    if (!is_null($groups) && count($groups)>0){
 	        foreach ($groups as $group){
 	            foreach($group->user()->getResults() as $user)
 	            $userlist[$user->id]=$user;
             }
-           $list=array_unique($userlist,SORT_REGULAR);
-            dd($list);
+           return array_unique($userlist,SORT_REGULAR);
         }
-
-
-
-
     }
 
 }
