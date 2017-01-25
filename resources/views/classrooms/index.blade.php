@@ -5,7 +5,7 @@
 @include('blocks.menuFormateur')
 
 
-<div class="tab">
+<div class="tab classroom-index">
     <div id="classroom" class="tab-pane fade in active">
         <div class="title">
             <h3>Classroom</h3>
@@ -36,17 +36,17 @@
 
     <style>
 
-        .tab{
+        .classroom-index.tab{
             background-color: white;
             border: 4px solid black;
         }
-        .title{
+        .classroom-index .title{
             background-color: black;
             text-align: center;
             height: 50px;
             display: flex;
         }
-        h3{
+        .classroom-index h3{
             color: white;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
@@ -55,11 +55,11 @@
             font-weight: bold;
         }
 
-        .tab-content{
+        .classroom-index .tab-content{
             padding: 15px 20px;
         }
 
-        .btn-create{
+        .classroom-index .btn-create{
             width: 30%;
             height: 40px;
             border: 3px solid black;
@@ -70,12 +70,12 @@
             margin-top: 10px;
         }
 
-        .btn-create:hover{
+        .classroom-index .btn-create:hover{
             background-color: black;
             transition: 0.2s;
         }
 
-        .btn-create a{
+        .classroom-index .btn-create a{
             font-family: 'Tinos', serif;
             font-style: italic;
             font-size: 18px;
@@ -83,27 +83,27 @@
             text-decoration: none;
             color: black;
         }
-        .btn-create:hover a{
+        .classroom-index .btn-create:hover a{
             color: white;
         }
 
-        .info-line{
+        .classroom-index .info-line{
             font-family: Oswald;
             border-bottom: 3px solid #efefef;
             padding: 20px 0px;
         }
 
-        .info-name{
+        .classroom-index .info-name{
             color: black;
             font-size: 18px;
             padding-left: 30px;
         }
 
-        .btn-show{
+        .classroom-index .btn-show{
 
         }
 
-        .btn-edit{
+        .classroom-index .btn-edit{
 
         }
 

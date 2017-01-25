@@ -61,11 +61,12 @@ h2,h3,h4{
 }
 .btn-create a{
     font-family: Tinos;
-    font-style: italic;
     font-size: 18px;
     margin: auto;
     text-decoration: none !important;
     color: white;
+    width: 100%;
+    text-align: center;
 }
 .btn-create:hover a{
     color: black;
@@ -101,11 +102,12 @@ h2,h3,h4{
 }
 .btn-show a{
     font-family: Tinos;
-    font-style: italic;
     font-size: 15px;
     margin: auto;
     text-decoration: none !important;
     color: black;
+    width: 100%;
+    text-align: center;
 }
 .btn-show:hover a{
     color: white;
@@ -126,11 +128,12 @@ h2,h3,h4{
 }
 .btn-edit a{
     font-family: Tinos;
-    font-style: italic;
     font-size: 15px;
     margin: auto;
     text-decoration: none !important;
     color: black;
+    width: 100%;
+    text-align: center;
 }
 .btn-edit:hover a{
     color: white;
@@ -150,6 +153,9 @@ form{
 .btn-delete input{
     opacity: 0;
     z-index: 1;
+    font-family: FontAwesome;
+    width: 100%;
+    text-align: center;
 }
 .btn-delete:after{
     content: '\f1f8';
@@ -211,7 +217,6 @@ form{
     width: 65%;
     font-size: 16px;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     display: block;
     margin-bottom: 15px;
@@ -254,7 +259,6 @@ form{
 .quizz-create input[type=submit]{
     width: 100%;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     background:none;
     border:none;
@@ -278,9 +282,6 @@ form{
 .show-question .btn-show{
     margin-right: 5px;
 }
-.show-question .btn-edit{
-
-}
 .show-question form{
     width: 10%;
 }
@@ -300,7 +301,6 @@ form{
 .question-create input[type=submit]{
     width: 100%;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     background:none;
     border:none;
@@ -351,7 +351,6 @@ form{
 .answer-create input[type=submit]{
     width: 100%;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     background:none;
     border:none;
@@ -382,7 +381,6 @@ form{
 .module-create input[type=submit]{
     width: 100%;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     background:none;
     border:none;
@@ -442,7 +440,6 @@ form{
 .userinfo-create input[type=submit]{
     width: 100%;
     font-family: Tinos;
-    font-style: italic;
     color: white;
     background:none;
     border:none;
