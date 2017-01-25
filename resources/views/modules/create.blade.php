@@ -24,19 +24,22 @@ if ($module->id) {
                     <div>
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name') !!}
+                        {!! $errors->first('name', '<small class="help-block">:message</small>') !!}
                     </div>
                     <div>
                         {!! Form::label('image_url', 'Image du module:') !!}
                         {!! Form::file('image_url') !!}
+                        {!! $errors->first('image_url', '<small class="help-block">:message</small>') !!}
                     </div>
                     <div>
                         {!! Form::label('slider_url', 'URL du module:') !!}
                         {!! Form::text('slider_url') !!}
+                        {!! $errors->first('slider_url', '<small class="help-block">:message</small>') !!}
                     </div>
                     <div>
                         {!! Form::label('slider_token', 'Token:') !!}
                         {!! Form::text('slider_token') !!}
-                        {!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+
                     </div>
                     <div class="btn-create">
                         {!! Form::submit('Sauvegarder') !!}
