@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use App\Classroom;
 use App\Module;
 use App\Group;
+use App\Session;
 
 class ClassroomController extends Controller
 {
@@ -177,6 +178,10 @@ class ClassroomController extends Controller
         $module = Module::findOrFail($request->input('module_id'));
         broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'change'));
         
+    }
+
+    public function quizzResult($quizz_id, $classroom_id, $user_id) {
+        return response()->json(Session::quizzResult($quizz_id, $classroom_id, $user_id));
     }
 
 }
