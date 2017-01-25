@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
+@include('layouts.navbar')
 
-    @include('blocks.menuFormateur')
+@section('content')
 
 
     <div class="tab-content">
@@ -67,7 +67,9 @@
                             <form id="sendMessage" method="post" action="/classroom/{{ $classroom_id }}/send">
                                 {!! csrf_field() !!}
                                 <input id="message" type="text" name="message" placeholder="Tapez votre message">
+                                <div class="btn-create">
                                 <input type="submit" value="Envoyer">
+                                </div>
                             </form>
                             {{--<a id="sendFile">Envoyer un fichier</a>--}}
                         </div>
