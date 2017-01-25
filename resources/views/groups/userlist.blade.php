@@ -4,17 +4,13 @@
         <h4>Membres présents</h4>
     @foreach ($users as $user)
         <div>
+        <div class="member-info">
             {{$user->lastname}}
             {{$user->firstname}}
+        </div>
             {!! Form::open(['method' => 'DELETE', 'route' => ['groupuser.deleteUserFromGroup', $group->id, $user->id]]) !!}
-            {!! Form::submit('Enlever cet utilisateur') !!}
+            <div class="btn-delete">{!! Form::submit('Enlever cet utilisateur') !!}</div>
             {!! Form::close() !!}
-
-            {{--{!! link_to_route('question.show', 'Voir', [$question->id]) !!}--}}
-            {{--{!! link_to_route('question.edit', 'Modifier', [$question->id, $quizz->id]) !!}--}}
-            {{--{!! Form::open(['method' => 'DELETE', 'route' => ['question.destroy', $question->id]]) !!}--}}
-            {{--{!! Form::submit('Supprimer') !!}--}}
-            {{--{!! Form::close() !!}--}}
         </div>
     @endforeach
     </div>
