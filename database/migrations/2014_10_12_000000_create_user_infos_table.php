@@ -15,11 +15,13 @@ class CreateUserInfosTable extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('social_network');
             $table->string('github_link');
             $table->string('phone');
             $table->string('avatar');
             $table->boolean('phonebook');
+
             $table->timestamps();
         });
     }

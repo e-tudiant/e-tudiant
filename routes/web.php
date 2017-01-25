@@ -35,7 +35,17 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index');
+//User
+Route::get('user/show', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@show','roles' => ['admin']])->name('user.show');
+Route::delete('user/{user_id}', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@destroy','roles' => ['admin']])->name('user.destroy');
+
+//Phonebook
+Route::get('phonebook', ['middleware' => ['auth', 'roles'],'uses' => 'Auth\RegisterController@phonebook','roles' => ['apprenant','formateur','admin']])->name('phonebook');
+
 
 // Quizz
 Route::get('quizz', ['middleware' => ['auth', 'roles'],'uses' => 'QuizzController@index','roles' => ['formateur', 'admin']])->name('quizz.index');
