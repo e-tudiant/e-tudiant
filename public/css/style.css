@@ -318,6 +318,14 @@ form{
 .quizz-create input[type=submit]:hover{
     color: black;
 }
+.quizz-create input[type=text]{
+    margin-bottom: 20px;
+    width: 30%;
+}
+.quizz-create form select{
+    width: 50%;
+    margin: auto;
+}
 
 /************ QUESTION FOR QUIZZ *************/
 
