@@ -30,7 +30,12 @@ if ($quizz->id) {
 			</div>
 			<div>
 				{!! Form::label('classroom_id', 'Classe :') !!}
-				{{Form::select('classroom_id[]', $classrooms, $classroomsDefault, ['multiple' => true])}}
+				<div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+					<div>
+						{{Form::select('classroom_id[]', $classrooms, $classroomsDefault, ['multiple'=>'multiple','class' => 'form-control'])}}
+						{{--{{Form::select('ids[]', $allUser,null,['multiple'=>'multiple','class' => 'form-control'])}}--}}
+					</div>
+				</div>
 				{!! $errors->first('classroom_id', '<small class="help-block">:message</small>') !!}
 			</div>
 			<div class="btn-create">
