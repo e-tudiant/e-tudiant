@@ -24,6 +24,7 @@
     background-color: white;
     border: 4px solid black;
     padding: 0px !important;
+    margin-top: 30px;
 }
 .title{
     background-color: black;
@@ -241,6 +242,56 @@ form{
     border-color: black;
 }
 .connexion #connexion-table .btn-show:hover a{
+    color: black;
+}
+
+/************ REGISTRATION PAGE *************/
+
+.registration #registration-table .form-group{
+    text-align: center;
+}
+.registration #registration-table .form-group input{
+    width: 60%;
+    margin: auto;
+}
+.registration #registration-table .form-group select{
+    width: 60%;
+    margin: auto;
+}
+.registration #registration-table .form-group label{
+    font-family: Oswald;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 5px;
+}
+.registration #registration-table .btn-create{
+    width: 35%;
+    font-size: 16px;
+    font-family: Tinos;
+    color: white;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+.registration #registration-table .btn-create:hover{
+    color: black;
+}
+.registration #registration-table .btn-show{
+    color: white;
+    width: 65%;
+    background-color: red;
+    border-color: red;
+}
+.registration #registration-table .btn-show a{
+    padding: 0;
+    font-size: 16px;
+    color: white;
+}
+.registration #registration-table .btn-show:hover{
+    background-color: white;
+    border-color: black;
+}
+.registration #registration-table .btn-show:hover a{
     color: black;
 }
 
