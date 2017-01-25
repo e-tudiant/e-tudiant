@@ -9,43 +9,26 @@ if ($group->id) {
 ?>
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
-
-	<h2>Titre possible</h2>
-	<p>Bienvenue dans votre interface d'apprenant , venez ici gerer pas mal de truc</p>
-
-	<ul class="nav nav-tabs">
-		<li><a href="/home#accueil">Accueil</a></li>
-		<li><a href="#profil">Profil</a></li>
-		<li><a href="#library">Librairie</a></li>
-		<li><a href="#course">Mes cours</a></li>
-		<li class="active"><a href="/quizz/#profil">Mes Quizz</a></li>
-		<li><a href="#class">Salle de classe</a></li>
-	</ul>
-
-	<div class="tab-content">
-		<div id="profil" class="tab-pane fade in active">
-			<h3>Profil</h3>
-			<p>Mettre les infos du profil apprenant, avec formulaire pour modifier infos !</p>
-			<ul>
-				<li>Avatar</li>
-				<li>Ajout infos : stack, git, autres</li>
-			</ul>
-
-			<div class="col-sm-8 col-xs-12">
-
-				<h4>Groupe</h4>
+	<div class="tab group-edit">
+		<div id="group" class="tab-pane fade in active">
+			<div class="title">
+				<h3>Groupe</h3>
+			</div>
+			<div class="tab-content">
 				{!! Form::model($group, array('route' => $route, 'method' => $method)) !!}
-				<ul>
-					<li>
-						{!! Form::label('name', 'Name:') !!}
+
+					<div>
+						{!! Form::label('name', 'Nom du groupe:') !!}
 						{!! Form::text('name') !!}
 						{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-					</li>
-					<li>
+					</div>
+					<div class="btn-create">
 						{!! Form::submit() !!}
-					</li>
-				</ul>
+					</div>
+
 				{!! Form::close() !!}
 			</div>
 		</div>
