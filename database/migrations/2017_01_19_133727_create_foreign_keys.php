@@ -8,6 +8,11 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
+        Schema::table('user_infos',function (Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
 		Schema::table('questions', function(Blueprint $table) {
 			$table->foreign('quizz_id')->references('id')->on('quizzs')
 						->onDelete('cascade')
@@ -68,6 +73,9 @@ class CreateForeignKeys extends Migration {
 
 	public function down()
 	{
+        Schema::table('user_infos', function(Blueprint $table) {
+            $table->dropForeign('user_infos_user_id_foreign');
+        });
 		Schema::table('group_user', function(Blueprint $table) {
 			$table->dropForeign('group_user_user_id_foreign');
 		});

@@ -37,5 +37,15 @@ class UserTableSeeder extends Seeder
             'email' => 'apprenant@apprenant.com',
             'password' => bcrypt('123456'),
         ]);
+
+        for($i = 0; $i < 20; ++$i) {
+            DB::table('users')->insert([
+                'lastname' => 'Lastname' . $i,
+                'firstname' => 'Firstname' . $i,
+                'role_id' => rand(1,3),
+                'email' => 'user' . $i . '@mail.com',
+                'password' => bcrypt('123456'),
+            ]);
+        }
     }
 }
