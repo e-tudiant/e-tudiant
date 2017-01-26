@@ -40,13 +40,13 @@ class CreateForeignKeys extends Migration {
 		});
         Schema::table('classroom_module', function(Blueprint $table) {
             $table->foreign('classroom_id')->references('id')->on('classrooms')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
         Schema::table('classroom_module', function(Blueprint $table) {
             $table->foreign('module_id')->references('id')->on('modules')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 		Schema::table('sessions', function(Blueprint $table) {
 			$table->foreign('classroom_id')->references('id')->on('classrooms')
