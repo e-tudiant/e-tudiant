@@ -17,6 +17,7 @@ use App\Classroom;
 use App\Module;
 use App\Group;
 use App\Session;
+use App\Quizz;
 
 class ClassroomController extends Controller
 {
@@ -42,7 +43,8 @@ class ClassroomController extends Controller
         $classroom = new Classroom;
         $modules = Module::pluck('name', 'id');
         $groups = Group::pluck('name', 'id');
-        return view('classrooms.create', compact('classroom', 'modules', 'groups'));
+        $quizzs= Quizz::pluck('name','id');
+        return view('classrooms.create', compact('classroom', 'modules', 'groups','quizzs'));
     }
 
     /**
@@ -58,6 +60,7 @@ class ClassroomController extends Controller
         ]);
         $classroom->module()->sync(!is_null(Input::get('module_id'))? Input::get('group_id'):[]);
         $classroom->group()->sync(!is_null(Input::get('group_id')) ? Input::get('group_id') : []);
+        $classroom->quizz()->sync(!is_null(Input::get('quizz_id')) ? Input::get('quizz_id') : []);
         return redirect(route('classroom.index'));
     }
 
@@ -84,7 +87,8 @@ class ClassroomController extends Controller
         $classroom = Classroom::findOrFail($id);
         $modules = Module::pluck('name', 'id');
         $groups = Group::pluck('name', 'id');
-        return view('classrooms.create', compact('classroom', 'modules', 'groups'));
+        $quizzs=Quizz::pluck('name','id');
+        return view('classrooms.create', compact('classroom', 'modules', 'groups','quizzs'));
     }
 
     /**
@@ -103,6 +107,7 @@ class ClassroomController extends Controller
         $classroom->update($request->all());
         $classroom->module()->sync($request->get('module_id', []));
         $classroom->group()->sync($request->get('group_id', []));
+        $classroom->quizz()->sync($request->get('quizz_id', []));
         return redirect(route('classroom.index'));
     }
 

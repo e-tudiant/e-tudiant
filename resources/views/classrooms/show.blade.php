@@ -21,6 +21,11 @@
                         <div class="info-name">Quizz : {!! $quizz->name !!}</div>
                     @endforeach
                 @endif
+                @if (!is_null($classroom->group) &&  count($classroom->group) > 0)
+                    @foreach($classroom->group as $group)
+                        <div class="info-name">Group : {!! $group->name !!}</div>
+                    @endforeach
+                @endif
                 <div class="info-name">Statut :
                     <span {!! $classroom->status ? 'style="color:green"' : 'style="color:red"' !!} >{!! $classroom->status ? 'Terminé' : 'En cours'!!}</span>
                 </div>
