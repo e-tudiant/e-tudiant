@@ -20,7 +20,7 @@
         <div class="classWithPad">
             <div><h2>Salle de classe</h2></div>
             <div><i class="fa fa-home" aria-hidden="true"></i></i>
-                <a href="/classroom/1/enter/" class="home-effect">Voir</a></div>
+                <a href="/classroom/enter/" class="home-effect">Voir</a></div>
         </div>
     </div>
 </div>

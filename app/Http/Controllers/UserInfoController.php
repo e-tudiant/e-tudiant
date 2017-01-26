@@ -24,6 +24,7 @@ class UserInfoController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $user = User::find($id);
+
             $userinfo = User_info::where('user_id', '=', $id)->first();
             return view('userinfos.index', compact('user', 'userinfo'));
         }
