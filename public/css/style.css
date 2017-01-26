@@ -628,6 +628,7 @@ form{
 }
 .profil-index .avatar img{
     width: 90%;
+    max-height: 70%;
 }
 .profil-index .right{
     color: green;
@@ -892,6 +893,43 @@ form{
 }
 .class-create input[type=submit]:hover{
     color: black;
+}
+
+/************** LIST USERS ADMIN **************/
+
+.users-list .info-name{
+    padding: 10px 0px;
+}
+.users-list .role{
+    text-align: center;
+}
+.users-list small{
+    color: red;
+}
+.users-list .avatar{
+    width: 80%;
+    margin: auto;
+}
+.users-list .btn-create{
+    margin: auto;
+    text-align: center;
+    color: white;
+    background-color: red;
+    border-color: red;
+    height: 35px;
+    margin-top: 15px;
+    width: 40%;
+}
+.users-list input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 15px;
+}
+.users-list input[type=submit]:hover{
+    color: red;
 }
 
 /*************** CHATBOX ****************/
