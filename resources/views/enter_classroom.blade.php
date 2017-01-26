@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @include('layouts.navbar')
-<h1>MONITORING</h1>
+
 @section('content')
     <div class="tab-content">
         <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom->id }}" data-is-student="{{ (Auth::user()->role_id == 3)? 'true' : 'false' }}">
