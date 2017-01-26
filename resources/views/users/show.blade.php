@@ -1,6 +1,15 @@
-{{--{{dd($users)}}--}}
 @extends('layouts.app')
-<div class="row">
+
+@include('layouts.navbar')
+
+@section('content')
+
+    <div class="tab module-index">
+        <div id="module" class="tab-pane fade in active">
+            <div class="title">
+                <h3>Modules</h3>
+            </div>
+            <div class="tab-content">
     @foreach($users as $user)
         {{--{{dd($user->canJoinClassroom(1))}}--}}
         <div class="col-md-3">

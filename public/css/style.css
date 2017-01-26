@@ -229,7 +229,10 @@ form{
     background-color: hotpink;
 }
 #home-create-account .classWithPad div:first-of-type{
-    background-color: mediumpurple;
+    background-color: black;
+}
+#home-create-class .classWithPad div:first-of-type{
+    background-color: purple;
 }
 #home-class .classWithPad div:first-of-type{
     background-color: firebrick;
@@ -258,7 +261,10 @@ form{
     background-color: hotpink;
 }
 #home-create-account .classWithPad div:last-of-type{
-    background-color: mediumpurple;
+    background-color: black;
+}
+#home-create-class .classWithPad div:last-of-type{
+    background-color: purple;
 }
 #home-class .classWithPad div:last-of-type{
     background-color: firebrick;
@@ -312,10 +318,13 @@ form{
     color: hotpink;
 }
 #home-create-account .classWithPad .home-effect:hover{
-    color: mediumpurple;
+    color: black;
 }
 #home-class .classWithPad .home-effect:hover{
     color: firebrick;
+}
+#home-create-class .classWithPad .home-effect:hover{
+    color: purple;
 }
 .classWithPad:hover i{
     padding-bottom: 60px;
@@ -627,7 +636,6 @@ form{
     color: red;
 }
 
-
 /********** CREATE/MODIFY MODULE ***********/
 
 .userinfo-create{
@@ -783,6 +791,107 @@ form{
     padding-top: 2px;
     padding-left: 15px;
     color: red;
+}
+
+/*********** CREATE CLASS INDEX ***********/
+
+
+.classroom-index.tab{
+    background-color: white;
+    border: 4px solid black;
+}
+.classroom-index .title{
+    background-color: black;
+    text-align: center;
+    height: 50px;
+    display: flex;
+}
+.classroom-index h3{
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    margin: auto;
+    font-weight: bold;
+}
+.classroom-index .tab-content{
+    padding: 15px 20px;
+}
+.classroom-index .btn-create{
+    width: 40%;
+    height: 40px;
+    border: 3px solid black;
+    margin: auto;
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.classroom-index .btn-create:hover{
+    background-color: black;
+    transition: 0.2s;
+}
+.classroom-index .btn-create a{
+    font-family: 'Tinos', serif;
+    font-style: italic;
+    font-size: 18px;
+    margin: auto;
+    text-decoration: none;
+    color: white;
+}
+.classroom-index .btn-create:hover{
+    background-color: white;
+    border-color: black;
+}
+.classroom-index .btn-create:hover a{
+    color: black;
+}
+.classroom-index .info-line{
+    font-family: Oswald;
+    border-bottom: 3px solid #efefef;
+    padding: 20px 0px;
+}
+.classroom-index .info-name{
+    color: black;
+    font-size: 18px;
+    padding-left: 30px;
+}
+.classroom-index .btn-show{
+    margin-right: 5px;
+}
+
+/************** CREATE CLASSE CREATE/EDIT **************/
+
+.class-create{
+    text-align: center;
+}
+.class-create input{
+    margin-bottom: 15px;
+    width: 60%;
+}
+.class-create select{
+    width: 60%;
+    margin: auto;
+}
+.class-create label{
+    font-family: Oswald;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+    margin-bottom: 10px;
+}
+.class-create input[type=submit]{
+    width: 100%;
+    font-family: Tinos;
+    color: white;
+    background:none;
+    border:none;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+.class-create input[type=submit]:hover{
+    color: black;
 }
 
 /*************** CHATBOX ****************/
