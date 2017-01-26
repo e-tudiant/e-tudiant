@@ -65,8 +65,4 @@ class User extends Authenticatable
         $classroomUsers=$classroom->getUsers();
         return (!is_null($classroomUsers[$this->id]));
     }
-
-
-
-
 }
