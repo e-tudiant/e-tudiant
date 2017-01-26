@@ -4,15 +4,16 @@ if ($classroom->id) {
     $method = 'PUT';
     $groupsDefault = $classroom->group->pluck('id')->toArray();
     $modulesDefault=$classroom->module->pluck('id')->toArray();
+    $quizzsDefault=$classroom->quizz->pluck('id')->toArray();
 } else {
     $route = 'classroom.store';
     $method = 'POST';
     $groupsDefault = null;
     $modulesDefault=null;
+    $quizzsDefault=null;
 }
 ?>
 @extends('layouts.app')
-
 @include('layouts.navbar')
 
 @section('content')
@@ -33,7 +34,7 @@ if ($classroom->id) {
 			<div class="form-group">
 				{!! Form::label('module_id', 'Module :') !!}
 				<div>
-					{!! Form::select('module_id[]', $modules, null, ['multiple'=>'multiple','class' => 'form-control']) !!}
+					{!! Form::select('module_id[]', $modules, $modulesDefault, ['multiple'=>'multiple','class' => 'form-control']) !!}
 				</div>
 				{!! $errors->first('module_id', '<small class="help-block">:message</small>') !!}
 			</div>
@@ -43,6 +44,13 @@ if ($classroom->id) {
 					{{Form::select('group_id[]', $groups, $groupsDefault, ['multiple'=>'multiple','class' => 'form-control'])}}
 				</div>
 				{!! $errors->first('group_id', '<small class="help-block">:message</small>') !!}
+			</div>
+			<div class="form-group">
+				{!! Form::label('quizz_id', 'Quizzes :') !!}
+				<div>
+					{{Form::select('quizz_id[]', $quizzs, $quizzsDefault, ['multiple'=>'multiple','class' => 'form-control'])}}
+				</div>
+				{!! $errors->first('quizz_id', '<small class="help-block">:message</small>') !!}
 			</div>
 			<div>
 				{!! Form::label('status', 'Terminé :') !!}
