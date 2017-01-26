@@ -18,7 +18,7 @@
                     <div class="tab-content">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div><span class="info-name">Groupe</span>{{ $user->getUserGroups() }}</div>
+                                {{--<div><span class="info-name">Groupe</span>{{ $user->getUserGroups() }}</div>--}}
                                 <div><span class="info-name">E-mail</span>{{ $user->email }}</div>
                                 @if($user->User_info->social_network)
                                     <div>
