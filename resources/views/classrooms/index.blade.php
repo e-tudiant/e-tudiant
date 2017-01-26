@@ -32,7 +32,7 @@
                         <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('classroom.edit', 'Modifier', [$classroom->id]) !!}</div>
 
                         {!! Form::open(['method' => 'DELETE', 'route' => ['classroom.destroy', $classroom->id]]) !!}
-                        <div class="btn-delete col-sm-1 col-xs-12">{!! Form::submit('X', ['onclick' => "return confirm('Supprimez ?')"]) !!}</div>
+                        <div class="btn-delete col-sm-1 col-xs-12">{!! Form::submit('X', ['onclick' => "return confirm('Supprimer ?')"]) !!}</div>
                         {!! Form::close() !!}
 
                     </div>
