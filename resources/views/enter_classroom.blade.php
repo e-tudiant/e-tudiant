@@ -6,7 +6,7 @@
     {{--{{dd($classroom)}}--}}
 
     <div class="tab-content">
-        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom->id }}">
+        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom_id }}" data-is-student="{{ (Auth::user()->role_id == 3)? 'true' : 'false' }}">
 
             <div class="row">
                 <div class="col-md-10" id="viewer">

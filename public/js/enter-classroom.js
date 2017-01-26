@@ -33,7 +33,8 @@ function initPusher(apikey, classroomId, csrfToken, quizzErrors) {
         changeModule(data);
     });
     classroomChannel.bind('start.quizz', function(data) {
-        $('#viewer').hide();
+        if($('#profil').attr('data-is-student') == 'true')
+            $('#viewer').hide();
         initQuizz(classroomId, data.quizzId, csrfToken, quizzErrors);
     });
     classroomChannel.bind('stop.quizz', function(data) {
