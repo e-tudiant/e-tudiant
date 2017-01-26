@@ -55,3 +55,7 @@
     </div>
 
 @endsection()
+
+@section('scriptpage')
+    <script src="/js/profil.js"></script>
+@endsection
