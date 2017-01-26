@@ -55,7 +55,7 @@ class ModuleController extends Controller
             if (Input::file('image_url')->isValid()) {
                 $destinationPath = public_path() . '/uploads/images/modules/';
                 $extension = Input::file('image_url')->getClientOriginalExtension(); // getting image extension
-                $fileName = date('YmdHi') . '_module_picture' . $request->name . '_picture.' . $extension; // renameing image
+                $fileName = date('YmdHi') . '_module_' . $request->name . '_picture.' . $extension; // renameing image
                 Input::file('image_url')->move($destinationPath, $fileName);
                 $module = Module::create([
                     'name' => $request->name,
@@ -117,7 +117,7 @@ class ModuleController extends Controller
                 if ($request->files->get('image_url')->isValid()) {
                     $destinationPath = public_path() . '/uploads/images/modules/';
                     $extension = $request->files->get('image_url')->getClientOriginalExtension(); // getting image extension
-                    $fileName = date('YmdHi') . '_module_picture' . $extension; // renaming image
+                    $fileName = date('YmdHi') . '_module_' . $request->name . '_picture.' . $extension; // renameing image
                     $request->files->get('image_url')->move($destinationPath, $fileName); // uploading file to given path
                     $updateImage = array('image_url' => $fileName);
                 }
