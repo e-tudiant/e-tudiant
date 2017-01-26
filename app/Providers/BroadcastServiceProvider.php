@@ -28,7 +28,7 @@ class BroadcastServiceProvider extends ServiceProvider
          * @TODO : check if the user can acces the classroom
          */
       	Broadcast::channel('Classroom.*', function ($user, $classroomId) {
-            return true;
+            return $user->canJoinClassroom($classroomId);
         });
 
         /*
@@ -36,7 +36,11 @@ class BroadcastServiceProvider extends ServiceProvider
          * @TODO : check if the user can join the classroom
          */
         Broadcast::channel('Register.classroom.*', function ($user, $classroomId) {
-            return ['userId' => $user->id, 'firstname' => $user->firstname, 'lastname' => $user->lastname ];
+            if ($user->canJoinClassroom($classroomId)) {
+                return ['userId' => $user->id, 'firstname' => $user->firstname, 'lastname' => $user->lastname ];
+            } else {
+                return [];
+            }
         });
     }
 }

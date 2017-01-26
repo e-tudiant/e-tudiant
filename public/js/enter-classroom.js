@@ -12,7 +12,7 @@ var registerChannel = undefined;
 
 function initPusher(apikey, classroomId, csrfToken, quizzErrors) {
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    //Pusher.logToConsole = true;
 
     var pusher = new Pusher(apikey, {
         cluster: 'eu',
