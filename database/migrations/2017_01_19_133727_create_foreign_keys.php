@@ -115,6 +115,6 @@ class CreateForeignKeys extends Migration {
         Schema::table('sessions', function(Blueprint $table) {
             $table->dropForeign('sessions_answer_id_foreign');
         });
-    
+
 	}
 }
