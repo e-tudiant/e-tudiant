@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 
-    @include('blocks.menuFormateur')
 
-
+    @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible">{!! session('error') !!}</div>
+    @endif
     <div class="tab classroom-index">
         <div id="classroom" class="tab-pane fade in active">
             <div class="title">
                 <h3>Classroom</h3>
             </div>
             <div class="tab-content">
-                @if(session()->has('error'))
-                    <div class="alert alert-danger alert-dismissible">{!! session('error') !!}</div>
-                @endif
 
                 @foreach ($classrooms as $classroom)
                     <div class="info-line row">
