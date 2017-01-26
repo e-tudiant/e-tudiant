@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests\AnswerRequest;
 use App\Answer;
 use App\Question;
+use App\Quizz;
 
 class AnswerController extends Controller
 {
@@ -49,7 +50,7 @@ class AnswerController extends Controller
             'question_id' => Input::get('question_id'),
             'correct' => !is_null(Input::get('correct'))
         ]);
-        return redirect(route('question.show', Input::get('question_id')));
+        return redirect(route('question.show', Input::get('question_id')))->withOk('Réponse créée');
     }
 
     /**
@@ -96,7 +97,7 @@ class AnswerController extends Controller
         }
 
         $answer->update($request->all());
-        return redirect(route('question.show', $answer->question_id));
+        return redirect(route('question.show', $answer->question_id))->withOk('Réponse modifiée');
     }
 
     /**
@@ -108,9 +109,15 @@ class AnswerController extends Controller
     public function destroy($id)
     {
         $answer = Answer::findOrFail($id);
-        Answer::destroy($id);
-        return redirect(route('question.show', $answer->question_id));
+        $question = Question::findOrFail($answer->question_id);
+        $quizz = Quizz::findOrFail($question->quizz_id);
+        if ($quizz->hasSession()) {
+            return redirect(route('question.show', $answer->question_id))->withError('Ce quizz est dans une session active');
+        } else {
+            Answer::destroy($id);
+            return redirect(route('question.show', $answer->question_id))->withOk('Réponse supprimée');
+        }
     }
 }
-
 ?>
+

@@ -40,7 +40,7 @@ class QuestionController extends Controller
             'question' => Input::get('question'),
             'quizz_id' => Input::get('quizz_id')
         ]);
-        return redirect(route('quizz.show', Input::get('quizz_id')))->withOk('Ajouté !');
+        return redirect(route('quizz.show', Input::get('quizz_id')))->withOk('Question créée');
     }
 
     /**
@@ -79,7 +79,7 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
         $question->update($request->all());
-        return redirect(route('quizz.show', $question->quizz_id));
+        return redirect(route('quizz.show', $question->quizz_id))->withOk('Question modifiée');
     }
 
     /**
@@ -91,17 +91,14 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $question = Question::findOrFail($id);
-        Question::destroy($id);
-        return redirect(route('quizz.show', $question->quizz_id));
+        $quizz = Quizz::findOrFail($question->quizz_id);
+        if ($quizz->hasSession()) {
+            return redirect(route('quizz.show', $question->quizz_id))->withError("Cette question est dans une session active");
+        } else {
+            Question::destroy($id);
+            return redirect(route('quizz.show', $question->quizz_id))->withOk('Question supprimée');
+        }
     }
-
-    public function removeFromGroup($id)
-    {
-        $question = Question::findOrFail($id);
-        Question::destroy($id);
-        return redirect(route('quizz.show', $question->quizz_id));
-    }
-
 }
 
 ?>

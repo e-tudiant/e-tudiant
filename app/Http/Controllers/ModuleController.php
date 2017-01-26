@@ -68,7 +68,7 @@ class ModuleController extends Controller
             'slider_url' => $request->slider_url,
             'slider_token' => $request->slider_token
         ]);
-        return redirect(route('module.index'));
+        return redirect(route('module.index'))->withOk('Cours créé');
     }
 
 
@@ -139,7 +139,7 @@ class ModuleController extends Controller
             $updaterequest = array_merge($updaterequest, $updateImage);
         }
         $module->update($updaterequest);
-        return redirect(route('module.index'));
+        return redirect(route('module.index'))->withOk('Cours modifié');
     }
 
     /**
@@ -148,11 +148,10 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         Module::destroy($id);
-        return redirect(route('module.index'));
+        return redirect(route('module.index'))->withOk('Cours supprimé');
     }
 
 }

@@ -43,7 +43,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::create(['name' => Input::get('name')]);
         $quizz->classroom()->sync(!is_null(Input::get('classroom_id')) ? Input::get('classroom_id') : []);
-        return redirect(route('quizz.index'));
+        return redirect(route('quizz.index'))->withOk('Quizz créé');
     }
 
     /**
@@ -83,7 +83,7 @@ class QuizzController extends Controller
         $quizz = Quizz::findOrFail($id);
         $quizz->update($request->all());
         $quizz->classroom()->sync($request->get('classroom_id', []));
-        return redirect(route('quizz.index'));
+        return redirect(route('quizz.index'))->withOk('Quizz modifié');
     }
 
     /**
@@ -95,12 +95,13 @@ class QuizzController extends Controller
     public function destroy($id)
     {
         $quizz = Quizz::findOrFail($id);
-        $quizz->classroom()->detach();
-        $quizz->delete();
-        return redirect(route('quizz.index'));
+        if ($quizz->hasSession()) {
+            return redirect(route('quizz.index'))->withError("Ce quizz a une session active.");
+        } else {
+            $quizz->classroom()->detach();
+            $quizz->delete();
+            return redirect(route('quizz.index'))->withOk('Quizz supprimé');
+        }
     }
-
-
 }
-
 ?>

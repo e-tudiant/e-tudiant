@@ -79,7 +79,7 @@ class UserInfoController extends Controller
                 'avatar' => $fileName,
                 'phonebook' => Input::get('phonebook')
             ]);
-            return redirect(route('userinfo.index'));
+            return redirect(route('userinfo.index'))->withOk('Informations enregistrée');
         }
     }
 
@@ -154,7 +154,7 @@ class UserInfoController extends Controller
 //        dd($updateAvatar,$updaterequest);
         $userinfo = User_info::findOrFail($id);
         $userinfo->update($updaterequest);
-        return redirect(route('userinfo.index'));
+        return redirect(route('userinfo.index'))->withOk('Informations modifiées');
     }
 
     /**
