@@ -58,7 +58,7 @@ class Session extends Model {
         return [
             'nb_questions' => $nb_questions,
             'nb_correct' => $nb_correct,
-            'success_percent' => $success_percent,
+            'success_percent' => round($success_percent, 0),
         ];
     }
 }
