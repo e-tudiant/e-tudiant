@@ -47,11 +47,17 @@ $(document).ready(function() {
 function studentIsPresent(member) {
     $('#user-' + member.id).removeClass('absent');
     $('#user-' + member.id).addClass('present');
+    var abs = $('.absent').length;
+    var prs = $('.present').length;
+    $('<p>').html("Elève absent : <br><span class='absent'>" + abs + "</span>").appendTo('body .classroom-index #call');
+    $('<p>').html("Elève présent : <br><span class='present'>" + prs + "</span>").appendTo('body .classroom-index #call');
 }
 
 function studentIsAbsent(member) {
     $('#user-' + member.id).removeClass('present');
     $('#user-' + member.id).addClass('absent');
+
+
 }
 
 function loadModule() {
