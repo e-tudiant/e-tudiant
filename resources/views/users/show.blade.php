@@ -2,7 +2,7 @@
 @extends('layouts.app')
 <div class="row">
     @foreach($users as $user)
-        {{dd($user->canJoinClassroom(1))}}
+        {{--{{dd($user->canJoinClassroom(1))}}--}}
         <div class="col-md-3">
             {{$user->lastname}}<br>
             {{$user->firstname}}<br>
