@@ -42,32 +42,35 @@ class ModuleController extends Controller
      */
     public function store(ModuleRequest $request)
     {
+        $fileName = '';
+        if ($request->files->get('image_url')) {
 
-        $file = array('image_url' => Input::file('image_url'));
-        // setting up rules
-        $rules = array('image_url' => 'required|mimes:jpeg,bmp,png');
-        $validator = Validator::make($file, $rules);
-        if ($validator->fails()) {
-            // send back to the page with the input data and errors
-            return Redirect::to(route('module.index'))->withInput()->withErrors($validator);
-        } else {
-            // checking file is valid.
-            if (Input::file('image_url')->isValid()) {
-                $destinationPath = public_path() . '/uploads/images/modules/';
-                $extension = Input::file('image_url')->getClientOriginalExtension(); // getting image extension
-                $fileName = date('YmdHi') . '_module_' . $request->name . '_picture.' . $extension; // renameing image
-                Input::file('image_url')->move($destinationPath, $fileName);
-                $module = Module::create([
-                    'name' => $request->name,
-                    'image_url' => $fileName,
-                    'slider_url' => $request->slider_url,
-                    'slider_token' => $request->slider_token
-                ]);
-                return redirect(route('module.index'));
-
+            $file = array('image_url' => Input::file('image_url'));
+            // setting up rules
+            $rules = array('image_url' => 'mimes:jpeg,bmp,png');
+            $validator = Validator::make($file, $rules);
+            if ($validator->fails()) {
+                // send back to the page with the input data and errors
+                return Redirect::to(route('module.index'))->withInput()->withErrors($validator);
+            } else {
+                // checking file is valid.
+                if (Input::file('image_url')->isValid()) {
+                    $destinationPath = public_path() . '/uploads/images/modules/';
+                    $extension = Input::file('image_url')->getClientOriginalExtension(); // getting image extension
+                    $fileName = date('YmdHi') . '_module_' . $request->name . '_picture.' . $extension; // renameing image
+                    Input::file('image_url')->move($destinationPath, $fileName);
+                }
             }
         }
+        $module = Module::create([
+            'name' => $request->name,
+            'image_url' => $fileName,
+            'slider_url' => $request->slider_url,
+            'slider_token' => $request->slider_token
+        ]);
+        return redirect(route('module.index'));
     }
+
 
     /**
      * Display the specified resource.
@@ -75,7 +78,8 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function show()
+    public
+    function show()
     {
 
 
@@ -87,7 +91,8 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         $module = Module::findOrFail($id);
 
@@ -100,14 +105,15 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id, ModuleRequest $request)
+    public
+    function update($id, ModuleRequest $request)
     {
         $module = Module::findOrFail($id);
 //        dd($request->files);
         if ($request->files->get('image_url')) {
             $file = array('image_url' => $request->files->get('image_url'));
             // setting up rules
-            $rules = array('image_url' => 'required|mimes:jpeg,bmp,png');
+            $rules = array('image_url' => 'mimes:jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
                 // send back to the page with the input data and errors
@@ -142,7 +148,8 @@ class ModuleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         Module::destroy($id);
         return redirect(route('module.index'));
