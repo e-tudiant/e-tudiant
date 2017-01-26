@@ -63,6 +63,6 @@ class User extends Authenticatable
     public function canJoinClassroom($id){
         $classroom=Classroom::findOrFail($id);
         $classroomUsers=$classroom->getUsers();
-        return (!is_null($classroomUsers[$this->id]));
+        return (isset($classroomUsers[$this->id]) && !is_null($classroomUsers[$this->id]));
     }
 }

@@ -128,7 +128,7 @@ class ClassroomController extends Controller
     {
         $user = Auth::user();
         if (!$user->canJoinClassroom($id)) {
-            return redirect(route('classroom.choose'))->withError["Vous n'avez pas accès à cette salle de classe"];
+            return redirect(route('classroom.choose'))->withError("Vous n'avez pas accès à cette salle de classe");
 
         }
         // @TODO : Hydrate the module list
