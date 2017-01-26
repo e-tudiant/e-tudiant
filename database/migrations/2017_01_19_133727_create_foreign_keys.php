@@ -25,23 +25,23 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('classroom_group', function(Blueprint $table) {
 			$table->foreign('classroom_id')->references('id')->on('classrooms')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('classroom_group', function(Blueprint $table) {
 			$table->foreign('group_id')->references('id')->on('groups')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('classroom_quizz', function(Blueprint $table) {
 			$table->foreign('classroom_id')->references('id')->on('classrooms')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('classroom_quizz', function(Blueprint $table) {
 			$table->foreign('quizz_id')->references('id')->on('quizzs')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
         Schema::table('classroom_module', function(Blueprint $table) {
             $table->foreign('classroom_id')->references('id')->on('classrooms')
