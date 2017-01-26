@@ -50,9 +50,9 @@ class ClassroomController extends Controller
     {
         $classroom = Classroom::create([
             'name' => Input::get('name'),
-            'module_id' => Input::get('module_id'),
             'status' => !is_null(Input::get('status'))
         ]);
+        $classroom->module()->sync(!is_null(Input::get('module_id'))? Input::get('group_id'):[]);
         $classroom->group()->sync(!is_null(Input::get('group_id')) ? Input::get('group_id') : []);
         return redirect(route('classroom.index'));
     }
@@ -94,9 +94,10 @@ class ClassroomController extends Controller
         $classroom = Classroom::findOrFail($id);
         $request->merge([
             'status' => $request->get('status', 0),
-            'module_id' => $request->get('module_id') == "" ? null : $request->get('module_id'),
         ]);
+//        dd($request->all());
         $classroom->update($request->all());
+        $classroom->module()->sync($request->get('module_id', []));
         $classroom->group()->sync($request->get('group_id', []));
         return redirect(route('classroom.index'));
     }

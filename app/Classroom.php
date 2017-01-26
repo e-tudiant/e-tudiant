@@ -8,11 +8,11 @@ class Classroom extends Model {
 
 	protected $table = 'classrooms';
 	public $timestamps = true;
-	protected $fillable = ['name', 'status', 'module_id'];
+	protected $fillable = ['name', 'status'];
 
 	public function module()
 	{
-		return $this->BelongsTo('App\Module');
+		return $this->belongsToMany('App\Module');
 	}
 
 	public function group()

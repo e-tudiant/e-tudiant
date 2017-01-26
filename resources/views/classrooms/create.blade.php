@@ -3,10 +3,12 @@ if ($classroom->id) {
     $route = ['classroom.update', $classroom->id];
     $method = 'PUT';
     $groupsDefault = $classroom->group->pluck('id')->toArray();
+    $modulesDefault=$classroom->module->pluck('id')->toArray();
 } else {
     $route = 'classroom.store';
     $method = 'POST';
     $groupsDefault = null;
+    $modulesDefault=null;
 }
 ?>
 @extends('layouts.app')
@@ -28,7 +30,7 @@ if ($classroom->id) {
 			</li>
 			<li>
 				{!! Form::label('module_id', 'Module :') !!}
-				{!! Form::select('module_id', $modules, null, ['placeholder' => 'Aucun']) !!}
+				{!! Form::select('module_id[]', $modules, $modulesDefault, ['multiple' => true]) !!}
 				{!! $errors->first('module_id', '<small class="help-block">:message</small>') !!}
 			</li>
 			<li>
