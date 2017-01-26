@@ -1,23 +1,30 @@
 @extends('layouts.app')
+
+@include('layouts.navbar')
+
 @section('content')
 
-    @include('blocks.menuFormateur')
-
-    <div class="col-sm-12">
-        <div id="profil" class="tab-pane fade in active">
-            <h3>Classroom</h3>
-            <div>Name : {!! $classroom->name !!}</div>
-            @if (!is_null($classroom->module) &&  count($classroom->module) > 0)
-                @foreach($classroom->module as $module)
-                    <div>Module : {!! $module->name !!}</div>
-                @endforeach
-            @endif
-            @if (!is_null($classroom->quizz) &&  count($classroom->quizz) > 0)
-                @foreach($classroom->quizz as $quizz)
-                    <div>Quizz : {!! $quizz->name !!}</div>
-                @endforeach
-            @endif
-            <div>Statut : {!! $classroom->status ? 'Terminé' : 'En cours'!!}</div>
+    <div class="tab show-class">
+        <div id="quizz" class="tab-pane fade in active">
+            <div class="title">
+                <h3>Ma classe</h3>
+            </div>
+            <div class="tab-content">
+                <div class="info-name">Name : {!! $classroom->name !!}</div>
+                @if (!is_null($classroom->module) &&  count($classroom->module) > 0)
+                    @foreach($classroom->module as $module)
+                        <div class="info-name">Module : {!! $classroom->module->name !!}</div>
+                    @endforeach
+                @endif
+                @if (!is_null($classroom->quizz) &&  count($classroom->quizz) > 0)
+                    @foreach($classroom->quizz as $quizz)
+                        <div class="info-name">Quizz : {!! $quizz->name !!}</div>
+                    @endforeach
+                @endif
+                <div class="info-name">Statut :
+                    <span {!! $classroom->status ? 'style="color:green"' : 'style="color:red"' !!} >{!! $classroom->status ? 'Terminé' : 'En cours'!!}</span>
+                </div>
+            </div>
         </div>
     </div>
 @endsection()

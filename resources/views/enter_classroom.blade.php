@@ -91,7 +91,7 @@
     <style>
 
         #viewer .viewer-iframe{
-            width: 70%;
+            width: 100%;
         }
         iframe {
             width: 100%;
