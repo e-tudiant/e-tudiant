@@ -88,6 +88,7 @@ Route::get('answer/{answer}/edit', ['middleware' => ['auth', 'roles'],'uses' => 
 Route::get('classroom', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@index','roles' => ['formateur', 'admin']])->name('classroom.index');
 Route::post('classroom', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@store','roles' => ['formateur', 'admin']])->name('classroom.store');
 Route::get('classroom/create', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@create','roles' => ['formateur', 'admin']])->name('classroom.create');
+Route::get('classroom/enter', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@choose', 'roles' => ['formateur', 'apprenant']])->where('classroom', '[0-9]+')->name('classroom.choose');
 Route::get('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@show','roles' => ['formateur', 'admin']])->name('classroom.show');
 Route::put('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@update','roles' => ['formateur', 'admin']])->name('classroom.update');
 Route::delete('classroom/{classroom}', ['middleware' => ['auth', 'roles'],'uses' => 'ClassroomController@destroy','roles' => ['formateur', 'admin']])->name('classroom.destroy');

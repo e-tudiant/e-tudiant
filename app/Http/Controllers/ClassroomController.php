@@ -9,6 +9,7 @@ use App\Http\Requests\ClassroomRequest;
 use App\Http\Requests\ClassroomSendRequest;
 use App\Http\Requests\ClassroomChangeModuleRequest;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 use App\Classroom;
 use App\Module;
 use App\Group;
@@ -130,6 +131,16 @@ class ClassroomController extends Controller
             ->withClassroomId($id)
             ->withModuleList(["1"=>"Linux", "7"=>"Node.js"])
             ->withQuizzList(["1"=>"Quizz0", "2"=>"Quizz1"]);
+    }
+
+    public function choose()
+    {
+        $classrooms = DB::table('classrooms')
+            ->join('classroom_group', 'classrooms.id', '=', 'classroom_group.classroom_id')
+            ->join('groups', 'groups.id', '=', 'classroom_group.group_id')
+            ->join('group_user', 'groups.id', '=', 'group_user.group_id')
+            ->get();
+        dd($classrooms);
     }
 
     /**

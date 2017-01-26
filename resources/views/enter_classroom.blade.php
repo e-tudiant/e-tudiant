@@ -134,7 +134,6 @@
                                 $('#quizz-student').html('Le quizz a été soumis au formateur.');
                             } else {
                                 $('#quizz .help-block').remove();
-                                console.log(response.errors);
                                 $.each(response.errors, function(i,item) {
                                     console.log($('#quizz-student input[name="' + i + '"]'));
                                     $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
