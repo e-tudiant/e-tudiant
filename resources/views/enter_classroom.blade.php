@@ -3,10 +3,8 @@
 @include('layouts.navbar')
 <h1>MONITORING</h1>
 @section('content')
-    {{--{{dd($classroom)}}--}}
-
     <div class="tab-content">
-        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom_id }}" data-is-student="{{ (Auth::user()->role_id == 3)? 'true' : 'false' }}">
+        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom->id }}" data-is-student="{{ (Auth::user()->role_id == 3)? 'true' : 'false' }}">
 
             <div class="row">
                 <div class="col-md-10" id="viewer">
@@ -32,10 +30,6 @@
                             <div id="student-list">
                                 @foreach($classroom->getUsers() as $user)
                                     <p id="user-{{$user->id}}" class="absent">{{$user->lastname}} {{$user->firstname}}</p>
-                                    {{--<p id="user-5" class="absent">Daniel Gonçalves</p>--}}
-                                    {{--<p id="user-6" class="absent">Guillaume Perrier</p>--}}
-                                    {{--<p id="user-7" class="absent">Nicolas Aslantas</p>--}}
-                                    {{--<p id="user-8" class="absent">Creneguy Johann</p>--}}
                                 @endforeach
                             </div>
                         </div>
@@ -83,7 +77,6 @@
                                 <input type="submit" value="Envoyer">
                             </div>
                         </form>
-                        {{--<a id="sendFile">Envoyer un fichier</a>--}}
                     </div>
                 </div>
             </div>
@@ -122,44 +115,9 @@
         var classroomId = $('#profil').attr('data-classroom-id');
         var csrfToken = window.Laravel.csrfToken;
         $(document).ready(function () {
-<<<<<<< HEAD
             initPusher('{{ config('broadcasting.connections.pusher.key') }}', classroomId, csrfToken, '{!! base64_encode(serialize($errors)) !!}');
             @if (Auth::user()->role_id == 3)
             initModule(classroomId, csrfToken);
-=======
-            initPusher('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom->id }}', '{{ csrf_token() }}');
-            initModule('{{ $classroom->id }}', '{{ csrf_token() }}');
-            initChatBox('{{ $classroom->id }}', '{{ csrf_token() }}');
-            @if (Auth::user()->role_id == 3) // TODO quizz_id here
-            $('#quizz-student').load('/session/create/1/{{ $classroom->id }}', {
-                _token: '{{ csrf_token() }}',
-                errors: '{!! base64_encode(serialize($errors)) !!}'
-            }, function () {
-                $('#quizz form').on('submit', function (e) {
-
-                    e.preventDefault();
-
-                    var data = {};
-                    data._token = '{{ csrf_token() }}';
-                    $(e.currentTarget).find('input:checked').each(function (i, item) {
-                        data[$(item).attr('name')] = $(item).val();
-                    });
-
-                    $.post('/session/1/{{ $classroom->id }}', data, function (response) { // TODO quizz_id here
-                        if (response.success) {
-                            $('#quizz-student').html('Le quizz a été soumis au formateur.');
-                        } else {
-                            $('#quizz .help-block').remove();
-                            $.each(response.errors, function (i, item) {
-                                console.log($('#quizz-student input[name="' + i + '"]'));
-                                $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
-                            });
-                            //$('#quizz-student').html('Erreur.');
-                        }
-                    }, 'json');
-                });
-            });
->>>>>>> [Add] Dynamic enterclassroom view
             @endif
             initChatBox(classroomId, csrfToken);
         });
