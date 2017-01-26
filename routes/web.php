@@ -99,6 +99,8 @@ Route::post('classroom/{classroom}/want-module', ['middleware' => ['auth', 'role
 Route::post('classroom/{classroom}/init-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@initModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.initModule');
 Route::post('classroom/{classroom}/change-module', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@changeModule', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.changeModule');
 Route::get('classroom/{classroom}/quizz/{quizz}/user/{user}', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@quizzResult', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.quizzResult');
+Route::post('classroom/{classroom}/quizz-start', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@startQuizz', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.startQuizz');
+Route::post('classroom/{classroom}/quizz-stop', ['middleware' => ['auth', 'roles'], 'uses' => 'ClassroomController@stopQuizz', 'roles' => ['formateur']])->where('classroom', '[0-9]+')->name('classroom.stopQuizz');
 
 
 // ClassroomGroup

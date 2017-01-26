@@ -16,7 +16,7 @@
                 @if(Auth::user()->role_id == 2)
                     {!! Form::open(['id' => 'change-module']) !!}
                     {!! Form::label('module_id', 'Module') !!}
-                    {!! Form::select('module_id', $module_list, null, ['placeholder' => 'Choisissez un module', 'id' => 'module-list']) !!}
+                    {!! Form::select('module_id', $module_list) !!}
                     {!! Form::close() !!}
                 @endif
                 <div class="viewer-iframe">
@@ -109,46 +109,20 @@
 @endsection()
 
 @section('scriptpage')
-
     <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <script src="/js/enter-classroom.js"></script>
     <script>
+        var classroomId = $('#profil').attr('data-classroom-id');
+        var csrfToken = window.Laravel.csrfToken;
         $(document).ready(function () {
-            initPusher('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom_id }}', '{{ csrf_token() }}');
-            initModule('{{ $classroom_id }}', '{{ csrf_token() }}');
-            initChatBox('{{ $classroom_id }}', '{{ csrf_token() }}');
-            @if (Auth::user()->role_id == 3) // TODO quizz_id here
-                $('#quizz-student').load('/session/create/1/{{ $classroom_id }}', { _token: '{{ csrf_token() }}', errors: '{!! base64_encode(serialize($errors)) !!}' }, function() {
-                    $('#quizz form').on('submit', function(e) {
-
-                        e.preventDefault();
-
-                        var data = {};
-                        data._token = '{{ csrf_token() }}';
-                        $(e.currentTarget).find('input:checked').each(function(i,item) {
-                            data[$(item).attr('name')] = $(item).val();
-                        });
-
-                        $.post('/session/1/{{ $classroom_id }}', data, function(response) { // TODO quizz_id here
-                            if (response.success) {
-                                $('#quizz-student').html('Le quizz a été soumis au formateur.');
-                            } else {
-                                $('#quizz .help-block').remove();
-                                $.each(response.errors, function(i,item) {
-                                    console.log($('#quizz-student input[name="' + i + '"]'));
-                                    $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
-                                });
-                                //$('#quizz-student').html('Erreur.');
-                            }
-                        }, 'json');
-                    });
-                });
+            initPusher('{{ config('broadcasting.connections.pusher.key') }}', classroomId, csrfToken, '{!! base64_encode(serialize($errors)) !!}');
+            @if (Auth::user()->role_id == 3)
+            initModule(classroomId, csrfToken);
             @endif
-
-
+            initChatBox(classroomId, csrfToken);
         });
     </script>
     @if(Auth::user()->role_id == 2)
-        <script src="/js/enter-classroom-teacher.js"></script>
+    <script src="/js/enter-classroom-teacher.js"></script>
     @endif
 @endsection
