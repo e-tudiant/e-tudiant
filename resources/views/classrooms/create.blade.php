@@ -33,7 +33,7 @@ if ($classroom->id) {
 			<div class="form-group">
 				{!! Form::label('module_id', 'Module :') !!}
 				<div>
-					{!! Form::select('module_id', $modules, null, ['multiple'=>'multiple','class' => 'form-control']) !!}
+					{!! Form::select('module_id[]', $modules, null, ['multiple'=>'multiple','class' => 'form-control']) !!}
 				</div>
 				{!! $errors->first('module_id', '<small class="help-block">:message</small>') !!}
 			</div>

@@ -63,6 +63,19 @@ class User extends Authenticatable
     public function canJoinClassroom($id){
         $classroom=Classroom::findOrFail($id);
         $classroomUsers=$classroom->getUsers();
-        return (isset($classroomUsers[$this->id]) && !is_null($classroomUsers[$this->id]));
+        return (isset ($classroomUsers[$this->id]) && !is_null($classroomUsers[$this->id]));
+    }
+    public function joinableClassroom(){
+        $classrooms=Classroom::all();
+        $joignable=array();
+        if(count($classrooms)>0){
+            foreach ($classrooms as $classroom){
+                if($this->canJoinClassroom($classroom->id)){
+                    $joignable[$classroom->id]=$classroom;
+                }
+            }
+            $joignable=array_unique($joignable,SORT_REGULAR);
+        }
+        return $joignable;
     }
 }
