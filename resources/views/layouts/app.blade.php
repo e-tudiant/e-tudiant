@@ -34,6 +34,14 @@
         @yield('nav')
 
         <div class="container">
+
+            @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible">{!! session('error') !!}</div>
+            @endif
+            @if(session()->has('ok'))
+                <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
+            @endif
+
             @yield('content')
         </div>
 

@@ -48,6 +48,33 @@ $(document).ready(function() {
     });
 });
 
+$( "#student-list h4" ).click(function() {
+    if($("#student-list .tab-content").css("display") == 'none'){
+        $("#student-list .tab-content").css({"display":"block", "transition":"0.5s"});
+    }else{
+        $("#student-list .tab-content").css({"display":"none", "transition":"0.5s"});
+    }
+
+});
+
+$( "#quizz-list h4" ).click(function() {
+    if($("#quizz-list .tab-content").css("display") == 'none'){
+        $("#quizz-list .tab-content").css({"display":"block", "transition":"0.5s"});
+    }else{
+        $("#quizz-list .tab-content").css({"display":"none", "transition":"0.5s"});
+    }
+
+});
+
+$( "#module-list h4" ).click(function() {
+    if($("#module-list .tab-content").css("display") == 'none'){
+        $("#module-list .tab-content").css({"display":"block", "transition":"0.5s"});
+    }else{
+        $("#module-list .tab-content").css({"display":"none", "transition":"0.5s"});
+    }
+
+});
+
 function studentIsPresent(member) {
     $('#user-' + member.id).removeClass('absent');
     $('#user-' + member.id).addClass('present');
@@ -60,8 +87,6 @@ function studentIsPresent(member) {
 function studentIsAbsent(member) {
     $('#user-' + member.id).removeClass('present');
     $('#user-' + member.id).addClass('absent');
-
-
 }
 
 function loadModule() {

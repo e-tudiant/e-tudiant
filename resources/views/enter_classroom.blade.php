@@ -3,7 +3,11 @@
 @include('layouts.navbar')
 
 @section('content')
+
+    <h1 class="title-class">{{$classroom->name}}</h1>
+
     <div class="tab-content classroom-enter">
+
         <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom->id }}"
              data-is-student="{{ (Auth::user()->role_id == 3)? 'true' : 'false' }}">
 
@@ -11,7 +15,7 @@
 
                 @if(Auth::user()->role_id == 2)
                     @if(count($classroom->group)>0)
-                        <div class="tab classroom-index col-md-2">
+                        <div class="tab classroom-index col-md-3">
                             <div class="tab-pane fade in active">
                                 <div class="title">
                                     <h3>Présence élève</h3>
@@ -21,31 +25,87 @@
                                         <div id="call">
 
                                         </div>
-                                        <div id="student-list">
-                                            @foreach($classroom->getUsers() as $user)
-                                                <p id="user-{{$user->id}}"
-                                                   class="absent"><span class="userinfo">{{$user->lastname}} {{$user->firstname}}</span></p>
-                                            @endforeach
+                                    </div>
+                                </div>
+
+
+                                <div class="tab module-list">
+                                    <div id="module-list">
+                                        <div class="tab-pane fade in active">
+                                            <div class="title">
+                                                <h4>Liste module</h4>
+                                            </div>
+                                            <div class="tab-content">
+                                                @if(Auth::user()->role_id == 3)
+                                                    <p class="module-name"></p>
+                                                @endif
+                                                @if(Auth::user()->role_id == 2)
+
+                                                    {!! Form::open(['id' => 'change-module']) !!}
+                                                    {!! Form::label('module_id', '') !!}
+                                                    {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray()) !!}
+                                                    {!! Form::close() !!}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
+
+
+                                <div class="tab detail-list">
+                                    <div id="student-list">
+                                        <div class="tab-pane fade in active">
+                                            <div class="title">
+                                                <h4>Liste élève</h4>
+                                            </div>
+                                            <div class="tab-content">
+                                                @foreach($classroom->getUsers() as $user)
+                                                    <p id="user-{{$user->id}}"
+                                                       class="absent">{{$user->lastname}} {{$user->firstname}}</p>
+                                                @endforeach
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab detail-quizz">
+                                    <div id="quizz-list">
+                                        <div class="tab-pane fade in active">
+                                            <div class="title">
+                                                <h4>Mes quizs</h4>
+                                            </div>
+                                            <div class="tab-content">
+                                                @if(Auth::user()->role_id == 2)
+                                                    <div id="quizz-teacher">
+                                                        {{ Form::open(['id' => 'quizz-teacher']) }}
+                                                        <ul>
+                                                            @foreach($classroom->quizz as $quizz)
+                                                                <li>
+                                                                    {{ Form::label('quizz.'.$quizz->id, $quizz->name) }}
+                                                                    <input type="checkbox" id="quizz.{{ $quizz->id }}" class="quizz-checkbox"
+                                                                           name="quizz_id"
+                                                           value="{{ $quizz->id }}">
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                        {{ Form::close() }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     @endif
                 @endif
 
-                <div class="col-md-10" id="viewer">
-                    @if(Auth::user()->role_id == 3)
-                        <p class="module-name"></p>
-                    @endif
-                    @if(Auth::user()->role_id == 2)
+                <div class="col-md-9" id="viewer">
 
-                        {!! Form::open(['id' => 'change-module']) !!}
-                        {!! Form::label('module_id', 'Module') !!}
-                        {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray()) !!}
-                        {!! Form::close() !!}
-                    @endif
+
                     <div class="viewer-iframe">
                         <iframe allowfullscreen></iframe>
                     </div>
@@ -57,27 +117,6 @@
 
                     </div>
                 @endif
-
-                @if(Auth::user()->role_id == 2)
-                    <div id="quizz-teacher">
-                        {{ Form::open(['id' => 'quizz-teacher']) }}
-                        <ul>
-                            @foreach($classroom->quizz as $quizz)
-                                <li>
-                                    {{ Form::label('quizz.'.$quizz->id, $quizz->name) }}
-                                    <input type="checkbox" id="quizz.{{ $quizz->id }}" class="quizz-checkbox"
-                                           name="quizz_id"
-                                           value="{{ $quizz->id }}">
-                                </li>
-                            @endforeach
-                        </ul>
-                        {{ Form::close() }}
-                    </div>
-                @endif
-
-                <div id="resources">
-                    <p>Doing some cool stuff about resources (optional)</p>
-                </div>
 
 
                 <div class="chatblock">
@@ -103,33 +142,7 @@
 
         <style>
 
-            #viewer .viewer-iframe {
-                width: 100%;
-            }
 
-            iframe {
-                width: 100%;
-                height: 500px;
-            }
-
-            .absent {
-                color: red
-            }
-
-            .present {
-                color: green
-            }
-
-            .classroom-enter .classroom-index .tab-content{
-                height: 450px;
-                overflow-y: scroll;
-            }
-
-            .classroom-enter .classroom-index .tab-content #call{
-                border-bottom: 3px solid #efefef;
-                margin-bottom: 10px;
-                font-family: Oswald;
-            }
         </style>
         @endsection()
 
