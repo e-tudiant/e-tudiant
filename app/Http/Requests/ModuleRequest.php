@@ -25,7 +25,7 @@ class ModuleRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:255',
-            'image_url' => 'required|mimes:jpeg,jpg,bmp,png',
+            'image_url' => 'mimes:jpeg,jpg,bmp,png',
             'slider_url'=>'required|url',
         ];
     }
