@@ -938,6 +938,112 @@ form{
 .users-list input[type=submit]:hover a{
     color: red;
 }
+
+/************** CLASSROOM ENTER FORM ***************/
+
+#viewer .viewer-iframe {
+    width: 100%;
+}
+iframe {
+    width: 100%;
+    height: 500px;
+    border: 4px solid black;
+}
+.absent {
+    color: red
+}
+.present {
+    color: green
+}
+.classroom-enter h3{
+    font-weight: normal;
+}
+.classroom-enter .detail-list {
+    border: none;
+    margin-top: 0;
+}
+
+.classroom-enter .detail-list h4 {
+    cursor: pointer;
+    font-weight: normal;
+}
+.classroom-enter .detail-list h4:after {
+    content:'\f078';
+    font-family: FontAwesome;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.classroom-enter .detail-list .tab-content {
+    display: none;
+    height: 300px;
+    overflow-y: scroll;
+}
+.classroom-enter .classroom-index{
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.classroom-enter .classroom-index .tab-content #call {
+    font-family: Oswald;
+    color: black;
+    font-size: 18px;
+}
+.classroom-enter .detail-quizz {
+    border: none;
+    margin-top: 0;
+}
+.classroom-enter .detail-quizz .tab-content {
+    display: none;
+    height: auto;
+}
+.classroom-enter #quizz-list h4 {
+    cursor: pointer;
+    font-weight: normal;
+}
+.classroom-enter #quizz-list h4:after {
+    content:'\f078';
+    font-family: FontAwesome;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.module-list select{
+    width: 100%;
+    height: 45px;
+}
+.module-list label{
+    display: none;
+}
+.module-list .tab-content {
+    display: none;
+    height: auto;
+}
+.module-list h4 {
+    cursor: pointer;
+    font-weight: normal;
+}
+.module-list h4:after {
+    content:'\f078';
+    font-family: FontAwesome;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.module-list{
+    border: none;
+    margin-top: 0;
+}
+.module-list .tab-content{
+    padding: 0;
+}
+.title-class{
+    text-align: center;
+    font-family: Oswald;
+    font-weight: normal;
+    color: black;
+    margin: auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
 /*************** CHATBOX ****************/
 
 .btn-chatblock{
