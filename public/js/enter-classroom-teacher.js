@@ -1,19 +1,6 @@
 $(document).ready(function() {
-    var classroomId = $('#profil').attr('data-classroom-id');
-    var csrfToken = $('#change-module input[name="_token"]').val();
-    $('#module-list').change(function() {
-        $.ajax({
-            type: 'POST',
-            url: '/classroom/' + classroomId + '/change-module',
-            data: 'module_id=' + $('#module-list').val() + '&_token=' + csrfToken,
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
-    })
+    $('#module_id').change(loadModule);
+    loadModule();
 
     $('.quizz-checkbox').on('click', function(e) {
         checked = this.checked;
@@ -21,6 +8,17 @@ $(document).ready(function() {
             this.checked = false;
         });
         this.checked = checked;
+        var action = undefined;
+        if (checked) {
+            action = 'start';
+        } else {
+            action = 'stop';
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/classroom/' + classroomId + '/quizz-' + action,
+            data: 'quizz_id=' + this.value + '&_token=' + csrfToken
+        });
     });
 
     registerChannel.bind('pusher:subscription_succeeded', function(members) {
@@ -39,7 +37,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: '/classroom/' + classroomId + '/init-module',
-            data: 'module_id=' + $('#module-list').val() + '&_token=' + csrfToken,
+            data: 'module_id=' + $('#module_id').val() + '&_token=' + csrfToken,
             success: function(data) {},
             error: function(err) {}
         });
@@ -54,4 +52,15 @@ function studentIsPresent(member) {
 function studentIsAbsent(member) {
     $('#user-' + member.id).removeClass('present');
     $('#user-' + member.id).addClass('absent');
+}
+
+function loadModule() {
+    $.ajax({
+        type: 'POST',
+        url: '/classroom/' + classroomId + '/change-module',
+        data: 'module_id=' + $('#module_id').val() + '&_token=' + csrfToken,
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }

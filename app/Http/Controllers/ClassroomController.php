@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\ClassroomMessageEvent;
 use App\Events\ClassroomWantModuleEvent;
 use App\Events\ClassroomChangeModuleEvent;
+use App\Events\ClassroomQuizzEvent;
 use App\Http\Requests\ClassroomRequest;
 use App\Http\Requests\ClassroomSendRequest;
 use App\Http\Requests\ClassroomChangeModuleRequest;
+use App\Http\Requests\ClassroomQuizzRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -201,13 +203,35 @@ class ClassroomController extends Controller
     {
         $module = Module::findOrFail($request->input('module_id'));
         broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'change'));
-
     }
 
     public function quizzResult($quizz_id, $classroom_id, $user_id) {
         return response()->json(Session::quizzResult($quizz_id, $classroom_id, $user_id));
     }
 
+    /**
+     * Start a quizz
+     *
+     * @param  Request $request
+     * @param  int $classroomId
+     * @return void
+     */
+    public function startQuizz(ClassroomQuizzRequest $request, $classroomId)
+    {
+        broadcast(new ClassroomQuizzEvent($classroomId, $request->input('quizz_id'), 'start'));
+    }
+
+    /**
+     * Stop a quizz
+     *
+     * @param  Request $request
+     * @param  int $classroomId
+     * @return void
+     */
+    public function stopQuizz(ClassroomQuizzRequest $request, $classroomId)
+    {
+        broadcast(new ClassroomQuizzEvent($classroomId, $request->input('quizz_id'), 'stop'));
+    }
 }
 
 ?>

@@ -1,5 +1,3 @@
-
-
 $( ".btn-chatblock" ).click(function() {
     $( ".chatblock" ).animate({
         opacity: 1,
@@ -12,7 +10,7 @@ $( ".btn-chatblock" ).click(function() {
 var classroomChannel = undefined;
 var registerChannel = undefined;
 
-function initPusher(apikey, classroomId, csrfToken) {
+function initPusher(apikey, classroomId, csrfToken, quizzErrors) {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
@@ -33,7 +31,15 @@ function initPusher(apikey, classroomId, csrfToken) {
     });
     classroomChannel.bind('change.module', function(data) {
         changeModule(data);
-    })
+    });
+    classroomChannel.bind('start.quizz', function(data) {
+        $('#viewer').hide();
+        initQuizz(classroomId, data.quizzId, csrfToken, quizzErrors);
+    });
+    classroomChannel.bind('stop.quizz', function(data) {
+        $('#quizz-student').empty();
+        $('#viewer').show()
+    });
 
     registerChannel = pusher.subscribe('presence-Register.classroom.' + classroomId);
 }
@@ -80,6 +86,32 @@ function initChatBox(classroomId, csrfToken) {
             error: function(err) {
                 console.log(err);
             }
+        });
+    });
+}
+
+function initQuizz(classroomId, quizzId, csrfToken, errors) {
+    $('#quizz-student').empty();
+    $('#quizz-student').load('/session/create/'+ quizzId + '/' + classroomId, { _token: csrfToken, errors: errors }, function() {
+        $('#quizz form').on('submit', function(e) {
+            e.preventDefault();
+
+            var data = {};
+            data._token = csrfToken;
+            $(e.currentTarget).find('input:checked').each(function(i,item) {
+                data[$(item).attr('name')] = $(item).val();
+            });
+
+            $.post('/session/'+ quizzId +'/' + classroomId, data, function(response) {
+                if (response.success) {
+                    $('#quizz-student').html('<p>Le quizz a été soumis au formateur.</p>');
+                } else {
+                    $('#quizz .help-block').remove();
+                    $.each(response.errors, function(i,item) {
+                        $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
+                    });
+                }
+            }, 'json');
         });
     });
 }
