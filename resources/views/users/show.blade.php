@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <div class="tab module-index">
-        <div id="module" class="tab-pane fade in active">
+    <div class="tab users-list">
+        <div id="users" class="tab-pane fade in active">
             <div class="title">
                 <h3>Modules</h3>
             </div>
