@@ -61,7 +61,7 @@ class ClassroomController extends Controller
         $classroom->module()->sync(!is_null(Input::get('module_id'))? Input::get('group_id'):[]);
         $classroom->group()->sync(!is_null(Input::get('group_id')) ? Input::get('group_id') : []);
         $classroom->quizz()->sync(!is_null(Input::get('quizz_id')) ? Input::get('quizz_id') : []);
-        return redirect(route('classroom.index'));
+        return redirect(route('classroom.index'))->withOk('Classe créée');
     }
 
     /**
@@ -103,12 +103,11 @@ class ClassroomController extends Controller
         $request->merge([
             'status' => $request->get('status', 0),
         ]);
-//        dd($request->all());
         $classroom->update($request->all());
         $classroom->module()->sync($request->get('module_id', []));
         $classroom->group()->sync($request->get('group_id', []));
         $classroom->quizz()->sync($request->get('quizz_id', []));
-        return redirect(route('classroom.index'));
+        return redirect(route('classroom.index'))->withOk('Classe modifiée');
     }
 
     /**
@@ -122,7 +121,7 @@ class ClassroomController extends Controller
         $classroom = Classroom::findOrFail($id);
         $classroom->group()->detach();
         $classroom->delete();
-        return redirect(route('classroom.index'));
+        return redirect(route('classroom.index'))->withOk('Classe supprimée');
     }
 
     /**

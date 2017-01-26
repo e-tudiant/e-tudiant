@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Quizz extends Model {
 
@@ -19,4 +20,13 @@ class Quizz extends Model {
 	{
 		return $this->hasMany('App\Question');
 	}
+
+    public function hasSession() {
+        $sessions = DB::table('sessions')
+            ->join('answers', 'answers.id', '=', 'sessions.answer_id')
+            ->join('questions', 'questions.id', '=', 'answers.question_id')
+            ->where('questions.quizz_id', $this->id)
+            ->get();
+        return count($sessions) > 0;
+    }
 }

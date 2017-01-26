@@ -39,7 +39,7 @@ class GroupController extends Controller {
   public function store()
   {
       $group = Group::create(['name' => Input::get('name')]);
-      return redirect(route('group.index'));
+      return redirect(route('group.index'))->withOk('Groupe créé');
   }
 
   /**
@@ -79,7 +79,7 @@ class GroupController extends Controller {
   {
       $group = Group::findOrFail($group_id);
       $group->update($request->all());
-      return redirect(route('group.index'));
+      return redirect(route('group.index'))->withOk('Groupe modifié');
   }
 
   /**
@@ -90,16 +90,16 @@ class GroupController extends Controller {
    */
   public function destroy($group_id)
   {
-      {
-          Group::destroy($group_id);
-          return redirect(route('group.index'));
-      }
+      Group::destroy($group_id);
+      return redirect(route('group.index'))->withOk('Groupe supprimé');
   }
+
   public function deleteUserFromGroup($group_id,$user_id){
       $group = Group::findOrFail($group_id);
       $group->user()->detach($user_id);
       return redirect(route('group.index'));
   }
+
     public function addUserFromGroup($group_id,Request $request){
         $group = Group::findOrFail($group_id);
         $group->user()->sync($request->get('ids'));

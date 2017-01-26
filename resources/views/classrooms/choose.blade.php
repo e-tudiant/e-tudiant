@@ -4,10 +4,6 @@
 
 @section('content')
 
-
-    @if(session()->has('error'))
-        <div class="alert alert-danger alert-dismissible">{!! session('error') !!}</div>
-    @endif
     <div class="tab classroom-index">
         <div id="classroom" class="tab-pane fade in active">
             <div class="title">
