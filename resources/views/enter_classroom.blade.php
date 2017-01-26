@@ -15,7 +15,7 @@
 
                         {!! Form::open(['id' => 'change-module']) !!}
                         {!! Form::label('module_id', 'Module') !!}
-                        {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray(), null, ['placeholder' => 'Choisissez un module', 'id' => 'module-list']) !!}
+                        {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray()) !!}
                         {!! Form::close() !!}
                     @endif
                     <div class="viewer-iframe">
