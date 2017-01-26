@@ -18,7 +18,7 @@
                         <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('question.edit', 'Modifier', [$question->id]) !!}</div>
 
                         {!! Form::open(['method' => 'DELETE', 'route' => ['question.destroy', $question->id]]) !!}
-                        <div class="btn-delete col-sm-1 col-xs-12">{!! Form::submit('Supprimer') !!}</div>
+                        <div class="btn-delete col-sm-1 col-xs-12">{!! Form::submit('Supprimer', ['onclick' => "return confirm('Supprimez ?')"]) !!}</div>
                         {!! Form::close() !!}
                     </div>
             @endforeach
