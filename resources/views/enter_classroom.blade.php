@@ -24,7 +24,7 @@
                                         <div id="student-list">
                                             @foreach($classroom->getUsers() as $user)
                                                 <p id="user-{{$user->id}}"
-                                                   class="absent">{{$user->lastname}} {{$user->firstname}}</p>
+                                                   class="absent"><span class="userinfo">{{$user->lastname}} {{$user->firstname}}</span></p>
                                             @endforeach
                                         </div>
                                     </div>

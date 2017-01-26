@@ -42,6 +42,10 @@ $(document).ready(function() {
             error: function(err) {}
         });
     });
+
+    classroomChannel.bind('result.quizz', function(data) {
+        $('#user-' + data.userId).append('<span class="result-quizz"> - ' + data.nbCorrect + ' réponse(s) correctes sur ' + data.nbQuestions + '</span>');
+    });
 });
 
 function studentIsPresent(member) {

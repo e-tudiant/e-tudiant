@@ -7,6 +7,7 @@ use App\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SessionRequest;
+use App\Events\ClassroomQuizzResultEvent;
 
 class SessionController extends Controller
 {
@@ -73,6 +74,7 @@ class SessionController extends Controller
             foreach ($toAdd as $item) {
                 $session = Session::create($item);
             }
+            broadcast(new ClassroomQuizzResultEvent($classroom_id, $quizz_id, Auth::user()->id));
         }
         return response()->json(['success' => true]);
 //        return redirect(route('classroom.enter', $classroom_id));
