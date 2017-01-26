@@ -13,7 +13,6 @@
             <div class="tab-content">
             <div class="row">
                 <div class="col-sm-6">
-
                     <div><span class="info-name">Prénom</span>{!! $user->firstname !!}</div>
                     <div><span class="info-name">Nom</span>{!! $user->lastname !!}</div>
                     <div><span class="info-name">E-mail</span>{!! $user->email !!}</div>

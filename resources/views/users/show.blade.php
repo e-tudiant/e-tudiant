@@ -7,7 +7,7 @@
     <div class="tab users-list">
         <div id="users" class="tab-pane fade in active">
             <div class="title">
-                <h3>Modules</h3>
+                <h3>Utilisateurs</h3>
             </div>
             <div class="tab-content">
                 <div class="row">
@@ -29,7 +29,7 @@
                                             @endif
                                         </div>
 
-                                        @if($user->user_info!=NULL)
+                                        @if(!is_null($user->user_info) && !empty($user->user_info->avatar))
                                             <div class="avatar">
                                                 <img src="/uploads/images/users/{{$user->user_info->avatar}}"
                                                      alt="avatar" width="100%">

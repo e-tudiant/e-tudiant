@@ -4,5 +4,5 @@
 <li><a href="/module/">Cours</a></li>
 <li><a href="/quizz/">Quizz</a></li>
 <li><a href="/classroom/">Mes classes</a></li>
-<li><a href="/classroom/1/enter">Salle de Classe</a></li>
+<li><a href="/classroom/enter">Salle de Classe</a></li>
 

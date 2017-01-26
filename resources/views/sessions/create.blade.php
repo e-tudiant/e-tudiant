@@ -13,7 +13,7 @@ if (isset($_POST['errors'])) {
 		{!! Form::open(array('url' => 'session/' . $quizz->id . '/' . $classroom_id, 'method' => 'post')) !!}
 			@foreach($quizz->question as $question)
 				<div>
-					{{ $question->question }} :
+					{{ $question->question }}
 
                     @foreach($question->answer as $answer)
                         {!! Form::label('question_' . $answer->question_id, $answer->answer) !!}
