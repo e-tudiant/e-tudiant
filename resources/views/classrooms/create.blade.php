@@ -13,42 +13,53 @@ if ($classroom->id) {
 ?>
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 
-@include('blocks.menuFormateur')
-
-<div class="col-sm-12">
-	<div id="classroom" class="tab-pane fade in active">
-
-		<h3>Classroom</h3>
+<div class="tab class-create">
+	<div id="module" class="tab-pane fade in active">
+		<div class="title">
+			<h3>Créer ma classe</h3>
+		</div>
+		<div class="tab-content">
 		{!! Form::model($classroom, array('route' => $route, 'method' => $method)) !!}
-		<ul>
-			<li>
+
+			<div class="form-group">
 				{!! Form::label('name', 'Nom :') !!}
 				{!! Form::text('name') !!}
 				{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
+			</div>
+			<div class="form-group">
 				{!! Form::label('module_id', 'Module :') !!}
-				{!! Form::select('module_id[]', $modules, $modulesDefault, ['multiple' => true]) !!}
+				<div>
+					{!! Form::select('module_id', $modules, null, ['multiple'=>'multiple','class' => 'form-control']) !!}
+				</div>
 				{!! $errors->first('module_id', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
+			</div>
+			<div class="form-group">
+				{!! Form::label('group_id', 'Groupes :') !!}
+				<div>
+					{{Form::select('group_id[]', $groups, $groupsDefault, ['multiple'=>'multiple','class' => 'form-control'])}}
+				</div>
+				{!! $errors->first('group_id', '<small class="help-block">:message</small>') !!}
+			</div>
+			<div>
 				{!! Form::label('status', 'Terminé :') !!}
 				{!! Form::checkbox('status') !!}
 				{!! $errors->first('status', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
-				{!! Form::label('group_id', 'Groupes :') !!}
-				{{Form::select('group_id[]', $groups, $groupsDefault, ['multiple' => true])}}
-				{!! $errors->first('group_id', '<small class="help-block">:message</small>') !!}
-			</li>
-			<li>
+			</div>
+			<div class="btn-create">
 				{!! Form::submit() !!}
-			</li>
-		</ul>
-		{!! Form::close() !!}
+			</div>
 
+			{!! Form::close() !!}
+		</div>
+	</div>
 </div>
+
+	<style>
+
+	</style>
 
 @endsection()

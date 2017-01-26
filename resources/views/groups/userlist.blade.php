@@ -30,8 +30,6 @@
             </div>
         </div>
 
-
-
 {{--@endforeach--}}
 
         <div class="btn-create">

@@ -30,6 +30,13 @@
                 <a href="/quizz/" class="home-effect">Voir</a></div>
         </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 block-task" id="home-create-class">
+        <div class="classWithPad">
+            <div><h2>Créer une classe</h2></div>
+            <div><i class="fa fa-pencil" aria-hidden="true"></i></i>
+                <a href="/classroom/" class="home-effect">Voir</a></div>
+        </div>
+    </div>
     <div class="col-xs-12 col-sm-6 col-md-4 block-task" id="home-class">
         <div class="classWithPad">
             <div><h2>Salle de classe</h2></div>
