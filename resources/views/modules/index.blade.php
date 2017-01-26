@@ -20,6 +20,7 @@
                 @else
                 <div class="info-line row">
                 @endif
+                    <div><img src="{!!'/uploads/images/users/'.($module->image_url)!!}"></div>
                     <div class="info-name col-sm-5 col-xs-12">{!! $module->name !!}</div>
                     {{--<div class="btn-show col-sm-3 col-xs-12">{!! link_to_route('module.show', 'Voir', [$module->id]) !!}</div>--}}
                     <div class="btn-edit col-sm-3 col-xs-12">{!! link_to_route('module.edit', 'Modifier', [$module->id]) !!}</div>

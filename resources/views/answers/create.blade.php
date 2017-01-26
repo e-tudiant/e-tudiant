@@ -9,9 +9,9 @@ if ($answer->id) {
 ?>
 @extends('layouts.app')
 
-@section('content')
+@include('layouts.navbar')
 
-    @include('blocks.menuFormateur')
+@section('content')
 
     <div class="tab answer-create">
         <div id="question" class="tab-pane fade in active">

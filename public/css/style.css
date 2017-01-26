@@ -929,9 +929,11 @@ form{
     font-size: 15px;
 }
 .users-list input[type=submit]:hover{
+    background-color: white;
+}
+.users-list input[type=submit]:hover a{
     color: red;
 }
-
 /*************** CHATBOX ****************/
 
 .btn-chatblock{
