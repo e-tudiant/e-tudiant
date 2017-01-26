@@ -103,9 +103,11 @@
                     @endif
                 @endif
 
-                <div class="col-md-9" id="viewer">
-
-
+                    @if(Auth::user()->role_id == 2)
+                        <div class="col-md-9" id="viewer">
+                    @else
+                        <div class="col-md-12" id="viewer">
+                    @endif
                     <div class="viewer-iframe">
                         <iframe allowfullscreen></iframe>
                     </div>
@@ -162,5 +164,5 @@
             </script>
             @if(Auth::user()->role_id == 2)
                 <script src="/js/enter-classroom-teacher.js"></script>
-    @endif
+            @endif
 @endsection
