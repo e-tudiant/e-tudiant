@@ -44,7 +44,7 @@ $(document).ready(function() {
     });
 
     classroomChannel.bind('result.quizz', function(data) {
-        $('#user-' + data.userId).append('<span class="result-quizz"> - ' + data.nbCorrect + ' réponse(s) correctes sur ' + data.nbQuestions + '</span>');
+        $('#user-' + data.userId).append('<span class="result-quizz"> - ' + data.successPercent + '%</span>');
     });
 });
 
@@ -78,15 +78,21 @@ $( "#module-list h4" ).click(function() {
 function studentIsPresent(member) {
     $('#user-' + member.id).removeClass('absent');
     $('#user-' + member.id).addClass('present');
-    var abs = $('.absent').length;
-    var prs = $('.present').length;
-    $('<p>').html("Elève absent : <br><span class='absent'>" + abs + "</span>").appendTo('body .classroom-index #call');
-    $('<p>').html("Elève présent : <br><span class='present'>" + prs + "</span>").appendTo('body .classroom-index #call');
+    updateRegister();
 }
 
 function studentIsAbsent(member) {
     $('#user-' + member.id).removeClass('present');
     $('#user-' + member.id).addClass('absent');
+    updateRegister();
+}
+
+function updateRegister() {
+    var abs = $('#student-list .absent').length;
+    var prs = registerChannel.members.count;
+    $('#register #call').empty();
+    $('<p>').html("Elève absent : <br><span class='absent'>" + abs + "</span>").appendTo('body .classroom-index #call');
+    $('<p>').html("Elève présent : <br><span class='present'>" + prs + "</span>").appendTo('body .classroom-index #call');
 }
 
 function loadModule() {
