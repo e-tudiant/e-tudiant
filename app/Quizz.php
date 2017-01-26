@@ -19,5 +19,4 @@ class Quizz extends Model {
 	{
 		return $this->hasMany('App\Question');
 	}
-
 }

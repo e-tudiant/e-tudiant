@@ -4,9 +4,7 @@
 
 @section('content')
 
-
     @if(count($userList)>0)
-
         @foreach($userList as $user)
 
 
