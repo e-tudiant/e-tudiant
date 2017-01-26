@@ -105,7 +105,7 @@ function initQuizz(classroomId, quizzId, csrfToken, errors) {
 
             $.post('/session/'+ quizzId +'/' + classroomId, data, function(response) {
                 if (response.success) {
-                    $('#quizz-student').html('<p>Le quizz a été soumis au formateur.</p>');
+                    $('#quizz-student').html('<div class="alert alert-success alert-dismissible">Le quizz a été soumis au formateur.</div>');
                 } else {
                     $('#quizz .help-block').remove();
                     $.each(response.errors, function(i,item) {

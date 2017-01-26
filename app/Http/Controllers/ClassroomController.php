@@ -129,9 +129,8 @@ class ClassroomController extends Controller
     public function enter($id)
     {
         $user = Auth::user();
-        if (!$user->canJoinClassroom($id)) {
+        if (!$user->canJoinClassroom($id) && !(Auth::user()->role_id < 3)) {
             return redirect(route('classroom.choose'))->withError("Vous n'avez pas accès à cette salle de classe");
-
         }
         $classroom=Classroom::findOrFail($id);
         return view('enter_classroom', compact('classroom'));
@@ -142,15 +141,25 @@ class ClassroomController extends Controller
 
     public function choose()
     {
-        $classrooms = DB::table('classrooms')
-            ->select('classrooms.id', 'classrooms.name', 'classrooms.status')
-            ->join('classroom_group', 'classrooms.id', '=', 'classroom_group.classroom_id')
-            ->join('groups', 'groups.id', '=', 'classroom_group.group_id')
-            ->join('group_user', 'groups.id', '=', 'group_user.group_id')
-            ->where('group_user.user_id', Auth::user()->id)
-            ->groupBy('classrooms.id', 'classrooms.name', 'classrooms.status')
-            ->orderBy('classrooms.status', 'asc')
-            ->get();
+
+        if(Auth::user()->role_id < 3) {
+            $classrooms = DB::table('classrooms')
+                ->select('classrooms.id', 'classrooms.name', 'classrooms.status')
+                ->orderBy('classrooms.status', 'asc')
+                ->orderBy('classrooms.name', 'asc')
+                ->get();
+        } else {
+            $classrooms = DB::table('classrooms')
+                ->select('classrooms.id', 'classrooms.name', 'classrooms.status')
+                ->join('classroom_group', 'classrooms.id', '=', 'classroom_group.classroom_id')
+                ->join('groups', 'groups.id', '=', 'classroom_group.group_id')
+                ->join('group_user', 'groups.id', '=', 'group_user.group_id')
+                ->where('group_user.user_id', Auth::user()->id)
+                ->groupBy('classrooms.id', 'classrooms.name', 'classrooms.status')
+                ->orderBy('classrooms.status', 'asc')
+                ->orderBy('classrooms.name', 'asc')
+                ->get();
+        }
         return view('classrooms.choose', compact('classrooms'));
     }
 
