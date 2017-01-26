@@ -133,12 +133,11 @@ class ClassroomController extends Controller
             return redirect(route('classroom.choose'))->withError("Vous n'avez pas accès à cette salle de classe");
 
         }
-        // @TODO : Hydrate the module list
-        // @TODO : Hydrate the quizz list
-        return view('enter_classroom')
-            ->withClassroomId($id)
-            ->withModuleList(["1"=>"Linux", "7"=>"Node.js"])
-            ->withQuizzList(["1"=>"Quizz0", "2"=>"Quizz1"]);
+        $classroom=Classroom::findOrFail($id);
+        return view('enter_classroom', compact('classroom'));
+//            ->withClassroomId($id)
+//            ->withModuleList(["1"=>"Linux", "7"=>"Node.js"])
+//            ->withQuizzList(["1"=>"Quizz0", "2"=>"Quizz1"]);
     }
 
     public function choose()

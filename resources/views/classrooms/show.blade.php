@@ -13,7 +13,7 @@
                 <div class="info-name">Name : {!! $classroom->name !!}</div>
                 @if (!is_null($classroom->module) &&  count($classroom->module) > 0)
                     @foreach($classroom->module as $module)
-                        <div class="info-name">Module : {!! $classroom->module->name !!}</div>
+                        <div class="info-name">Module : {!! $module->name !!}</div>
                     @endforeach
                 @endif
                 @if (!is_null($classroom->quizz) &&  count($classroom->quizz) > 0)

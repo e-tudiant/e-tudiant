@@ -1,41 +1,46 @@
 @extends('layouts.app')
 
 @include('layouts.navbar')
-
+<h1>MONITORING</h1>
 @section('content')
-
+    {{--{{dd($classroom)}}--}}
 
     <div class="tab-content">
-        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom_id }}">
+        <div id="profil" class="tab-pane fade in active" data-classroom-id="{{ $classroom->id }}">
 
             <div class="row">
-            <div class="col-md-10" id="viewer">
-                @if(Auth::user()->role_id == 3)
-                    <p class="module-name"></p>
-                @endif
-                @if(Auth::user()->role_id == 2)
-                    {!! Form::open(['id' => 'change-module']) !!}
-                    {!! Form::label('module_id', 'Module') !!}
-                    {!! Form::select('module_id', $module_list) !!}
-                    {!! Form::close() !!}
-                @endif
-                <div class="viewer-iframe">
-                    <iframe allowfullscreen></iframe>
-                </div>
-            </div>
+                <div class="col-md-10" id="viewer">
+                    @if(Auth::user()->role_id == 3)
+                        <p class="module-name"></p>
+                    @endif
+                    @if(Auth::user()->role_id == 2)
 
-
-            @if(Auth::user()->role_id == 2)
-                <div class="col-md-2" id="register">
-                    <div id="student-list">
-                        <p id="user-4" class="absent">Apprenant</p>
-                        <p id="user-5" class="absent">Daniel Gonçalves</p>
-                        <p id="user-6" class="absent">Guillaume Perrier</p>
-                        <p id="user-7" class="absent">Nicolas Aslantas</p>
-                        <p id="user-8" class="absent">Creneguy Johann</p>
+                        {!! Form::open(['id' => 'change-module']) !!}
+                        {!! Form::label('module_id', 'Module') !!}
+                        {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray(), null, ['placeholder' => 'Choisissez un module', 'id' => 'module-list']) !!}
+                        {!! Form::close() !!}
+                    @endif
+                    <div class="viewer-iframe">
+                        <iframe allowfullscreen></iframe>
                     </div>
                 </div>
-            @endif
+
+
+                @if(Auth::user()->role_id == 2)
+                    @if(count($classroom->group)>0)
+                        <div class="col-md-2" id="register">
+                            <div id="student-list">
+                                @foreach($classroom->getUsers() as $user)
+                                    <p id="user-{{$user->id}}" class="absent">{{$user->lastname}} {{$user->firstname}}</p>
+                                    {{--<p id="user-5" class="absent">Daniel Gonçalves</p>--}}
+                                    {{--<p id="user-6" class="absent">Guillaume Perrier</p>--}}
+                                    {{--<p id="user-7" class="absent">Nicolas Aslantas</p>--}}
+                                    {{--<p id="user-8" class="absent">Creneguy Johann</p>--}}
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                @endif
             </div>
 
 
@@ -49,11 +54,12 @@
                 <div id="quizz-teacher">
                     {{ Form::open(['id' => 'quizz-teacher']) }}
                     <ul>
-                        @foreach($quizz_list as $quizz_id => $quizz_name)
+                        @foreach($classroom->quizz as $quizz)
                             <li>
-                                {{ Form::label('quizz.'.$quizz_id, $quizz_name) }}
-                                <input type="checkbox" id="quizz.{{ $quizz_id }}" class="quizz-checkbox" name="quizz_id"
-                                       value="{{ $quizz_id }}">
+                                {{ Form::label('quizz.'.$quizz->id, $quizz->name) }}
+                                <input type="checkbox" id="quizz.{{ $quizz->id }}" class="quizz-checkbox"
+                                       name="quizz_id"
+                                       value="{{ $quizz->id }}">
                             </li>
                         @endforeach
                     </ul>
@@ -70,7 +76,7 @@
                 <div id="chatbox">
                     <div id="messageBox"></div>
                     <div id="sender">
-                        <form id="sendMessage" method="post" action="/classroom/{{ $classroom_id }}/send">
+                        <form id="sendMessage" method="post" action="/classroom/{{ $classroom->id }}/send">
                             {!! csrf_field() !!}
                             <input id="message" type="text" name="message" placeholder="Tapez votre message">
                             <div class="btn-create">
@@ -90,9 +96,10 @@
 
     <style>
 
-        #viewer .viewer-iframe{
+        #viewer .viewer-iframe {
             width: 100%;
         }
+
         iframe {
             width: 100%;
             height: 500px;
@@ -115,9 +122,44 @@
         var classroomId = $('#profil').attr('data-classroom-id');
         var csrfToken = window.Laravel.csrfToken;
         $(document).ready(function () {
+<<<<<<< HEAD
             initPusher('{{ config('broadcasting.connections.pusher.key') }}', classroomId, csrfToken, '{!! base64_encode(serialize($errors)) !!}');
             @if (Auth::user()->role_id == 3)
             initModule(classroomId, csrfToken);
+=======
+            initPusher('{{ config('broadcasting.connections.pusher.key') }}', '{{ $classroom->id }}', '{{ csrf_token() }}');
+            initModule('{{ $classroom->id }}', '{{ csrf_token() }}');
+            initChatBox('{{ $classroom->id }}', '{{ csrf_token() }}');
+            @if (Auth::user()->role_id == 3) // TODO quizz_id here
+            $('#quizz-student').load('/session/create/1/{{ $classroom->id }}', {
+                _token: '{{ csrf_token() }}',
+                errors: '{!! base64_encode(serialize($errors)) !!}'
+            }, function () {
+                $('#quizz form').on('submit', function (e) {
+
+                    e.preventDefault();
+
+                    var data = {};
+                    data._token = '{{ csrf_token() }}';
+                    $(e.currentTarget).find('input:checked').each(function (i, item) {
+                        data[$(item).attr('name')] = $(item).val();
+                    });
+
+                    $.post('/session/1/{{ $classroom->id }}', data, function (response) { // TODO quizz_id here
+                        if (response.success) {
+                            $('#quizz-student').html('Le quizz a été soumis au formateur.');
+                        } else {
+                            $('#quizz .help-block').remove();
+                            $.each(response.errors, function (i, item) {
+                                console.log($('#quizz-student input[name="' + i + '"]'));
+                                $('#quizz-student input[name="' + i + '"]').eq(0).closest('div').prepend('<small class="help-block">' + item + '</small>');
+                            });
+                            //$('#quizz-student').html('Erreur.');
+                        }
+                    }, 'json');
+                });
+            });
+>>>>>>> [Add] Dynamic enterclassroom view
             @endif
             initChatBox(classroomId, csrfToken);
         });
