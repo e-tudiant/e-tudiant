@@ -14,7 +14,8 @@
             <div class="btn-create">
             {!! link_to_route('classroom.create', 'Ajouter une salle de classe') !!}
             </div>
-                @foreach ($classrooms as $classroom)
+
+            @foreach ($classrooms as $classroom)
                     <div class="info-line row">
                         <div class="info-name col-sm-4 col-xs-12">Name : {!! $classroom->name !!}</div>
                         @if(count($classroom->module) > 0)
@@ -40,6 +41,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection()
