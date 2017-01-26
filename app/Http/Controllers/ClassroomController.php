@@ -10,6 +10,7 @@ use App\Http\Requests\ClassroomSendRequest;
 use App\Http\Requests\ClassroomChangeModuleRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Classroom;
 use App\Module;
 use App\Group;
@@ -125,6 +126,11 @@ class ClassroomController extends Controller
      */
     public function enter($id)
     {
+        $user = Auth::user();
+        if (!$user->canJoinClassroom($id)) {
+            return redirect(route('classroom.choose'))->withError["Vous n'avez pas accès à cette salle de classe"];
+
+        }
         // @TODO : Hydrate the module list
         // @TODO : Hydrate the quizz list
         return view('enter_classroom')
@@ -136,11 +142,15 @@ class ClassroomController extends Controller
     public function choose()
     {
         $classrooms = DB::table('classrooms')
+            ->select('classrooms.id', 'classrooms.name', 'classrooms.status')
             ->join('classroom_group', 'classrooms.id', '=', 'classroom_group.classroom_id')
             ->join('groups', 'groups.id', '=', 'classroom_group.group_id')
             ->join('group_user', 'groups.id', '=', 'group_user.group_id')
+            ->where('group_user.user_id', Auth::user()->id)
+            ->groupBy('classrooms.id', 'classrooms.name', 'classrooms.status')
+            ->orderBy('classrooms.status', 'asc')
             ->get();
-        dd($classrooms);
+        return view('classrooms.choose', compact('classrooms'));
     }
 
     /**
@@ -191,7 +201,7 @@ class ClassroomController extends Controller
     {
         $module = Module::findOrFail($request->input('module_id'));
         broadcast(new ClassroomChangeModuleEvent($classroomId, $module, 'change'));
-        
+
     }
 
     public function quizzResult($quizz_id, $classroom_id, $user_id) {
