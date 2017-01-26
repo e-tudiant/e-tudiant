@@ -609,6 +609,10 @@ form{
     color: black;
 }
 
+.module-index .avatar{
+    width: 30%;
+}
+
 /************ USER INFO INDEX ************/
 .profil-index .tab-content{
     padding-top: 30px;
