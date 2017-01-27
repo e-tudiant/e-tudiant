@@ -38,9 +38,12 @@ if ($quizz->id) {
 				</div>
 				{!! $errors->first('classroom_id', '<small class="help-block">:message</small>') !!}
 			</div>
-			<div class="btn-create">
-				{!! Form::submit('Sauvegarder') !!}
-			</div>
+            <div class="btn-create">
+                {!! Form::submit('Sauvegarder') !!}
+            </div>
+            <div class="btn-create">
+                {!! link_to_route('quizz.index', 'Annuler') !!}
+            </div>
 
 		{!! Form::close() !!}
 		</div>

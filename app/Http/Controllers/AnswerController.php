@@ -87,12 +87,13 @@ class AnswerController extends Controller
     public function update($id, AnswerRequest $request)
     {
         $answer = Answer::findOrFail($id);
+        $question = Question::findOrFail($answer->question_id);
         $request->merge([
             'correct' => $request->get('correct', 0),
         ]);
 
 
-        if ($request->get('correct') == 1 && Question::hasCorrect($answer->question_id)) {
+        if ($request->get('correct') == 1 && Question::hasCorrect($answer->question_id) && $question->getCorrect()->id != $id) {
             return back()->withErrors(['correct' => 'Une réponse correct existe déjà.'])->withInput();
         }
 
