@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -65,7 +66,7 @@ class User extends Authenticatable
     public function canJoinClassroom($id){
         $classroom=Classroom::findOrFail($id);
         $classroomUsers=$classroom->getUsers();
-        return (isset ($classroomUsers[$this->id]) && !is_null($classroomUsers[$this->id]));
+        return (isset ($classroomUsers[$this->id]) && !is_null($classroomUsers[$this->id])) || (Auth::user()->role_id<3);
     }
     
     public function joinableClassroom(){
