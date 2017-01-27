@@ -7,7 +7,7 @@
     @if(count($userList)>0)
         @foreach($userList as $user)
 
-
+<div class="col-sm-6 col-xs-12">
             <div class="tab profil-index">
                 <div id="phonebook" class="tab-pane fade in active">
                     <div class="title">
@@ -15,7 +15,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-md-6 col-sm-12">
                                 {{--<div><span class="info-name">Groupe</span>{{ $user->getUserGroups() }}</div>--}}
                                 <div><span class="info-name">E-mail</span>{{ $user->email }}</div>
                                 @if($user->User_info->social_network)
@@ -30,7 +30,7 @@
                                     <div><span class="info-name">Tel</span>{{$user->User_info->phone}}</div>
                                 @endif
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6 col-sm-12">
                                 <div>
                                     <span class="info-name">Avatar</span>
                                     <div class="avatar">
@@ -48,6 +48,7 @@
                     </div>
                 </div>
             </div>
+</div>
         @endforeach
 
     @endif

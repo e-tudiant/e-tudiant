@@ -354,6 +354,9 @@ form{
     background-color: white;
     width: 50%;
 }
+.connexion #connexion-table .title{
+    margin-bottom: 25px;
+}
 .connexion #connexion-table .form-group{
     text-align: center;
 }
@@ -616,6 +619,7 @@ form{
 /************ USER INFO INDEX ************/
 .profil-index .tab-content{
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 .profil-index .col-sm-6 div{
     margin-bottom: 5px;
@@ -623,12 +627,20 @@ form{
 .profil-index span:after {
     content: ' : ';
 }
-.profil-index .col-sm-6:last-of-type {
-    border-left: 3px solid #efefef;
+
+@media screen and (min-width: 992px){
+    .profil-index .col-md-6:last-of-type {
+        border-left: 3px solid #efefef;
+    }
+    .profil-index .info-name {
+        padding-left: 0px;
+    }
 }
+
 .profil-index .avatar{
-    float: right;
-    width: 65%;
+    width: 80%;
+    margin: auto;
+    text-align: center;
 }
 .profil-index .avatar img{
     width: 90%;

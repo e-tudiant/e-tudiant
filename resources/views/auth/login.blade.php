@@ -3,6 +3,7 @@
 @section('content')
     <div class="tab connexion">
         <div id="connexion-table" class="tab-pane fade in active">
+            <img src="/img/logo.png" width="100%">
             <div class="title">
                 <h3>Connexion</h3>
             </div>
