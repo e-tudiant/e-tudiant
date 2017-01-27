@@ -17,15 +17,17 @@
             @foreach ($classrooms as $classroom)
                     <div class="info-line row">
                         <div class="info-name col-sm-4 col-xs-12">Name : {!! $classroom->name !!}</div>
+                        <div class="info-module col-sm-3 col-xs-12">
                         @if(count($classroom->module) > 0)
-                            <div class="info-module col-sm-3 col-xs-12">Module :
+                            Module :
                                 <ul>
                                     @foreach($classroom->module as $module)
                                         <li>{!! $module->name !!}</li>
                                     @endforeach
                                 </ul>
-                            </div>
+
                         @endif
+                        </div>
                         <div class="info-status col-sm-3 col-xs-12">Statut :<br><p {!! $classroom->status ? 'style="color:green"' : 'style="color:red"' !!} > {!! $classroom->status ? 'Terminé' : 'En cours' !!}</p></div>
                         <div class="col-sm-1"></div>
                         <div class="btn-show col-sm-3 col-xs-12">{!! link_to_route('classroom.show', 'Voir', [$classroom->id]) !!}</div>
