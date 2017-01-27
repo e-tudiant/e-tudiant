@@ -7,6 +7,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Support\Facades\Auth;
 
 use App\Session;
+use App\Quizz;
 
 class ClassroomQuizzResultEvent extends AbstractEvent
 {
@@ -17,6 +18,7 @@ class ClassroomQuizzResultEvent extends AbstractEvent
   public $nbQuestions;
   public $nbCorrect;
   public $successPercent;
+  public $quizzName;
 
   /**
    * Create a new event instance.
@@ -32,6 +34,8 @@ class ClassroomQuizzResultEvent extends AbstractEvent
      $quizzResult = Session::quizzResult($this->quizzId, $this->classroomId, $this->userId);
      $this->nbQuestions = $quizzResult["nb_questions"];
      $this->nbCorrect = $quizzResult["nb_correct"];
+     $quizz = Quizz::findOrFail($this->quizzId);
+     $this->quizzName = $quizz->name;
      $this->successPercent = $quizzResult["success_percent"];
    }
 

@@ -44,7 +44,7 @@ $(document).ready(function() {
     });
 
     classroomChannel.bind('result.quizz', function(data) {
-        $('#user-' + data.userId).append('<span class="result-quizz"> - ' + data.successPercent + '%</span>');
+        $('#user-' + data.userId + ' .result-quizz').append('<br>' + data.quizzName + ' : ' + data.successPercent + '%');
     });
 });
 
@@ -76,14 +76,14 @@ $( "#module-list h4" ).click(function() {
 });
 
 function studentIsPresent(member) {
-    $('#user-' + member.id).removeClass('absent');
-    $('#user-' + member.id).addClass('present');
+    $('#user-' + member.id + ' .register-student').removeClass('absent');
+    $('#user-' + member.id + ' .register-student').addClass('present');
     updateRegister();
 }
 
 function studentIsAbsent(member) {
-    $('#user-' + member.id).removeClass('present');
-    $('#user-' + member.id).addClass('absent');
+    $('#user-' + member.id + ' .register-student').removeClass('present');
+    $('#user-' + member.id + ' .register-student').addClass('absent');
     updateRegister();
 }
 

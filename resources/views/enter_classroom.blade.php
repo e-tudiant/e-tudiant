@@ -60,8 +60,10 @@
                                             </div>
                                             <div class="tab-content">
                                                 @foreach($classroom->getUsers() as $user)
-                                                    <p id="user-{{$user->id}}"
-                                                       class="absent">{{$user->lastname}} {{$user->firstname}}</p>
+                                                    <div id="user-{{$user->id}}">
+                                                        <span class="register-student absent">{{$user->lastname}} {{$user->firstname}}</span>
+                                                        <span class="result-quizz"></span>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>
