@@ -67,7 +67,7 @@ class UserInfoController extends Controller
                     if (Input::file('avatar')->isValid()) {
                         $destinationPath = public_path() . '/uploads/images/users/';
                         $extension = Input::file('avatar')->getClientOriginalExtension(); // getting image extension
-                        $fileName = date('YmdHi') . '_user_' . $user_id . '_picture.' . $extension; // renameing image
+                        $fileName ='user_' . $user_id . '_picture.' . $extension; // renameing image
                         Input::file('avatar')->move($destinationPath, $fileName); // uploading file to given path
                     }
                 }
@@ -122,22 +122,24 @@ class UserInfoController extends Controller
     function update($id, Request $request)
     {
         $user_id = Auth::user()->id;
-//        var_dump(intval($request->phonebook));
+//
         if ($request->files->get('avatar')) {
             $file = array('avatar' => $request->files->get('avatar'));
+            dd($file);
             // setting up rules
-            $rules = array('avatar' => 'required|mimes:jpeg,bmp,png');
+            $rules = array('avatar' => 'mimes:jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
-
                 // send back to the page with the input data and errors
                 return Redirect::to(route('userinfo.index'))->withInput()->withErrors($validator);
             } else {
                 // checking file is valid.
                 if ($request->files->get('avatar')->isValid()) {
                     $destinationPath = public_path() . '/uploads/images/users/';
+
                     $extension = $request->files->get('avatar')->getClientOriginalExtension(); // getting image extension
-                    $fileName = date('YmdHi') . '_user_' . $user_id . '_picture.' . $extension; // renameing image
+                    $fileName ='user_' . $user_id . '_picture.' . $extension; // renameing image
+
                     $request->files->get('avatar')->move($destinationPath, $fileName); // uploading file to given path
                     $updateAvatar = array('avatar' => $fileName);
                 }
