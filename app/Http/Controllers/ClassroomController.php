@@ -133,7 +133,7 @@ class ClassroomController extends Controller
     public function enter($id)
     {
         $user = Auth::user();
-        if (!$user->canJoinClassroom($id) && !(Auth::user()->role_id < 3)) {
+        if (!$user->canJoinClassroom($id)) {
             return redirect(route('classroom.choose'))->withError("Vous n'avez pas accès à cette salle de classe");
         }
         $classroom=Classroom::findOrFail($id);
