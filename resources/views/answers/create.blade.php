@@ -2,9 +2,11 @@
 if ($answer->id) {
     $route = ['answer/' . $answer->id];
     $method = 'PUT';
+    $back = '/question/' . $answer->question_id;
 } else {
     $route = ['answer?question_id=' . $question_id];
     $method = 'POST';
+    $back = '/question/' . $question_id;
 }
 ?>
 @extends('layouts.app')
@@ -21,19 +23,22 @@ if ($answer->id) {
             <div class="tab-content">
                 {!! Form::model($answer, array('url' => $route, 'method' => $method)) !!}
 
-                    <div>
-                        {!! Form::label('answer', 'Réponse:') !!}
-                        {!! Form::textarea('answer') !!}
-                        {!! $errors->first('answer', '<small class="help-block">:message</small>') !!}
-                    </div>
-                    <div>
-                        {!! Form::label('correct', 'Correct:') !!}
-                        {!! Form::checkbox('correct') !!}
-                        {!! $errors->first('correct', '<small class="help-block">:message</small>') !!}
-                    </div>
-                    <div class="btn-create">
-                        {!! Form::submit() !!}
-                    </div>
+                <div>
+                    {!! Form::label('answer', 'Réponse:') !!}
+                    {!! Form::textarea('answer') !!}
+                    {!! $errors->first('answer', '<small class="help-block">:message</small>') !!}
+                </div>
+                <div>
+                    {!! Form::label('correct', 'Correct:') !!}
+                    {!! Form::checkbox('correct') !!}
+                    {!! $errors->first('correct', '<small class="help-block">:message</small>') !!}
+                </div>
+                <div class="btn-create">
+                    {!! Form::submit() !!}
+                </div>
+                <div class="btn-create">
+                    {!! link_to($back, 'Annuler') !!}
+                </div>
 
                 {!! Form::close() !!}
             </div>

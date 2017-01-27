@@ -28,6 +28,9 @@ if ($group->id) {
 					<div class="btn-create">
 						{!! Form::submit() !!}
 					</div>
+				<div class="btn-create">
+					{!! link_to_route('group.index', 'Annuler') !!}
+				</div>
 
 				{!! Form::close() !!}
 			</div>
