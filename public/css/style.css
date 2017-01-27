@@ -662,6 +662,13 @@ form{
     content: ' : ';
 }
 
+.profil-index .avatar{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    max-height: 30%;
+    overflow: hidden;
+}
 @media screen and (min-width: 992px){
     .profil-index .col-md-6:last-of-type {
         border-left: 3px solid #efefef;
@@ -669,14 +676,15 @@ form{
     .profil-index .info-name {
         padding-left: 0px;
     }
+    .profil-index .avatar{
+        max-height: 20% !important;
+    }
 }
 
-.profil-index .avatar{
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    max-height: 30%;
-    overflow: hidden;
+@media screen and (max-width: 768px){
+    .profil-index .avatar{
+        max-height: 100% !important;
+    }
 }
 .profil-index .avatar img{
     width: 90%;
