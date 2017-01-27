@@ -23,9 +23,13 @@
                                         <div class="info-name role">
                                             {{$user->role->name}}
                                             @if($user->role->name == 'admin')
-                                                <br><small><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Attention admin</small>
+                                                <br>
+                                                <small><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                                    Attention admin
+                                                </small>
                                             @else
-                                                <br><small style="opacity: 0">test</small>
+                                                <br>
+                                                <small style="opacity: 0">test</small>
                                             @endif
                                         </div>
 
@@ -50,10 +54,5 @@
 
 
                     @endforeach
-
                 </div>
-            </div>
-        </div>
-    </div>
-
 @endsection()
