@@ -28,4 +28,15 @@ class Question extends Model {
         ])->get();
         return count($correct) > 0;
     }
+
+    public function getCorrect() {
+	    $answers = $this->answer;
+	    $correct = null;
+	    foreach ($answers as $answer) {
+	        if($answer->correct) {
+	            $correct = $answer;
+            }
+        }
+        return $correct;
+    }
 }

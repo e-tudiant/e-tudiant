@@ -58,7 +58,7 @@ class ClassroomController extends Controller
             'name' => Input::get('name'),
             'status' => !is_null(Input::get('status'))
         ]);
-        $classroom->module()->sync(!is_null(Input::get('module_id'))? Input::get('group_id'):[]);
+        $classroom->module()->sync(!is_null(Input::get('module_id'))? Input::get('module_id'):[]);
         $classroom->group()->sync(!is_null(Input::get('group_id')) ? Input::get('group_id') : []);
         $classroom->quizz()->sync(!is_null(Input::get('quizz_id')) ? Input::get('quizz_id') : []);
         return redirect(route('classroom.index'))->withOk('Classe créée');
