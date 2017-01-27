@@ -912,6 +912,13 @@ form{
     margin-right: 5px;
 }
 
+#student-list .student{
+    padding: 5px 0px;
+}
+#student-list .result-quizz{
+    padding-left:5px;
+}
+
 /************** CREATE CLASSE CREATE/EDIT **************/
 
 .class-create{
