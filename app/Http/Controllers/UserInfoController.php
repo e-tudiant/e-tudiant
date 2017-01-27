@@ -125,7 +125,6 @@ class UserInfoController extends Controller
 //
         if ($request->files->get('avatar')) {
             $file = array('avatar' => $request->files->get('avatar'));
-            dd($file);
             // setting up rules
             $rules = array('avatar' => 'mimes:jpeg,bmp,png');
             $validator = Validator::make($file, $rules);
