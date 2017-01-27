@@ -20,7 +20,7 @@ class ModuleTableSeeder extends Seeder
         {
             DB::table('modules')->insert([
                 'name' => 'Module' . $i,
-                'image_url' => 'img_' . $i,
+                'image_url' => '/img/teacher_icon.jpg',
                 'slider_url' => 'slider_url_' . $i,
                 'slider_token' => 'slider_token_' . $i,
             ]);
