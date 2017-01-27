@@ -46,7 +46,7 @@ if ($classroom->id) {
 				{!! $errors->first('group_id', '<small class="help-block">:message</small>') !!}
 			</div>
 			<div class="form-group">
-				{!! Form::label('quizz_id', 'Quizzes :') !!}
+				{!! Form::label('quizz_id', 'Quizz :') !!}
 				<div>
 					{{Form::select('quizz_id[]', $quizzs, $quizzsDefault, ['multiple'=>'multiple','class' => 'form-control'])}}
 				</div>

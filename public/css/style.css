@@ -489,6 +489,40 @@ form{
     margin: auto;
 }
 
+
+.quizz-create #question h4{
+    color: black !important;
+    font-family: Tinos !important;
+    text-transform: capitalize;
+    width: 70%;
+    margin: auto !important;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+.quizz-create #question h4:before{
+    content: '\f10d';
+    font-family: FontAwesome;
+    padding-right: 10px;
+}
+.quizz-create #question h4:after{
+    content: '\f10e';
+    font-family: FontAwesome;
+    padding-left: 10px;
+}
+.quizz-create #question{
+    border-bottom: 3px solid #efefef;
+    padding-bottom: 25px;
+    width: 98%;
+    margin: auto;
+}
+.quizz-create #question label{
+    text-align: left;
+    font-family: inherit !important;
+}
+.quizz-create #question:last-of-type{
+    border:none;
+}
+
 /************ QUESTION FOR QUIZZ *************/
 
 .show-quizz{
@@ -641,10 +675,11 @@ form{
     width: 80%;
     margin: auto;
     text-align: center;
+    max-height: 30%;
+    overflow: hidden;
 }
 .profil-index .avatar img{
     width: 90%;
-    max-height: 70%;
 }
 .profil-index .right{
     color: green;

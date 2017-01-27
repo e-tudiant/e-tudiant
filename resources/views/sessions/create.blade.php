@@ -12,12 +12,13 @@ if (isset($_POST['errors'])) {
 		<div class="tab-content">
 		{!! Form::open(array('url' => 'session/' . $quizz->id . '/' . $classroom_id, 'method' => 'post')) !!}
 			@foreach($quizz->question as $question)
-				<div>
-					{{ $question->question }}
+				<div id="question" class="row">
+					<h4>{{ $question->question }}</h4>
 
                     @foreach($question->answer as $answer)
-                        {!! Form::label('question_' . $answer->question_id, $answer->answer) !!}
-                        {!! Form::radio('question_' . $answer->question_id, $answer->id) !!}
+						<p class="col-xs-11">{!! Form::label('question_' . $answer->question_id, $answer->answer) !!}</p>
+
+						<p class="col-xs-1">{!! Form::radio('question_' . $answer->question_id, $answer->id) !!}</p>
                     @endforeach
 
                     {!! $errors->first('question_' . $answer->question_id, '<small class="help-block">:message</small>') !!}
@@ -32,3 +33,7 @@ if (isset($_POST['errors'])) {
 		</div>
 	</div>
 </div>
+
+<style>
+
+</style>

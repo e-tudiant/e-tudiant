@@ -51,15 +51,6 @@
 
                     @endforeach
 
-    @foreach($users as $user)
-        {{dd($user->joinableClassroom())}}
-        <div class="col-md-3">
-            {{$user->lastname}}<br>
-            {{$user->firstname}}<br>
-            {{$user->role->name}}
-            @if($user->user_info!=NULL)
-                <div>
-                    <img src="/uploads/images/users/{{$user->user_info->avatar}}" alt="avatar" width="100">
                 </div>
             </div>
         </div>
