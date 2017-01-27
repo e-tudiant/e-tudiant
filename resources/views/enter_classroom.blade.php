@@ -43,7 +43,7 @@
 
                                                     {!! Form::open(['id' => 'change-module']) !!}
                                                     {!! Form::label('module_id', '') !!}
-                                                    {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray()) !!}
+                                                    {!! Form::select('module_id',$classroom->module->pluck('name','id')->toArray(), null, ['placeholder' => 'Selectionnez un module']) !!}
                                                     {!! Form::close() !!}
                                                 @endif
                                             </div>
