@@ -60,6 +60,10 @@ if ($classroom->id) {
 			<div class="btn-create">
 				{!! Form::submit() !!}
 			</div>
+			<div class="btn-create">
+				{!! link_to_route('classroom.index', 'Annuler') !!}
+			</div>
+
 
 			{!! Form::close() !!}
 		</div>
