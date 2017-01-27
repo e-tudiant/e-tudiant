@@ -30,7 +30,7 @@
     </div>
     <div>
         {!! Form::label('phonebook', 'Profil:') !!}
-        Privé {!! Form::radio('phonebook', '0') !!}<br>
+        Privé {!! Form::radio('phonebook', '0', true) !!}<br>
         Public {!! Form::radio('phonebook', '1') !!}
     </div>
     <div class="btn-create">

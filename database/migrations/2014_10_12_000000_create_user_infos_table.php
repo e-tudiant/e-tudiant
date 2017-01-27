@@ -20,8 +20,7 @@ class CreateUserInfosTable extends Migration
             $table->string('github_link');
             $table->string('phone');
             $table->string('avatar');
-            $table->boolean('phonebook');
-
+            $table->boolean('phonebook')->default(0);
             $table->timestamps();
         });
     }

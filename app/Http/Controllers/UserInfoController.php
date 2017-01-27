@@ -53,7 +53,10 @@ class UserInfoController extends Controller
             $user_id = Auth::user()->id;
             $file = array('avatar' => Input::file('avatar'));
             // setting up rules
-            $rules = array('avatar' => 'mimes:jpg,jpeg,bmp,png');
+            $rules = array(
+                'avatar' => 'mimes:jpg,jpeg,bmp,png'
+
+            );
             if (!is_null($file['avatar'])) {
                 $validator = Validator::make($file, $rules);
                 if ($validator->fails()) {
@@ -77,7 +80,7 @@ class UserInfoController extends Controller
                 'github_link' => Input::get('github_link'),
                 'phone' => Input::get('phone'),
                 'avatar' => $fileName,
-                'phonebook' => Input::get('phonebook')
+                'phonebook' => !empty(Input::get('phonebook')) ? Input::get('phonebook') : 0,
             ]);
             return redirect(route('userinfo.index'))->withOk('Informations enregistrée');
         }
