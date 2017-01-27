@@ -89,7 +89,7 @@ function studentIsAbsent(member) {
 
 function updateRegister() {
     var abs = $('#student-list .absent').length;
-    var prs = registerChannel.members.count;
+    var prs = $('#student-list .present').length;
     $('#register #call').empty();
     $('<p>').html("Elève absent : <br><span class='absent'>" + abs + "</span>").appendTo('body .classroom-index #call');
     $('<p>').html("Elève présent : <br><span class='present'>" + prs + "</span>").appendTo('body .classroom-index #call');
